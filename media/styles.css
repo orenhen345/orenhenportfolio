@@ -1,0 +1,809 @@
+@font-face {
+  font-family: "Bamberger";
+  src: url("media/fonts/bamberger-sharp-ultrabold-fm.otf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "OMES";
+  src: url("media/fonts/omes-bold-fm.otf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Rivka";
+  src: url("media/fonts/rivkabau-bold-fm.otf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Bamberger", sans-serif;
+  background: #1a1a1a;
+  color: #fff;
+  line-height: 1.6;
+  font-size: calc(1em + 2px);
+  letter-spacing: 2px;
+}
+
+/* מסך כניסה – בחירת מוזיקת רקע */
+.sound-intro-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 300;
+  background: rgba(0, 0, 0, 0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.5s ease;
+}
+
+.sound-intro-overlay.sound-intro-done {
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.sound-intro-content {
+  text-align: center;
+  padding: 2rem;
+  max-width: 420px;
+}
+
+.sound-intro-record {
+  width: 120px;
+  height: 120px;
+  margin: 0 auto 1.5rem;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle at 50% 50%,
+    #1a1a1a 0%,
+    #1a1a1a 10%,
+    #fff 11%,
+    #fff 14%,
+    #e8e8e8 15%,
+    #fff 18%,
+    #e8e8e8 20%,
+    #fff 25%,
+    #e8e8e8 28%,
+    #fff 32%,
+    #e8e8e8 35%,
+    #fff 50%
+  );
+  box-shadow: 0 0 0 2px rgba(255,255,255,0.9), inset 0 0 8px rgba(0,0,0,0.08);
+}
+
+.sound-intro-text {
+  color: #fff;
+  font-size: 1.1rem;
+  line-height: 1.7;
+  margin-bottom: 1.5rem;
+}
+
+.sound-intro-note {
+  display: block;
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.75);
+  margin-top: 0.5rem;
+}
+
+.sound-intro-buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.sound-intro-btn {
+  padding: 0.7rem 1.8rem;
+  border: 2px solid #e8a84a;
+  border-radius: 12px;
+  background: transparent;
+  color: #e8a84a;
+  font-family: inherit;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+
+.sound-intro-btn:hover {
+  background: #e8a84a;
+  color: #1a1a1a;
+}
+
+.sound-intro-on:hover {
+  background: #e8a84a;
+  color: #1a1a1a;
+}
+
+/* כפתור תקליט ראשי – פינה */
+.sound-main-toggle {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  animation: toggleAppear 0.5s ease 0.5s both;
+  z-index: 200;
+  width: 48px;
+  height: 48px;
+  border: none;
+  border-radius: 50%;
+  background: transparent;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  transition: transform 0.2s ease;
+}
+
+.sound-main-toggle:hover {
+  transform: scale(1.08);
+}
+
+.sound-main-record {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle at 50% 50%,
+    #1a1a1a 0%,
+    #1a1a1a 10%,
+    #fff 11%,
+    #fff 14%,
+    #e8e8e8 15%,
+    #fff 18%,
+    #e8e8e8 20%,
+    #fff 25%,
+    #e8e8e8 28%,
+    #fff 32%,
+    #e8e8e8 35%,
+    #fff 50%
+  );
+  box-shadow: 0 0 0 1px rgba(255,255,255,0.9), inset 0 0 3px rgba(0,0,0,0.08);
+}
+
+.sound-main-toggle.sound-on .sound-main-record {
+  animation: recordSpin 6s linear infinite;
+}
+
+.sound-main-x {
+  position: absolute;
+  width: 22px;
+  height: 22px;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+}
+
+.sound-main-x::before,
+.sound-main-x::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 100%;
+  height: 3px;
+  background: #e8a84a;
+  border-radius: 2px;
+  transform-origin: center;
+}
+
+.sound-main-x::before {
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.sound-main-x::after {
+  transform: translate(-50%, -50%) rotate(-45deg);
+}
+
+.sound-main-toggle.sound-on .sound-main-x {
+  opacity: 0;
+}
+
+@keyframes toggleAppear {
+  from {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* תמונה 1: הכרזה + סרטונים בתנועה */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+}
+
+/* רקע מתחלף – כל התמונות מרקעים (מלבד 1-3), 3 שניות כל אחת, 1 שנייה dissolve */
+.hero-bg-slides {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.hero-bg-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
+  opacity: 0;
+  animation: bgFade 44s ease-in-out infinite;
+}
+
+.hero-bg-slides .hero-bg-img:nth-child(1) { animation-delay: 0s; }
+.hero-bg-slides .hero-bg-img:nth-child(2) { animation-delay: 4s; }
+.hero-bg-slides .hero-bg-img:nth-child(3) { animation-delay: 8s; }
+.hero-bg-slides .hero-bg-img:nth-child(4) { animation-delay: 12s; }
+.hero-bg-slides .hero-bg-img:nth-child(5) { animation-delay: 16s; }
+.hero-bg-slides .hero-bg-img:nth-child(6) { animation-delay: 20s; }
+.hero-bg-slides .hero-bg-img:nth-child(7) { animation-delay: 24s; }
+.hero-bg-slides .hero-bg-img:nth-child(8) { animation-delay: 28s; }
+.hero-bg-slides .hero-bg-img:nth-child(9) { animation-delay: 32s; }
+.hero-bg-slides .hero-bg-img:nth-child(10) { animation-delay: 36s; }
+.hero-bg-slides .hero-bg-img:nth-child(11) { animation-delay: 40s; }
+
+/* מחזור 44 שניות: 11 תמונות × (3s תצוגה + 1s דיסולב) */
+@keyframes bgFade {
+  0% { opacity: 1; }
+  6.82% { opacity: 1; }
+  9.09% { opacity: 0; }
+  90% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+/* שכבת גרדיאנט מעל הרקע */
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background:
+    radial-gradient(ellipse 95% 95% at 50% 50%, transparent 40%, rgba(0, 0, 0, 0.12) 100%);
+  pointer-events: none;
+}
+
+.hero-strip-wrap {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  overflow: hidden;
+}
+
+.hero-strip {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  gap: 0.5rem;
+  width: max-content;
+  animation: stripScroll 40s linear infinite;
+  will-change: transform;
+}
+
+/* 4 העתקות; גלילה של סט אחד (25%) – הלופ חלק כי התוכן זהה */
+@keyframes stripScroll {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(-25%, 0, 0);
+  }
+}
+
+.strip-item {
+  flex-shrink: 0;
+  display: flex;
+  overflow: hidden;
+  border-radius: 8px;
+}
+
+.strip-item video,
+.strip-item iframe {
+  display: block;
+  height: 100%;
+  width: auto;
+  max-width: none;
+  object-fit: contain;
+  object-position: center bottom;
+}
+
+.strip-item iframe {
+  border: none;
+  pointer-events: none;
+}
+
+/* גבהים שונים + 10px לכל כיוון; יישור אנכי מגוון כמו בתמונה */
+.strip-poster {
+  height: calc(90vh + 20px);
+  align-self: flex-end;
+}
+
+.strip-drummer {
+  height: calc(72vh + 20px);
+  align-self: flex-end;
+}
+
+.strip-bass {
+  height: calc(62vh + 20px);
+  align-self: flex-start;
+  margin-bottom: 12vh;
+}
+
+.strip-sax {
+  height: calc(75vh + 20px);
+  align-self: flex-start;
+  margin-bottom: 10vh;
+}
+
+.strip-trumpet {
+  height: calc(68vh + 20px);
+  align-self: flex-end;
+}
+
+.strip-trumpet-nt {
+  height: calc(65vh + 20px);
+  align-self: flex-end;
+}
+
+.strip-bass-nt {
+  height: calc(60vh + 20px);
+  align-self: flex-start;
+  margin-bottom: 10vh;
+}
+
+.strip-drummer-nt {
+  height: calc(70vh + 20px);
+  align-self: flex-end;
+}
+
+.strip-sax-nt {
+  height: calc(73vh + 20px);
+  align-self: flex-start;
+  margin-bottom: 8vh;
+}
+
+/* פרטי האירוע */
+.event-details {
+  background: #1a1a1a;
+  padding: 2.5rem 1.5rem;
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+.event-details-title {
+  text-align: center;
+  font-size: calc(2rem + 6px);
+  font-weight: 800;
+  margin-bottom: 1.5rem;
+}
+
+.info-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.info-card {
+  background: #2a2a2a;
+  border-radius: 16px;
+  padding: 1.5rem 1.25rem;
+  text-align: center;
+}
+
+.info-icon {
+  font-size: calc(2rem + 6px);
+  margin-bottom: 0.75rem;
+}
+
+.info-card h3 {
+  font-size: calc(1.1rem + 6px);
+  font-weight: 700;
+  margin-bottom: 0.4rem;
+}
+
+.info-card p {
+  font-size: calc(0.95rem + 6px);
+  color: rgba(255, 255, 255, 0.9);
+  line-height: 1.5;
+}
+
+.event-description {
+  color: rgba(255, 255, 255, 0.9);
+  font-size: calc(1rem + 6px);
+  line-height: 1.7;
+}
+
+/* תמונה 3: האמנים */
+.artists {
+  background: #1a1a1a;
+  padding: 2rem 1.5rem 2.5rem;
+  max-width: 960px;
+  margin: 0 auto;
+  margin-top: -2rem;
+  position: relative;
+}
+
+.artists-cta {
+  text-align: center;
+  padding: 2rem 1.5rem 2.5rem;
+}
+
+.btn-tickets {
+  display: inline-block;
+  background: linear-gradient(135deg, #d4753a, #e8a84a);
+  color: #1a1a1a;
+  padding: 1rem 2.5rem;
+  border-radius: 999px;
+  font-size: calc(1.1rem + 6px);
+  font-weight: 700;
+  text-decoration: none;
+  transition: transform 0.2s ease, filter 0.2s ease;
+}
+
+.btn-tickets:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.08);
+}
+
+/* חלון רכישת כרטיסים */
+.checkout-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 250;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.checkout-overlay.checkout-open {
+  opacity: 1;
+  visibility: visible;
+}
+
+.checkout-modal {
+  background: #252525;
+  border-radius: 20px;
+  padding: 2rem;
+  max-width: 420px;
+  width: 100%;
+  position: relative;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+}
+
+.checkout-close {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  width: 36px;
+  height: 36px;
+  border: none;
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  font-size: 1.5rem;
+  line-height: 1;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.checkout-close:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.checkout-title {
+  font-size: calc(1.5rem + 4px);
+  color: #e8a84a;
+  margin-bottom: 0.5rem;
+  text-align: center;
+}
+
+.checkout-event {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: calc(0.95rem + 2px);
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.checkout-summary {
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: 12px;
+  padding: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.checkout-summary p {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.9);
+  font-size: calc(0.95rem + 2px);
+}
+
+.checkout-quantity-row {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.5rem;
+}
+
+.checkout-quantity-label {
+  font-weight: 700;
+}
+
+.checkout-quantity-controls {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.checkout-qty-btn {
+  width: 36px;
+  height: 36px;
+  border: none;
+  border-radius: 8px;
+  background: rgba(232, 168, 74, 0.3);
+  color: #e8a84a;
+  font-size: 1.25rem;
+  line-height: 1;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.checkout-qty-btn:hover:not(:disabled) {
+  background: rgba(232, 168, 74, 0.5);
+}
+
+.checkout-qty-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.checkout-qty-value {
+  min-width: 2ch;
+  text-align: center;
+  font-weight: 700;
+  font-size: calc(1rem + 2px);
+}
+
+.checkout-venue {
+  margin-top: 0.25rem;
+}
+
+.checkout-label {
+  color: rgba(255, 255, 255, 0.9);
+  font-size: calc(1rem + 2px);
+  margin-bottom: 0.75rem;
+}
+
+.checkout-payment-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+
+.checkout-option {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.25rem;
+  background: rgba(255, 255, 255, 0.08);
+  border: 2px solid transparent;
+  border-radius: 12px;
+  color: #fff;
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s;
+}
+
+.checkout-option:hover {
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.checkout-option input {
+  margin: 0;
+}
+
+.checkout-option input:checked + span {
+  font-weight: 700;
+}
+
+.checkout-option:has(input:checked) {
+  border-color: #e8a84a;
+  background: rgba(232, 168, 74, 0.15);
+}
+
+.checkout-submit {
+  width: 100%;
+  padding: 1rem;
+  border: none;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #d4753a, #e8a84a);
+  color: #1a1a1a;
+  font-family: inherit;
+  font-size: calc(1rem + 2px);
+  font-weight: 700;
+  cursor: pointer;
+  transition: filter 0.2s, transform 0.2s;
+}
+
+.checkout-submit:hover {
+  filter: brightness(1.08);
+  transform: translateY(-1px);
+}
+
+.artists-intro {
+  color: rgba(255, 255, 255, 0.9);
+  font-size: calc(1rem + 2px);
+  line-height: 1.7;
+  margin-bottom: 2.5rem;
+}
+
+.artists-title {
+  font-family: "Rivka", sans-serif;
+  text-align: center;
+  font-size: calc(2rem + 6px);
+  font-weight: 800;
+  color: #e8a84a;
+  margin-bottom: 0.5rem;
+}
+
+.artists-subtitle {
+  text-align: center;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: calc(1rem + 6px);
+  margin-bottom: 1.5rem;
+}
+
+@keyframes recordSpin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.artists-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+}
+
+.artist-card {
+  border-radius: 20px;
+  padding: 1.5rem;
+  color: #fff;
+  position: relative;
+  line-height: 0.8;
+}
+
+.artist-has-video {
+  position: relative;
+}
+
+/* פופאפ וידאו בהובר – רקע אטום, פינות מעוגלות (clip-path), וידאו לא חתוך */
+.artist-card-hover {
+  position: fixed;
+  z-index: 100;
+  left: 0;
+  top: 0;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.2s ease, visibility 0.2s ease;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+  background: transparent;
+  isolation: isolate;
+  clip-path: inset(0 round 14px);
+  border: none;
+  outline: none;
+}
+
+.artist-has-video:hover .artist-card-hover {
+  opacity: 1;
+  visibility: visible;
+}
+
+.artist-card-hover video,
+.artist-card-hover-embed,
+.artist-card-hover-embed iframe {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 14px;
+  background: transparent;
+  border: none;
+  outline: none;
+}
+
+.artist-card-hover-embed {
+  position: absolute;
+  inset: 0;
+}
+
+/* יואב, מאיה: 1080×1377 */
+.artist-card[data-size="1080x1377"] .artist-card-hover {
+  width: min(360px, 40vw);
+  aspect-ratio: 1080 / 1377;
+}
+
+/* עידו, דניאל: 1080×1920 */
+.artist-card[data-size="1080x1920"] .artist-card-hover {
+  width: min(280px, 30vw);
+  aspect-ratio: 1080 / 1920;
+}
+
+.artist-orange {
+  background: linear-gradient(135deg, #d4753a, #e8a84a);
+}
+
+.artist-maroon {
+  background: linear-gradient(135deg, #6b2d3c, #8b3a4a);
+}
+
+.artist-icon {
+  font-size: calc(2rem + 6px);
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.artist-time {
+  position: absolute;
+  top: 1.25rem;
+  left: 1.25rem;
+  font-size: calc(0.9rem + 8px);
+}
+
+.artist-card h3 {
+  font-family: "OMES", sans-serif;
+  font-size: calc(1.3rem + 10px);
+  font-weight: 700;
+  margin-bottom: 0.3rem;
+}
+
+.artist-instrument {
+  font-size: calc(0.9rem + 6px);
+  opacity: 0.95;
+  margin-bottom: 0.75rem;
+  line-height: 0.75;
+}
+
+.artist-desc {
+  font-size: calc(0.95rem + 6px);
+  line-height: 0.8;
+  opacity: 0.95;
+}
+
+/* רספונסיבי */
+@media (max-width: 768px) {
+  .info-cards {
+    grid-template-columns: 1fr;
+  }
+
+  .artists-grid {
+    grid-template-columns: 1fr;
+  }
+}

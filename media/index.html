@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <title>ערב ג'אז בתל אביב</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <audio id="bgMusic" loop>
+    <source src="media/Chet Baker - Tenderly.mp3" type="audio/mpeg" />
+  </audio>
+
+  <div class="sound-intro-overlay" id="soundIntroOverlay">
+    <div class="sound-intro-content">
+      <div class="sound-intro-record"></div>
+      <p class="sound-intro-text">האתר מציע מוזיקת רקע. על מנת להמשיך, החליטו האם אתם מעוניינים במוזיקה או לא.<br><span class="sound-intro-note">(אל תדאגו – תוכלו לשנות את הבחירה גם באתר)</span></p>
+      <div class="sound-intro-buttons">
+        <button type="button" class="sound-intro-btn sound-intro-mute" id="soundIntroMute">השתק</button>
+        <button type="button" class="sound-intro-btn sound-intro-on" id="soundIntroOn">הגבר</button>
+      </div>
+    </div>
+  </div>
+
+  <button type="button" class="sound-main-toggle" id="soundMainToggle" aria-label="הפעלת סאונד" style="display: none;">
+    <span class="sound-main-record"></span>
+    <span class="sound-main-x"></span>
+  </button>
+  <!-- תמונה 1: הכרזה + סרטוני אמנים בתנועה -->
+  <section id="hero" class="hero">
+    <div class="hero-bg-slides">
+      <img class="hero-bg-img" src="media/רקעים/רקע 1.png" alt="" />
+      <img class="hero-bg-img" src="media/רקעים/רקע 2.png" alt="" />
+      <img class="hero-bg-img" src="media/רקעים/רקע 3.png" alt="" />
+      <img class="hero-bg-img" src="media/רקעים/רקע 4.png" alt="" />
+      <img class="hero-bg-img" src="media/רקעים/רקע 5.png" alt="" />
+      <img class="hero-bg-img" src="media/רקעים/רקע 6.png" alt="" />
+      <img class="hero-bg-img" src="media/רקעים/רקע 7.png" alt="" />
+      <img class="hero-bg-img" src="media/רקעים/רקע 8.png" alt="" />
+      <img class="hero-bg-img" src="media/רקעים/רקע 9.png" alt="" />
+      <img class="hero-bg-img" src="media/רקעים/רקע 10.png" alt="" />
+      <img class="hero-bg-img" src="media/רקעים/רקע 11.png" alt="" />
+    </div>
+    <div class="hero-strip-wrap" dir="ltr">
+      <div class="hero-strip"><!-- המבנה נבנה ע"י JS עם סדר אקראי --></div>
+    </div>
+  </section>
+
+  <!-- פרטי האירוע -->
+  <section id="event-details" class="event-details">
+    <h2 class="event-details-title">פרטי האירוע</h2>
+    <div class="info-cards">
+      <div class="info-card">
+        <div class="info-icon">📅</div>
+        <h3>תאריך</h3>
+        <p>יום שלישי<br>18.4</p>
+      </div>
+      <div class="info-card">
+        <div class="info-icon">📍</div>
+        <h3>מיקום</h3>
+        <p>היכל תרבות<br>תל אביב</p>
+      </div>
+      <div class="info-card">
+        <div class="info-icon">🕐</div>
+        <h3>שעות</h3>
+        <p>19:30 - 22:30<br>4 הופעות</p>
+      </div>
+    </div>
+    <p class="event-description">
+      הצטרפו אלינו לערב ג'אז מיוחד בתל אביב! ארבעה אמנים מוכשרים יעלו על הבמה ויספקו חוויה מוזיקלית בלתי נשכחת. מהקסם של יואב כהן ועד לספקטור של עידו רוזן, כל הופעה תביא איתה אנרגיה ייחודית וסאונד מרגש.
+    </p>
+  </section>
+
+  <!-- תמונה 3: האמנים -->
+  <section id="artists" class="artists">
+    <h2 class="artists-title">האמנים שלנו</h2>
+    <p class="artists-subtitle">פגשו את המוזיקאים המוכשרים שיעלו על הבמה</p>
+    <div class="artists-grid">
+      <article class="artist-card artist-maroon artist-has-video" data-size="1080x1377">
+        <div class="artist-card-hover">
+          <video src="media/מתופף גמור.mp4" muted loop playsinline></video>
+        </div>
+        <span class="artist-icon">♪</span>
+        <span class="artist-time">19:30</span>
+        <h3>יואב כהן</h3>
+        <p class="artist-instrument">על התופים</p>
+        <p class="artist-desc">גרוב מדויק, אנרגיה מתפרצת ושליטה דינמית בקצב</p>
+      </article>
+      <article class="artist-card artist-orange artist-has-video" data-size="1080x1377">
+        <div class="artist-card-hover">
+          <video src="media/קונטרה בס גמור.mp4" muted loop playsinline></video>
+        </div>
+        <span class="artist-icon">♪</span>
+        <span class="artist-time">20:15</span>
+        <h3>מאיה לוי</h3>
+        <p class="artist-instrument">בקונטרה בס</p>
+        <p class="artist-desc">בס עמוק ומקפיץ שמוביל את המבנה ההרמוני והקצבי של הערב</p>
+      </article>
+      <article class="artist-card artist-orange artist-has-video" data-size="1080x1920">
+        <div class="artist-card-hover">
+          <video src="media/סקסופוניסט גמור.mp4" muted loop playsinline></video>
+        </div>
+        <span class="artist-icon">♪</span>
+        <span class="artist-time">21:45</span>
+        <h3>עידו רוזן</h3>
+        <p class="artist-instrument">בסקסופון</p>
+        <p class="artist-desc">סולן סיום סוחף עם פראזות מהירות ונשימה חיה</p>
+      </article>
+      <article class="artist-card artist-maroon artist-has-video" data-size="1080x1920">
+        <div class="artist-card-hover">
+          <video src="media/חצוצרן גמור.mp4" muted loop playsinline></video>
+        </div>
+        <span class="artist-icon">♪</span>
+        <span class="artist-time">21:00</span>
+        <h3>דניאל פרידמן</h3>
+        <p class="artist-instrument">בחצוצרה</p>
+        <p class="artist-desc">צליל חד ובהיר עם השפעות הארד בופ מודרני</p>
+      </article>
+    </div>
+    <div class="artists-cta">
+      <a href="#" class="btn-tickets" id="btnTickets">לקניית כרטיסים</a>
+    </div>
+  </section>
+
+  <div class="checkout-overlay" id="checkoutOverlay">
+    <div class="checkout-modal">
+      <button type="button" class="checkout-close" id="checkoutClose" aria-label="סגור">×</button>
+      <h2 class="checkout-title">רכישת כרטיסים</h2>
+      <p class="checkout-event">ערב ג'אז בתל אביב · יום שלישי 18.4 · 19:30–22:30</p>
+      <div class="checkout-summary">
+        <p class="checkout-quantity-row">
+          <span class="checkout-quantity-label">כמות:</span>
+          <span class="checkout-quantity-controls">
+            <button type="button" class="checkout-qty-btn" id="checkoutQtyMinus" aria-label="הפחת">−</button>
+            <span class="checkout-qty-value" id="checkoutQtyValue">1</span>
+            <button type="button" class="checkout-qty-btn" id="checkoutQtyPlus" aria-label="הוסף">+</button>
+          </span>
+        </p>
+        <p class="checkout-venue"><span id="checkoutQtyText">כרטיס אחד</span> — היכל תרבות תל אביב</p>
+      </div>
+      <form class="checkout-form">
+        <p class="checkout-label">בחר אמצעי תשלום</p>
+        <div class="checkout-payment-options">
+          <label class="checkout-option">
+            <input type="radio" name="payment" value="paypal" checked />
+            <span>PayPal</span>
+          </label>
+          <label class="checkout-option">
+            <input type="radio" name="payment" value="credit" />
+            <span>כרטיס אשראי</span>
+          </label>
+          <label class="checkout-option">
+            <input type="radio" name="payment" value="visa" />
+            <span>Visa</span>
+          </label>
+          <label class="checkout-option">
+            <input type="radio" name="payment" value="bit" />
+            <span>Bit</span>
+          </label>
+        </div>
+        <button type="submit" class="checkout-submit">המשך לתשלום</button>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    (function() {
+      var order = ['poster', 'trumpet_nt', 'bass_nt', 'drummer_nt', 'sax_nt'];
+      for (var i = order.length - 1; i > 0; i--) {
+        var j = Math.floor(Math.random() * (i + 1));
+        var t = order[i];
+        order[i] = order[j];
+        order[j] = t;
+      }
+      var items = {
+        poster: { cls: 'strip-poster', src: 'media/כרזה זה בלי קו.mp4' },
+        trumpet_nt: { cls: 'strip-trumpet-nt', src: 'media/חצוצרן בלי טקסט.mp4' },
+        bass_nt: { cls: 'strip-bass-nt', src: 'media/קונטרה בס בלי טקסט.mp4' },
+        drummer_nt: { cls: 'strip-drummer-nt', src: 'media/מתופף בלי טקסט.mp4' },
+        sax_nt: { cls: 'strip-sax-nt', src: 'media/סקסופוניסט בלי טקסט.mp4' }
+      };
+      var strip = document.querySelector('.hero-strip');
+      strip.innerHTML = '';
+      for (var copy = 0; copy < 4; copy++) {
+        for (var k = 0; k < 5; k++) {
+          var key = order[k];
+          var item = items[key];
+          var div = document.createElement('div');
+          div.className = 'strip-item ' + item.cls;
+          var vid = document.createElement('video');
+          vid.src = item.src;
+          vid.muted = true;
+          vid.loop = true;
+          vid.playsInline = true;
+          vid.autoplay = true;
+          div.appendChild(vid);
+          strip.appendChild(div);
+        }
+      }
+      strip.querySelectorAll('video').forEach(function(v) {
+        v.play().catch(function() {});
+      });
+    })();
+
+    /* מוזיקת רקע + פופאפ וידאו בכרטיסיות */
+    var popupVideos = document.querySelectorAll('.artist-card-hover video');
+    var bgMusic = document.getElementById('bgMusic');
+    var soundMainToggle = document.getElementById('soundMainToggle');
+    var soundIntroOverlay = document.getElementById('soundIntroOverlay');
+    var bgMusicFadeTimer = null;
+    var bgMusicResumeTimeout = null;
+
+    function isSoundOn() {
+      return soundMainToggle && soundMainToggle.classList.contains('sound-on');
+    }
+
+    function setVideosMuted(muted) {
+      popupVideos.forEach(function(v) {
+        v.muted = muted;
+      });
+    }
+
+    function closeIntroAndShowToggle(soundEnabled) {
+      soundIntroOverlay.classList.add('sound-intro-done');
+      soundMainToggle.style.display = 'flex';
+      if (soundEnabled) {
+        soundMainToggle.classList.add('sound-on');
+        soundMainToggle.setAttribute('aria-label', 'השתקת סאונד');
+      } else {
+        soundMainToggle.classList.remove('sound-on');
+        soundMainToggle.setAttribute('aria-label', 'הפעלת סאונד');
+      }
+      setVideosMuted(!soundEnabled);
+      setTimeout(function() {
+        soundIntroOverlay.style.display = 'none';
+      }, 500);
+    }
+
+    document.getElementById('soundIntroMute').addEventListener('click', function() {
+      closeIntroAndShowToggle(false);
+      bgMusic.pause();
+    });
+
+    document.getElementById('soundIntroOn').addEventListener('click', function() {
+      closeIntroAndShowToggle(true);
+      bgMusic.currentTime = 0;
+      bgMusic.play().catch(function() {});
+    });
+
+    function resumeBgMusicWithFade() {
+      if (bgMusicFadeTimer) {
+        clearInterval(bgMusicFadeTimer);
+        bgMusicFadeTimer = null;
+      }
+      if (!isSoundOn() || document.querySelector('.artist-has-video:hover')) return;
+      bgMusic.volume = 0;
+      bgMusic.play().catch(function() {});
+      var start = Date.now();
+      var dur = 4000;
+      bgMusicFadeTimer = setInterval(function() {
+        var elapsed = Date.now() - start;
+        if (elapsed >= dur) {
+          clearInterval(bgMusicFadeTimer);
+          bgMusicFadeTimer = null;
+          bgMusic.volume = 1;
+          return;
+        }
+        bgMusic.volume = elapsed / dur;
+      }, 50);
+    }
+
+    soundMainToggle.addEventListener('click', function() {
+      soundMainToggle.classList.toggle('sound-on');
+      soundMainToggle.setAttribute('aria-label', isSoundOn() ? 'השתקת סאונד' : 'הפעלת סאונד');
+      setVideosMuted(!isSoundOn());
+      if (isSoundOn()) {
+        if (!document.querySelector('.artist-has-video:hover')) resumeBgMusicWithFade();
+      } else {
+        if (bgMusicFadeTimer) clearInterval(bgMusicFadeTimer);
+        bgMusicFadeTimer = null;
+        bgMusic.pause();
+      }
+    });
+
+    document.querySelectorAll('.artist-has-video').forEach(function(card) {
+      var popup = card.querySelector('.artist-card-hover');
+      var vid = popup ? popup.querySelector('video') : null;
+      card.addEventListener('mouseenter', function() {
+        if (bgMusicFadeTimer) {
+          clearInterval(bgMusicFadeTimer);
+          bgMusicFadeTimer = null;
+        }
+        bgMusic.pause();
+        if (!popup || !vid) return;
+        var rect = card.getBoundingClientRect();
+        var size = card.getAttribute('data-size') || '1080x1377';
+        var pw = size === '1080x1920' ? Math.min(280, window.innerWidth * 0.3) : Math.min(360, window.innerWidth * 0.4);
+        var ph = size === '1080x1920' ? pw * 1920 / 1080 : pw * 1377 / 1080;
+        var spaceAbove = rect.top;
+        var spaceBelow = window.innerHeight - rect.bottom;
+        var above = spaceAbove >= ph || spaceAbove > spaceBelow;
+        popup.style.left = Math.max(12, Math.min(rect.left + (rect.width - pw) / 2, window.innerWidth - pw - 12)) + 'px';
+        popup.style.top = (above ? Math.max(12, rect.top - ph - 12) : Math.min(window.innerHeight - ph - 12, rect.bottom + 12)) + 'px';
+        vid.muted = !isSoundOn();
+        vid.volume = 0.8;
+        vid.currentTime = 0;
+        vid.play().catch(function() {});
+      });
+      card.addEventListener('mouseleave', function() {
+        if (vid) vid.pause();
+        resumeBgMusicWithFade();
+      });
+    });
+
+    var checkoutOverlay = document.getElementById('checkoutOverlay');
+    var btnTickets = document.getElementById('btnTickets');
+    var checkoutClose = document.getElementById('checkoutClose');
+
+    btnTickets.addEventListener('click', function(e) {
+      e.preventDefault();
+      checkoutOverlay.classList.add('checkout-open');
+    });
+
+    function closeCheckout() {
+      checkoutOverlay.classList.remove('checkout-open');
+    }
+
+    checkoutClose.addEventListener('click', closeCheckout);
+    checkoutOverlay.addEventListener('click', function(e) {
+      if (e.target === checkoutOverlay) closeCheckout();
+    });
+
+    var checkoutQty = 1;
+    var MIN_TICKETS = 1;
+    var MAX_TICKETS = 10;
+    var qtyValueEl = document.getElementById('checkoutQtyValue');
+    var qtyTextEl = document.getElementById('checkoutQtyText');
+
+    function updateCheckoutQtyText() {
+      qtyValueEl.textContent = checkoutQty;
+      qtyTextEl.textContent = checkoutQty === 1 ? 'כרטיס אחד' : checkoutQty + ' כרטיסים';
+      document.getElementById('checkoutQtyMinus').disabled = checkoutQty <= MIN_TICKETS;
+      document.getElementById('checkoutQtyPlus').disabled = checkoutQty >= MAX_TICKETS;
+    }
+
+    document.getElementById('checkoutQtyMinus').addEventListener('click', function() {
+      if (checkoutQty > MIN_TICKETS) {
+        checkoutQty--;
+        updateCheckoutQtyText();
+      }
+    });
+    document.getElementById('checkoutQtyPlus').addEventListener('click', function() {
+      if (checkoutQty < MAX_TICKETS) {
+        checkoutQty++;
+        updateCheckoutQtyText();
+      }
+    });
+    updateCheckoutQtyText();
+
+    document.querySelector('.checkout-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      var method = document.querySelector('input[name="payment"]:checked');
+      if (method) alert('זהו דף אב־טיפוס. תשלום ב־' + (method.value === 'paypal' ? 'PayPal' : method.value === 'credit' ? 'כרטיס אשראי' : method.value === 'visa' ? 'Visa' : 'Bit') + ' לא מופעל.');
+    });
+
+    document.addEventListener('visibilitychange', function() {
+      if (document.hidden) {
+        if (bgMusicResumeTimeout) {
+          clearTimeout(bgMusicResumeTimeout);
+          bgMusicResumeTimeout = null;
+        }
+        if (bgMusicFadeTimer) {
+          clearInterval(bgMusicFadeTimer);
+          bgMusicFadeTimer = null;
+        }
+        bgMusic.pause();
+      } else {
+        if (isSoundOn() && !document.querySelector('.artist-has-video:hover')) resumeBgMusicWithFade();
+      }
+    });
+
+  </script>
+</body>
+</html>
