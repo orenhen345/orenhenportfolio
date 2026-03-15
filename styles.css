@@ -714,11 +714,153 @@ body {
   opacity: 0.95;
 }
 
+/* מובייל */
 @media (max-width: 768px) {
+  body {
+    font-size: 1rem;
+  }
+
+  .sound-intro-content {
+    padding: 1.5rem 1rem;
+    max-width: 100%;
+  }
+
+  .sound-intro-btn {
+    min-height: 48px;
+    padding: 0.75rem 1.5rem;
+  }
+
+  .sound-main-toggle {
+    top: 0.75rem;
+    right: 0.75rem;
+    width: 44px;
+    height: 44px;
+  }
+
+  .sound-main-record {
+    width: 36px;
+    height: 36px;
+  }
+
+  .hero {
+    min-height: 70vh;
+  }
+
+  .hero-strip {
+    animation-duration: 50s;
+  }
+
+  .strip-poster { height: calc(60vh + 20px); }
+  .strip-drummer-nt,
+  .strip-drummer { height: calc(50vh + 20px); }
+  .strip-bass-nt,
+  .strip-bass { height: calc(44vh + 20px); }
+  .strip-sax-nt,
+  .strip-sax { height: calc(52vh + 20px); }
+  .strip-trumpet-nt,
+  .strip-trumpet { height: calc(48vh + 20px); }
+
+  .event-details,
+  .artists {
+    padding: 1.5rem 1rem;
+    max-width: 100%;
+  }
+
+  .event-details-title {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+  }
+
   .info-cards {
     grid-template-columns: 1fr;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
   }
+
+  .info-card {
+    padding: 1.25rem 1rem;
+  }
+
+  .event-description {
+    font-size: 0.95rem;
+  }
+
+  .artists-title {
+    font-size: 1.5rem;
+  }
+
+  .artists-subtitle {
+    font-size: 0.95rem;
+    margin-bottom: 1rem;
+  }
+
   .artists-grid {
     grid-template-columns: 1fr;
+    gap: 0.75rem;
+  }
+
+  .artist-card {
+    padding: 1.25rem 1rem;
+    min-height: 0;
+  }
+
+  .artist-card-hover[class*="artist-card-hover-visible"] {
+    left: 50% !important;
+    top: 50% !important;
+    transform: translate(-50%, -50%);
+    max-width: calc(100vw - 24px);
+    max-height: calc(100vh - 24px);
+  }
+
+  .artists-cta {
+    padding: 1.5rem 1rem;
+  }
+
+  .btn-tickets {
+    display: block;
+    width: 100%;
+    max-width: 320px;
+    margin: 0 auto;
+    padding: 1rem 1.5rem;
+    font-size: 1.1rem;
+    text-align: center;
+    min-height: 48px;
+  }
+
+  .checkout-overlay {
+    padding: 0.5rem;
+    align-items: flex-end;
+  }
+
+  .checkout-modal {
+    max-width: 100%;
+    border-radius: 20px 20px 0 0;
+    padding: 1.5rem 1rem;
+    max-height: 90vh;
+    overflow-y: auto;
+  }
+
+  .checkout-close {
+    min-width: 44px;
+    min-height: 44px;
+  }
+
+  .checkout-submit {
+    min-height: 48px;
+  }
+
+  .checkout-option {
+    min-height: 48px;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero {
+    min-height: 60vh;
+  }
+
+  .event-details-title,
+  .artists-title {
+    font-size: 1.35rem;
   }
 }

@@ -286,7 +286,7 @@
       }
     });
 
-    /* כרטיסי אמנים: סרטון בלי טקסט בהובר */
+    /* כרטיסי אמנים: סרטון בהובר (דסקטופ) או בלחיצה (מובייל) */
     document.querySelectorAll('.artist-has-video').forEach(function(card) {
       var popup = card.querySelector('.artist-card-hover');
       var vid = popup && popup.querySelector('video');
@@ -323,13 +323,32 @@
 
       card.addEventListener('mouseenter', show);
       card.addEventListener('mouseleave', function() { hideTimer = setTimeout(hide, 200); });
+      if (window.ontouchstart !== undefined || (navigator.maxTouchPoints && navigator.maxTouchPoints > 0)) {
+        card.addEventListener('click', function(e) {
+          e.preventDefault();
+          if (popup && popup.classList.contains('artist-card-hover-visible')) hide();
+          else show();
+        });
+      }
       if (popup) {
         popup.addEventListener('mouseenter', function() {
           if (hideTimer) { clearTimeout(hideTimer); hideTimer = null; }
           popup.classList.add('artist-card-hover-visible');
         });
         popup.addEventListener('mouseleave', hide);
+        popup.addEventListener('click', function(e) { e.stopPropagation(); });
       }
+    });
+
+    document.addEventListener('click', function(e) {
+      var open = document.querySelector('.artist-card-hover-visible');
+      if (!open) return;
+      var card = open.closest && open.closest('.artist-has-video');
+      if (card && (card.contains(e.target) || open.contains(e.target))) return;
+      open.classList.remove('artist-card-hover-visible');
+      var v = open.querySelector('video');
+      if (v) v.pause();
+      resumeBgMusicWithFade();
     });
 
     var checkoutOverlay = document.getElementById('checkoutOverlay');
