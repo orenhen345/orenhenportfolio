@@ -1,0 +1,10 @@
+# Editor / local
+.cursor/
+*.log
+
+# OS
+Thumbs.db
+Desktop.ini
+
+# Optional: uncomment if you use Node tooling locally
+# node_modules/

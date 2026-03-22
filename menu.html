@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8" />
+  <title>Menu - Oren Hen</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Sen:wght@400;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="media/menu.css" />
+  <link rel="stylesheet" href="media/icons/menu-icon.css" />
+</head>
+<body class="menu-page">
+  <script>
+    (function () {
+      try {
+        var u = new URL(window.location.href);
+        if (u.search.indexOf("orenportfolio") === -1) {
+          u.search = u.search ? u.search + "&orenportfolio" : "?orenportfolio";
+          history.replaceState(null, "", u.toString());
+        }
+      } catch (e) {}
+    })();
+  </script>
+      <a href="index.html?orenportfolio" class="menu-icon-link" aria-label="Close menu" id="menuClose">
+    <span class="icon-default" aria-hidden="true"></span>
+    <span class="icon-hover" aria-hidden="true"></span>
+    <span class="icon-close" aria-hidden="true"></span>
+    <span class="icon-close-hover" aria-hidden="true"></span>
+  </a>
+
+  <main class="menu-shell">
+    <nav class="menu-links" aria-label="Main menu">
+      <a href="all-projects.html?orenportfolio" class="menu-link">Work</a>
+      <a href="index.html?orenportfolio" class="menu-link">About</a>
+      <a href="index.html?orenportfolio#footer-bar" class="menu-link">Contact</a>
+    </nav>
+  </main>
+
+  <script>
+    (function () {
+      var close = document.getElementById("menuClose");
+      if (!close) return;
+      close.addEventListener("click", function (event) {
+        if (window.history.length > 1) {
+          event.preventDefault();
+          window.history.back();
+        }
+      });
+    })();
+  </script>
+</body>
+</html>

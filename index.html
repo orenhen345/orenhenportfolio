@@ -1,423 +1,338 @@
 <!DOCTYPE html>
-<html lang="he" dir="rtl">
+<html lang="en" dir="ltr">
 <head>
   <meta charset="UTF-8" />
-  <title>ערב ג'אז בתל אביב</title>
+  <title>Oren Hen — Welcome</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <link rel="stylesheet" href="styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Wallpoet&family=ZCOOL+KuaiLe&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600&family=Inter:wght@500;600&family=Barlow:wght@500;600&family=Oswald:wght@500;600&family=JetBrains+Mono:wght@500&family=Cormorant+Garamond:wght@500;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Sen:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="media/styles.css" />
+  <link rel="stylesheet" href="media/icons/menu-icon.css" />
 </head>
 <body>
-  <audio id="bgMusic" loop>
-    <source src="media/Chet Baker - Tenderly.mp3" type="audio/mpeg" />
-  </audio>
-
-  <div class="sound-intro-overlay" id="soundIntroOverlay">
-    <div class="sound-intro-content">
-      <div class="sound-intro-record"></div>
-      <p class="sound-intro-text">האתר מציע מוזיקת רקע. על מנת להמשיך, החליטו האם אתם מעוניינים במוזיקה או לא.<br><span class="sound-intro-note">(אל תדאגו – תוכלו לשנות את הבחירה גם באתר)</span></p>
-      <div class="sound-intro-buttons">
-        <button type="button" class="sound-intro-btn sound-intro-mute" id="soundIntroMute">השתק</button>
-        <button type="button" class="sound-intro-btn sound-intro-on" id="soundIntroOn">הגבר</button>
+  <a href="menu.html" class="menu-icon-link" aria-label="Menu">
+    <span class="icon-default" aria-hidden="true"></span>
+    <span class="icon-hover" aria-hidden="true"></span>
+    <span class="icon-close" aria-hidden="true"></span>
+    <span class="icon-close-hover" aria-hidden="true"></span>
+  </a>
+  <!-- Fixed video layer: stays in place when you scroll (upper screen = video) -->
+  <div class="hero-video-fixed" id="heroVideoFixed">
+    <div class="hero-video-placeholder" aria-hidden="true"></div>
+    <video class="hero-video" autoplay muted loop playsinline aria-label="Intro video">
+      <source src="my_web/Oren Showreel.mp4" type="video/mp4" />
+    </video>
+    <button type="button" class="hero-mute" id="heroMute" aria-label="Unmute video">🔇</button>
+    <a href="#footer-bar" class="hero-scroll-hint" aria-label="Scroll down">
+      <div class="scroll-arrow-wrap">
+        <svg class="scroll-arrow" viewBox="0 0 66 55" preserveAspectRatio="xMidYMax meet" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M48.7389 31.05C54.6461 25.1906 60.4433 21.3544 65.9541 18.576L57.5924 11C57.5924 11 48.4462 17.0461 43.5969 22.0687C38.7338 27.1057 32.9541 36.5385 32.9541 36.5385V55C35.2121 48.8473 40.8089 38.9158 48.7389 31.05Z" fill="currentColor"/>
+          <path d="M17.2152 31.05C11.308 25.1906 5.51082 21.3544 0 18.576L8.36168 11C8.36168 11 17.5079 17.0461 22.3572 22.0687C27.2203 27.1057 33 36.5385 33 36.5385V55C30.742 48.8473 25.1452 38.9158 17.2152 31.05Z" fill="currentColor"/>
+          <path d="M28 0H38V41H28V0Z" fill="currentColor"/>
+        </svg>
       </div>
-    </div>
+    </a>
   </div>
 
-  <button type="button" class="sound-main-toggle" id="soundMainToggle" aria-label="הפעלת סאונד" style="display: none;">
-    <span class="sound-main-record"></span>
-    <span class="sound-main-x"></span>
-  </button>
-  <!-- תמונה 1: הכרזה + סרטוני אמנים בתנועה -->
-  <section id="hero" class="hero">
-    <div class="hero-bg-slides">
-      <img class="hero-bg-img" src="media/רקעים/רקע 1.png" alt="" />
-      <img class="hero-bg-img" src="media/רקעים/רקע 2.png" alt="" />
-      <img class="hero-bg-img" src="media/רקעים/רקע 3.png" alt="" />
-      <img class="hero-bg-img" src="media/רקעים/רקע 4.png" alt="" />
-      <img class="hero-bg-img" src="media/רקעים/רקע 5.png" alt="" />
-      <img class="hero-bg-img" src="media/רקעים/רקע 6.png" alt="" />
-      <img class="hero-bg-img" src="media/רקעים/רקע 7.png" alt="" />
-      <img class="hero-bg-img" src="media/רקעים/רקע 8.png" alt="" />
-      <img class="hero-bg-img" src="media/רקעים/רקע 9.png" alt="" />
-      <img class="hero-bg-img" src="media/רקעים/רקע 10.png" alt="" />
-      <img class="hero-bg-img" src="media/רקעים/רקע 11.png" alt="" />
-    </div>
-    <div class="hero-strip-wrap" dir="ltr">
-      <div class="hero-strip"><!-- המבנה נבנה ע"י JS עם סדר אקראי --></div>
-    </div>
-  </section>
+  <!-- Spacer: same height as viewport so content starts below the video -->
+  <div class="hero-spacer" aria-hidden="true"></div>
 
-  <!-- פרטי האירוע -->
-  <section id="event-details" class="event-details">
-    <h2 class="event-details-title">פרטי האירוע</h2>
-    <div class="info-cards">
-      <div class="info-card">
-        <div class="info-icon">📅</div>
-        <h3>תאריך</h3>
-        <p>יום שלישי<br>18.4</p>
-      </div>
-      <div class="info-card">
-        <div class="info-icon">📍</div>
-        <h3>מיקום</h3>
-        <p>היכל תרבות<br>תל אביב</p>
-      </div>
-      <div class="info-card">
-        <div class="info-icon">🕐</div>
-        <h3>שעות</h3>
-        <p>19:30 - 22:30<br>4 הופעות</p>
-      </div>
-    </div>
-    <p class="event-description">
-      הצטרפו אלינו לערב ג'אז מיוחד בתל אביב! ארבעה אמנים מוכשרים יעלו על הבמה ויספקו חוויה מוזיקלית בלתי נשכחת. מהקסם של יואב כהן ועד לספקטור של עידו רוזן, כל הופעה תביא איתה אנרגיה ייחודית וסאונד מרגש.
-    </p>
-  </section>
+  <!-- Scrolling content: this block moves UP over the video and hides it -->
+  <main class="hero-scroll-content" id="heroScrollContent">
+    <!-- פריים מדויק מהפיגמה — וקטור עם גרדיאנט וחודים בזיגזג -->
+    <svg class="hero-frame-svg" viewBox="0 0 1920 3842" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <path d="M379.327 136.986V0L0 136.986V3842H1920V39.2693L1669.93 136.986V0L1297.57 136.986V0L872.004 136.986V0L379.327 136.986Z" fill="#1e1c21"/>
+    </svg>
+    <section class="hero-welcome">
+      <h1 class="hero-welcome-title" aria-label="WELCOME">
+        <span class="welcome-letter">W</span><span class="welcome-letter">E</span><span class="welcome-letter">L</span><span class="welcome-letter">C</span><span class="welcome-letter">O</span><span class="welcome-letter">M</span><span class="welcome-letter">E</span>
+      </h1>
+      <p class="hero-welcome-sub">
+        <span class="hero-welcome-line">My name is Oren Hen</span>
+        <span class="hero-welcome-line">and this is me</span>
+      </p>
+    </section>
 
-  <!-- תמונה 3: האמנים -->
-  <section id="artists" class="artists">
-    <h2 class="artists-title">האמנים שלנו</h2>
-    <p class="artists-subtitle">פגשו את המוזיקאים המוכשרים שיעלו על הבמה</p>
-    <div class="artists-grid">
-      <!-- יואב – מתופף בלי טקסט. קובץ: media/מתופף בלי טקסט.mp4 -->
-      <article class="artist-card artist-maroon artist-has-video" data-size="1080x1377">
-        <div class="artist-card-hover">
-          <video src="media/מתופף בלי טקסט.mp4" muted loop playsinline preload="metadata"></video>
-        </div>
-        <span class="artist-icon">♪</span>
-        <span class="artist-time">19:30</span>
-        <h3>יואב כהן</h3>
-        <p class="artist-instrument">על התופים</p>
-        <p class="artist-desc">גרוב מדויק, אנרגיה מתפרצת ושליטה דינמית בקצב</p>
-      </article>
-      <!-- מאיה – קונטרה בס בלי טקסט. קובץ: media/קונטרה בס בלי טקסט.mp4 -->
-      <article class="artist-card artist-orange artist-has-video" data-size="1080x1377">
-        <div class="artist-card-hover">
-          <video src="media/קונטרה בס בלי טקסט.mp4" muted loop playsinline preload="metadata"></video>
-        </div>
-        <span class="artist-icon">♪</span>
-        <span class="artist-time">20:15</span>
-        <h3>מאיה לוי</h3>
-        <p class="artist-instrument">בקונטרה בס</p>
-        <p class="artist-desc">בס עמוק ומקפיץ שמוביל את המבנה ההרמוני והקצבי של הערב</p>
-      </article>
-      <!-- עידן רוזן – סקסופוניסט בלי טקסט. קובץ: media/סקסופוניסט בלי טקסט.mp4 -->
-      <article class="artist-card artist-orange artist-has-video" data-size="1080x1920">
-        <div class="artist-card-hover">
-          <video src="media/סקסופוניסט בלי טקסט.mp4" muted loop playsinline preload="metadata"></video>
-        </div>
-        <span class="artist-icon">♪</span>
-        <span class="artist-time">21:45</span>
-        <h3>עידן רוזן</h3>
-        <p class="artist-instrument">בסקסופון</p>
-        <p class="artist-desc">סולן סיום סוחף עם פראזות מהירות ונשימה חיה</p>
-      </article>
-      <!-- דניאל – חצוצרן בלי טקסט. קובץ: media/חצוצרן בלי טקסט.mp4 -->
-      <article class="artist-card artist-maroon artist-has-video" data-size="1080x1920">
-        <div class="artist-card-hover">
-          <video src="media/חצוצרן בלי טקסט.mp4" muted loop playsinline preload="metadata"></video>
-        </div>
-        <span class="artist-icon">♪</span>
-        <span class="artist-time">21:00</span>
-        <h3>דניאל פרידמן</h3>
-        <p class="artist-instrument">בחצוצרה</p>
-        <p class="artist-desc">צליל חד ובהיר עם השפעות הארד בופ מודרני</p>
-      </article>
-    </div>
-    <div class="artists-cta">
-      <a href="#" class="btn-tickets" id="btnTickets">לקניית כרטיסים</a>
-    </div>
-  </section>
+    <!-- גריד כיסויי עבודות — לחיצה מעבר לעמוד הפרויקט -->
+    <section class="works-grid" aria-label="עבודות">
+      <a href="work-1.html?orenportfolio" class="work-card">
+        <span class="work-card-cover" aria-hidden="true">
+          <img src="my_web/covers/Animix festival .png" alt="Animix festival cover" />
+        </span>
+        <span class="work-card-cta">Animix festival</span>
+      </a>
+      <a href="work-2.html?orenportfolio" class="work-card">
+        <span class="work-card-cover" aria-hidden="true">
+          <img src="my_web/covers/Dan David project.jpg" alt="Dan David project cover" />
+        </span>
+        <span class="work-card-cta">Dan David project</span>
+      </a>
+      <a href="work-3.html?orenportfolio" class="work-card">
+        <span class="work-card-cover" aria-hidden="true">
+          <img src="my_web/covers/Your way to Save time .png" alt="Your way to Save time cover" />
+        </span>
+        <span class="work-card-cta">Your way to Save time</span>
+      </a>
+      <a href="work-4.html?orenportfolio" class="work-card">
+        <span class="work-card-cover" aria-hidden="true">
+          <img src="my_web/covers/3D Animation.jpg" alt="3D Animation cover" />
+        </span>
+        <span class="work-card-cta">3D Animation</span>
+      </a>
+    </section>
 
-  <div class="checkout-overlay" id="checkoutOverlay">
-    <div class="checkout-modal">
-      <button type="button" class="checkout-close" id="checkoutClose" aria-label="סגור">×</button>
-      <h2 class="checkout-title">רכישת כרטיסים</h2>
-      <p class="checkout-event">ערב ג'אז בתל אביב · יום שלישי 18.4 · 19:30–22:30</p>
-      <div class="checkout-summary">
-        <p class="checkout-quantity-row">
-          <span class="checkout-quantity-label">כמות:</span>
-          <span class="checkout-quantity-controls">
-            <button type="button" class="checkout-qty-btn" id="checkoutQtyMinus" aria-label="הפחת">−</button>
-            <span class="checkout-qty-value" id="checkoutQtyValue">1</span>
-            <button type="button" class="checkout-qty-btn" id="checkoutQtyPlus" aria-label="הוסף">+</button>
-          </span>
-        </p>
-        <p class="checkout-venue"><span id="checkoutQtyText">כרטיס אחד</span> — היכל תרבות תל אביב</p>
-      </div>
-      <form class="checkout-form">
-        <p class="checkout-label">בחר אמצעי תשלום</p>
-        <div class="checkout-payment-options">
-          <label class="checkout-option">
-            <input type="radio" name="payment" value="paypal" checked />
-            <span>PayPal</span>
-          </label>
-          <label class="checkout-option">
-            <input type="radio" name="payment" value="credit" />
-            <span>כרטיס אשראי</span>
-          </label>
-          <label class="checkout-option">
-            <input type="radio" name="payment" value="visa" />
-            <span>Visa</span>
-          </label>
-          <label class="checkout-option">
-            <input type="radio" name="payment" value="bit" />
-            <span>Bit</span>
-          </label>
-        </div>
-        <button type="submit" class="checkout-submit">המשך לתשלום</button>
-      </form>
+    <div class="works-cta-wrap">
+      <a href="all-projects.html?orenportfolio" class="btn-all-projects">All projects</a>
     </div>
-  </div>
+
+    <div class="home-connect-bundle">
+    <footer class="hero-footer-bar" id="footer-bar" role="contentinfo">
+      <div class="hero-footer-bar-marquee" aria-hidden="true">
+        <div class="hero-footer-bar-marquee-inner">
+          <span class="marquee-item marquee-blender">Blender</span>
+          <span class="marquee-item">2D Animation</span>
+          <span class="marquee-item marquee-procreate">Procreate</span>
+          <span class="marquee-item marquee-maya">Maya-Autodesk</span>
+          <span class="marquee-item marquee-adobe">After Effect</span>
+          <span class="marquee-item">3D Animation</span>
+          <span class="marquee-item marquee-adobe">Premier Pro</span>
+          <span class="marquee-item marquee-cursor">Cursor</span>
+          <span class="marquee-item marquee-adobe">Substance 3D</span>
+          <span class="marquee-item">AI Creator</span>
+          <span class="marquee-item marquee-adobe">Photoshop</span>
+          <span class="marquee-item marquee-figma">Figma</span>
+          <span class="marquee-item marquee-blender">Blender</span>
+          <span class="marquee-item">2D Animation</span>
+          <span class="marquee-item marquee-procreate">Procreate</span>
+          <span class="marquee-item marquee-maya">Maya-Autodesk</span>
+          <span class="marquee-item marquee-adobe">After Effect</span>
+          <span class="marquee-item">3D Animation</span>
+          <span class="marquee-item marquee-adobe">Premier Pro</span>
+          <span class="marquee-item marquee-cursor">Cursor</span>
+          <span class="marquee-item marquee-adobe">Substance 3D</span>
+          <span class="marquee-item">AI Creator</span>
+          <span class="marquee-item marquee-adobe">Photoshop</span>
+          <span class="marquee-item marquee-figma">Figma</span>
+        </div>
+      </div>
+    </footer>
+
+    <section class="home-contact-frame" id="contact" aria-label="About and contact">
+      <svg class="home-contact-bg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 3395 2093" fill="none" preserveAspectRatio="none" aria-hidden="true">
+        <rect x="0" y="0" width="3395" height="2093" fill="#F7F0C6" />
+        <path d="M453.685 402C441.991 117.945 767.112 0 767.112 0H2775.61C2775.61 0 2879.11 65 2827.18 203.5C2751.5 405.352 2602.18 527.5 2602.18 527.5C2602.18 527.5 3003.21 589.795 3032.68 827C3063.81 1077.55 2458.68 1124.5 2458.68 1124.5C2458.68 1124.5 3495.53 1177.65 3386.68 1563.5C3300.86 1867.76 2493.68 1958 2493.68 1958C2493.68 1958 3122.61 1985 3143.61 2093.5H342.112C440.858 1859.39 857.185 1726.5 857.185 1726.5C857.185 1726.5 81.9585 1712.41 7.18458 1358.5C-82.414 934.427 695.612 891.5 695.612 891.5C695.612 891.5 465.853 697.604 453.685 402Z" fill="#FF3232"/>
+      </svg>
+
+      <div class="home-contact-inner">
+        <div class="home-contact-col home-contact-about">
+          <h2 class="home-contact-title">WHO AM I?</h2>
+          <p class="home-contact-text">
+            Hi there! I'm Oren Hen, an Animator, Motion Designer, and AI Creator. I grew up in a charming town in northern Israel and I'm currently based in Tel Aviv.
+          </p>
+          <p class="home-contact-text">
+            I'd love to take part in your next project!
+          </p>
+        </div>
+
+        <div class="home-contact-col home-contact-talk">
+          <h2 class="home-contact-title">TALK TO ME</h2>
+          <ul class="home-contact-list" aria-label="Contact methods">
+            <li class="home-contact-item">
+              <a class="home-contact-link" href="https://mail.google.com/mail/?view=cm&fs=1&to=orenhen345%40gmail.com" target="_blank" rel="noopener noreferrer">Email</a>
+            </li>
+            <li class="home-contact-item">
+              <a class="home-contact-link" href="https://www.instagram.com/oren_hen_345/" target="_blank" rel="noopener noreferrer">Instagram</a>
+            </li>
+            <li class="home-contact-item">
+              <a class="home-contact-link" href="https://wa.me/972544289938" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+            </li>
+            <li class="home-contact-item">
+              <a class="home-contact-link" href="https://www.linkedin.com/in/oren-hen-animator/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+    </div>
+
+  </main>
 
   <script>
     (function() {
-      var order = ['poster', 'trumpet_nt', 'bass_nt', 'drummer_nt', 'sax_nt'];
-      for (var i = order.length - 1; i > 0; i--) {
-        var j = Math.floor(Math.random() * (i + 1));
-        var t = order[i];
-        order[i] = order[j];
-        order[j] = t;
+      var heroVid = document.querySelector('.hero-video');
+      var muteBtn = document.getElementById('heroMute');
+      if (heroVid && muteBtn) {
+        muteBtn.addEventListener('click', function() {
+          heroVid.muted = !heroVid.muted;
+          muteBtn.setAttribute('aria-label', heroVid.muted ? 'Unmute video' : 'Mute video');
+          muteBtn.textContent = heroVid.muted ? '🔇' : '🔊';
+        });
       }
-      var items = {
-        poster: { cls: 'strip-poster', src: 'media/כרזה זה בלי קו.mp4' },
-        trumpet_nt: { cls: 'strip-trumpet-nt', src: 'media/חצוצרן בלי טקסט.mp4' },
-        bass_nt: { cls: 'strip-bass-nt', src: 'media/קונטרה בס בלי טקסט.mp4' },
-        drummer_nt: { cls: 'strip-drummer-nt', src: 'media/מתופף בלי טקסט.mp4' },
-        sax_nt: { cls: 'strip-sax-nt', src: 'media/סקסופוניסט בלי טקסט.mp4' }
-      };
-      var strip = document.querySelector('.hero-strip');
-      strip.innerHTML = '';
-      for (var copy = 0; copy < 4; copy++) {
-        for (var k = 0; k < 5; k++) {
-          var key = order[k];
-          var item = items[key];
-          var div = document.createElement('div');
-          div.className = 'strip-item ' + item.cls;
-          var vid = document.createElement('video');
-          vid.src = item.src;
-          vid.muted = true;
-          vid.loop = true;
-          vid.playsInline = true;
-          vid.autoplay = true;
-          div.appendChild(vid);
-          strip.appendChild(div);
+
+      var welcomeFonts = [
+        "Welcome-Bernhc",
+        "Welcome-Showg",
+        "Welcome-Broadw",
+        "Welcome-Bauhs93",
+        "Welcome-Segmdl2",
+        "Welcome-Coopbl",
+        "Welcome-Latinwd"
+      ];
+      var letters = document.querySelectorAll('.hero-welcome-title .welcome-letter');
+      if (letters.length && welcomeFonts.length) {
+        var timeIndex = 0;
+        var n = welcomeFonts.length;
+        setInterval(function() {
+          for (var i = 0; i < letters.length; i++) {
+            var fontIndex = ((timeIndex - i) % n + n) % n;
+            letters[i].style.fontFamily = '"' + welcomeFonts[fontIndex] + '", sans-serif';
+          }
+          timeIndex++;
+        }, 1000);
+      }
+
+      var welcomeSection = document.querySelector('.hero-welcome');
+      var scrollContent = document.querySelector('.hero-scroll-content');
+      if (welcomeSection && scrollContent && 'IntersectionObserver' in window) {
+        var welcomeAnimated = false;
+        var welcomeObserver = new IntersectionObserver(function(entries) {
+          if (welcomeAnimated) return;
+          var ent = entries[0];
+          if (ent.isIntersecting) {
+            welcomeSection.classList.add('welcome-in-view');
+            welcomeAnimated = true;
+            welcomeObserver.disconnect();
+          }
+        }, { root: null, rootMargin: '0px 0px -50% 0px', threshold: 0 });
+        welcomeObserver.observe(scrollContent);
+      }
+
+      // --- Marquee: insert random local icons along the blue strip ---
+      try {
+        var marqueeInner = document.querySelector('.hero-footer-bar-marquee-inner');
+        if (marqueeInner) {
+          var iconFiles = [
+            'my_web/icons/adobe-photoshop-2.svg',
+            'my_web/icons/logo-blender.svg',
+            'my_web/icons/adobe-illustrator-cc-3.svg',
+            'my_web/icons/edge-animate-app-cc.svg',
+            'my_web/icons/figma-icon.svg',
+            'my_web/icons/after-effects-1.svg',
+            'my_web/icons/adobe-44195.svg',
+            'my_web/icons/maya-2017.svg'
+          ];
+
+          function makeIconSpan(iconPath) {
+            var s = document.createElement('span');
+            s.className = 'marquee-icon';
+            s.setAttribute('aria-hidden', 'true');
+            s.style.backgroundImage = "url('" + iconPath + "')";
+            return s;
+          }
+
+          // Remove previously inserted marquee icons (if any)
+          var existingIcons = marqueeInner.querySelectorAll('.marquee-icon');
+          for (var ei = 0; ei < existingIcons.length; ei++) {
+            existingIcons[ei].remove();
+          }
+
+          var items = Array.prototype.slice.call(marqueeInner.querySelectorAll('.marquee-item'));
+          var maxIcons = 8;
+          var inserted = 0;
+          for (var i = 0; i < items.length && inserted < maxIcons; i++) {
+            if (Math.random() < 0.22) {
+              var iconPath = iconFiles[Math.floor(Math.random() * iconFiles.length)];
+              items[i].parentNode.insertBefore(makeIconSpan(iconPath), items[i]);
+              inserted++;
+            }
+          }
         }
-      }
-      strip.querySelectorAll('video').forEach(function(v) {
-        v.play().catch(function() {});
-      });
+      } catch (_) {}
+
+      // --- Contact: letter-by-letter drop-in when reaching bottom quarter ---
+      try {
+        var contactAbout = document.querySelector('#contact .home-contact-about');
+        var contactTalk = document.querySelector('#contact .home-contact-talk');
+        if (contactAbout && contactTalk && 'IntersectionObserver' in window) {
+          function splitTextToLetters(container) {
+            if (!container || container.dataset.lettersSplit === '1') return;
+            // Split ONLY the big titles (h2). Do not touch the smaller text/links.
+            var nodes = container.querySelectorAll('h2');
+            for (var n = 0; n < nodes.length; n++) {
+              var el = nodes[n];
+              if (!el || el.dataset.lettersSplit === '1') continue;
+              var txt = el.textContent || '';
+              el.textContent = '';
+              var letterIndex = 0;
+              for (var i = 0; i < txt.length; i++) {
+                var ch = txt[i];
+                if (ch === ' ') {
+                  el.appendChild(document.createTextNode(' '));
+                  continue;
+                }
+                var span = document.createElement('span');
+                span.className = 'contact-letter';
+                span.textContent = ch;
+                span.style.setProperty('--i', letterIndex);
+                el.appendChild(span);
+                letterIndex++;
+              }
+              el.dataset.lettersSplit = '1';
+            }
+            container.dataset.lettersSplit = '1';
+          }
+
+          splitTextToLetters(contactAbout);
+          splitTextToLetters(contactTalk);
+
+          var revealObserver = new IntersectionObserver(function(entries) {
+            for (var i = 0; i < entries.length; i++) {
+              var ent = entries[i];
+              if (ent.isIntersecting) {
+                if (ent.target === contactAbout) contactAbout.classList.add('contact-revealed');
+                if (ent.target === contactTalk) contactTalk.classList.add('contact-revealed');
+                revealObserver.unobserve(ent.target);
+              }
+            }
+          }, { root: null, rootMargin: '0px 0px -25% 0px', threshold: 0 });
+
+          revealObserver.observe(contactAbout);
+          revealObserver.observe(contactTalk);
+        }
+      } catch (_) {}
+
+      // #region agent log
+      try {
+        var footerBar = document.getElementById('footer-bar');
+        if (footerBar && window.fetch) {
+          fetch('http://127.0.0.1:7428/ingest/70b0c38e-0b3f-44ad-adc5-5c7874f47e48', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'X-Debug-Session-Id': '2dccee'
+            },
+            body: JSON.stringify({
+              sessionId: '2dccee',
+              runId: 'pre-fix',
+              hypothesisId: 'H_footer_position',
+              location: 'index.html:footer-debug',
+              message: 'Footer visual position on load',
+              data: {
+                viewportHeight: window.innerHeight,
+                footerRect: footerBar.getBoundingClientRect(),
+                scrollHeight: document.documentElement.scrollHeight
+              },
+              timestamp: Date.now()
+            })
+          }).catch(function() {});
+        }
+      } catch (e) {}
+      // #endregion
+
     })();
-
-    /* מוזיקת רקע + פופאפ וידאו בכרטיסיות */
-    var popupVideos = document.querySelectorAll('.artist-card-hover video');
-    var bgMusic = document.getElementById('bgMusic');
-    var soundMainToggle = document.getElementById('soundMainToggle');
-    var soundIntroOverlay = document.getElementById('soundIntroOverlay');
-    var bgMusicFadeTimer = null;
-    var bgMusicResumeTimeout = null;
-
-    function isSoundOn() {
-      return soundMainToggle && soundMainToggle.classList.contains('sound-on');
-    }
-
-    function setVideosMuted(muted) {
-      popupVideos.forEach(function(v) {
-        v.muted = muted;
-      });
-    }
-
-    function closeIntroAndShowToggle(soundEnabled) {
-      soundIntroOverlay.classList.add('sound-intro-done');
-      soundMainToggle.style.display = 'flex';
-      if (soundEnabled) {
-        soundMainToggle.classList.add('sound-on');
-        soundMainToggle.setAttribute('aria-label', 'השתקת סאונד');
-      } else {
-        soundMainToggle.classList.remove('sound-on');
-        soundMainToggle.setAttribute('aria-label', 'הפעלת סאונד');
-      }
-      setVideosMuted(!soundEnabled);
-      setTimeout(function() {
-        soundIntroOverlay.style.display = 'none';
-      }, 500);
-    }
-
-    document.getElementById('soundIntroMute').addEventListener('click', function() {
-      closeIntroAndShowToggle(false);
-      bgMusic.pause();
-    });
-
-    document.getElementById('soundIntroOn').addEventListener('click', function() {
-      closeIntroAndShowToggle(true);
-      bgMusic.currentTime = 0;
-      bgMusic.play().catch(function() {});
-    });
-
-    function resumeBgMusicWithFade() {
-      if (bgMusicFadeTimer) {
-        clearInterval(bgMusicFadeTimer);
-        bgMusicFadeTimer = null;
-      }
-      if (!isSoundOn() || document.querySelector('.artist-has-video:hover')) return;
-      bgMusic.volume = 0;
-      bgMusic.play().catch(function() {});
-      var start = Date.now();
-      var dur = 4000;
-      bgMusicFadeTimer = setInterval(function() {
-        var elapsed = Date.now() - start;
-        if (elapsed >= dur) {
-          clearInterval(bgMusicFadeTimer);
-          bgMusicFadeTimer = null;
-          bgMusic.volume = 1;
-          return;
-        }
-        bgMusic.volume = elapsed / dur;
-      }, 50);
-    }
-
-    soundMainToggle.addEventListener('click', function() {
-      soundMainToggle.classList.toggle('sound-on');
-      soundMainToggle.setAttribute('aria-label', isSoundOn() ? 'השתקת סאונד' : 'הפעלת סאונד');
-      setVideosMuted(!isSoundOn());
-      if (isSoundOn()) {
-        if (!document.querySelector('.artist-has-video:hover')) resumeBgMusicWithFade();
-      } else {
-        if (bgMusicFadeTimer) clearInterval(bgMusicFadeTimer);
-        bgMusicFadeTimer = null;
-        bgMusic.pause();
-      }
-    });
-
-    /* כרטיסי אמנים: סרטון בהובר (דסקטופ) או בלחיצה (מובייל) */
-    document.querySelectorAll('.artist-has-video').forEach(function(card) {
-      var popup = card.querySelector('.artist-card-hover');
-      var vid = popup && popup.querySelector('video');
-      var hideTimer = null;
-
-      function show() {
-        if (!popup || !vid) return;
-        if (hideTimer) { clearTimeout(hideTimer); hideTimer = null; }
-        if (bgMusicFadeTimer) { clearInterval(bgMusicFadeTimer); bgMusicFadeTimer = null; }
-        bgMusic.pause();
-        var r = card.getBoundingClientRect();
-        var size = card.getAttribute('data-size') || '1080x1377';
-        var w = size === '1080x1920' ? Math.min(280, window.innerWidth * 0.3) : Math.min(360, window.innerWidth * 0.4);
-        var h = size === '1080x1920' ? w * 1920 / 1080 : w * 1377 / 1080;
-        var above = r.top >= window.innerHeight - r.bottom;
-        popup.style.left = Math.max(8, Math.min(r.left + (r.width - w) / 2, window.innerWidth - w - 8)) + 'px';
-        popup.style.top = (above ? Math.max(8, r.top - h - 8) : Math.min(window.innerHeight - h - 8, r.bottom + 8)) + 'px';
-        popup.style.width = w + 'px';
-        popup.style.height = h + 'px';
-        popup.classList.add('artist-card-hover-visible');
-        vid.muted = !isSoundOn();
-        vid.volume = 0.8;
-        vid.currentTime = 0;
-        vid.play().catch(function() {});
-      }
-
-      function hide() {
-        if (hideTimer) clearTimeout(hideTimer);
-        hideTimer = null;
-        if (popup) popup.classList.remove('artist-card-hover-visible');
-        if (vid) vid.pause();
-        resumeBgMusicWithFade();
-      }
-
-      card.addEventListener('mouseenter', show);
-      card.addEventListener('mouseleave', function() { hideTimer = setTimeout(hide, 200); });
-      if (window.ontouchstart !== undefined || (navigator.maxTouchPoints && navigator.maxTouchPoints > 0)) {
-        card.addEventListener('click', function(e) {
-          e.preventDefault();
-          if (popup && popup.classList.contains('artist-card-hover-visible')) hide();
-          else show();
-        });
-      }
-      if (popup) {
-        popup.addEventListener('mouseenter', function() {
-          if (hideTimer) { clearTimeout(hideTimer); hideTimer = null; }
-          popup.classList.add('artist-card-hover-visible');
-        });
-        popup.addEventListener('mouseleave', hide);
-        popup.addEventListener('click', function(e) { e.stopPropagation(); });
-      }
-    });
-
-    document.addEventListener('click', function(e) {
-      var open = document.querySelector('.artist-card-hover-visible');
-      if (!open) return;
-      var card = open.closest && open.closest('.artist-has-video');
-      if (card && (card.contains(e.target) || open.contains(e.target))) return;
-      open.classList.remove('artist-card-hover-visible');
-      var v = open.querySelector('video');
-      if (v) v.pause();
-      resumeBgMusicWithFade();
-    });
-
-    var checkoutOverlay = document.getElementById('checkoutOverlay');
-    var btnTickets = document.getElementById('btnTickets');
-    var checkoutClose = document.getElementById('checkoutClose');
-
-    btnTickets.addEventListener('click', function(e) {
-      e.preventDefault();
-      checkoutOverlay.classList.add('checkout-open');
-    });
-
-    function closeCheckout() {
-      checkoutOverlay.classList.remove('checkout-open');
-    }
-
-    checkoutClose.addEventListener('click', closeCheckout);
-    checkoutOverlay.addEventListener('click', function(e) {
-      if (e.target === checkoutOverlay) closeCheckout();
-    });
-
-    var checkoutQty = 1;
-    var MIN_TICKETS = 1;
-    var MAX_TICKETS = 10;
-    var qtyValueEl = document.getElementById('checkoutQtyValue');
-    var qtyTextEl = document.getElementById('checkoutQtyText');
-
-    function updateCheckoutQtyText() {
-      qtyValueEl.textContent = checkoutQty;
-      qtyTextEl.textContent = checkoutQty === 1 ? 'כרטיס אחד' : checkoutQty + ' כרטיסים';
-      document.getElementById('checkoutQtyMinus').disabled = checkoutQty <= MIN_TICKETS;
-      document.getElementById('checkoutQtyPlus').disabled = checkoutQty >= MAX_TICKETS;
-    }
-
-    document.getElementById('checkoutQtyMinus').addEventListener('click', function() {
-      if (checkoutQty > MIN_TICKETS) {
-        checkoutQty--;
-        updateCheckoutQtyText();
-      }
-    });
-    document.getElementById('checkoutQtyPlus').addEventListener('click', function() {
-      if (checkoutQty < MAX_TICKETS) {
-        checkoutQty++;
-        updateCheckoutQtyText();
-      }
-    });
-    updateCheckoutQtyText();
-
-    document.querySelector('.checkout-form').addEventListener('submit', function(e) {
-      e.preventDefault();
-      var method = document.querySelector('input[name="payment"]:checked');
-      if (method) alert('זהו דף אב־טיפוס. תשלום ב־' + (method.value === 'paypal' ? 'PayPal' : method.value === 'credit' ? 'כרטיס אשראי' : method.value === 'visa' ? 'Visa' : 'Bit') + ' לא מופעל.');
-    });
-
-    document.addEventListener('visibilitychange', function() {
-      if (document.hidden) {
-        if (bgMusicResumeTimeout) {
-          clearTimeout(bgMusicResumeTimeout);
-          bgMusicResumeTimeout = null;
-        }
-        if (bgMusicFadeTimer) {
-          clearInterval(bgMusicFadeTimer);
-          bgMusicFadeTimer = null;
-        }
-        bgMusic.pause();
-      } else {
-        if (isSoundOn() && !document.querySelector('.artist-has-video:hover')) resumeBgMusicWithFade();
-      }
-    });
-
   </script>
 </body>
 </html>

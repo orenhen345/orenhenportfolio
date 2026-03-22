@@ -1,0 +1,201 @@
+/*
+  סוף גלילה = תחתית פריים הקונקט: גובה המסמך = תוכן בלבד.
+  בלי min-height: 100vh — אחרת נשאר רקע כהה (זנב) מתחת לקונקט כשהתוכן נמוך מגובה המסך.
+*/
+html:has(body.all-projects-page) {
+  height: auto;
+  min-height: 0;
+  overflow-x: clip;
+  scroll-padding-bottom: 0;
+}
+
+/* כל הפרויקטים: אותו לקסיקון קונקט כמו דף הבית — גובה לפי תוכן, בלי חצי פריים / margin שלילי */
+.all-projects-page {
+  background: #1e1c21;
+  min-height: unset;
+  color: #fff;
+  /* No horizontal padding on body — connect bundle must full-bleed like work pages (was clipped on sides) */
+  padding: 2rem 0 0;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+.projects-under-gap {
+  height: 0 !important;
+  width: 100%;
+}
+
+/* דורס רק מה שהיה נחוץ לחצי־פריים הישן; שאר הקונקט מגיע מ־styles.css (כמו דף הבית) */
+.all-projects-page .home-connect-bundle {
+  position: relative;
+  z-index: 2;
+  margin-top: 0;
+  flex-shrink: 0;
+  width: 100%;
+  max-width: none;
+  max-height: none;
+  height: auto;
+  min-height: 0;
+  overflow: visible;
+  background-color: #ffffcf;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  margin-bottom: 0;
+  padding-bottom: 0;
+  box-sizing: border-box;
+  flex-grow: 0;
+}
+
+.all-projects-page .home-contact-frame {
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+.all-projects-page .hero-footer-bar {
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+}
+
+.all-projects-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+.all-projects-pill {
+  position: fixed;
+  top: 1.2rem;
+  z-index: 100;
+  padding: 0.75rem 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 999px;
+  background: rgba(20, 22, 26, 0.74);
+  color: #fff;
+  text-decoration: none;
+  font: 700 0.82rem/1 "Sen", sans-serif;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  backdrop-filter: blur(10px);
+}
+
+.all-projects-home {
+  left: 1.2rem;
+}
+
+.all-projects-menu {
+  right: 1.2rem;
+}
+
+/*
+  scale() לא מגדיל את שטח הפריסה — צריך margin-bottom כדי שלא הקונקט ייחפף.
+  לא מפצים עד תחתית המיכל (100%) — רוב הגובה ריק מתחת לשורת הכרטיסים האחרונה.
+  משתמשים ב־--last-card-bottom = (top + height) של השורה התחתונה (יחסי לגובה המיכל),
+  כך ש־H + margin ≈ last_bottom × H × scale + 100px (רווח קבוע מתחת לכרטיס האחרון).
+*/
+.projects-mosaic {
+  /* היה 2.151 — הוקטן ב־20% (×0.8) */
+  --mosaic-scale: 1.7208;
+  --mosaic-aspect-pad: 202%;
+  /* שורה תחתונה: mosaic-8/9 → 44.31% + 10.24% */
+  --last-card-bottom: 0.5455;
+  /* רווח בין כרטיס אחרון לפריים קונקט (ויזואלי) */
+  --gap-after-last-tile: 100px;
+  /* מעלה את פריים הקונקט למעלה (מקטין רווח מתחת למוזאיקה) */
+  --connect-lift: 400px;
+  position: relative;
+  width: 70%;
+  padding-bottom: var(--mosaic-aspect-pad);
+  max-width: 1920px;
+  margin: 0 auto;
+  margin-bottom: calc(
+    var(--mosaic-aspect-pad) * ((var(--last-card-bottom) * var(--mosaic-scale)) - 1) + var(--gap-after-last-tile) -
+      var(--connect-lift)
+  );
+  transform: scale(var(--mosaic-scale));
+  transform-origin: top center;
+}
+
+.mosaic-card {
+  position: absolute;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #2a2a2c;
+  text-decoration: none;
+  color: #fff;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.mosaic-card:hover {
+  transform: scale(1.02);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.4);
+}
+
+.mosaic-cover {
+  position: absolute;
+  inset: 0;
+  display: block;
+  background: linear-gradient(145deg, #353538 0%, #252528 100%);
+}
+
+.mosaic-cover img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.mosaic-7 .mosaic-cover img {
+  object-position: top center;
+}
+
+.mosaic-cta {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: 0.75rem 1rem;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.85), transparent);
+  color: var(--accent);
+  font-size: 0.85rem;
+  font-weight: 500;
+  opacity: 0;
+  transform: translateY(4px);
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+.mosaic-card:hover .mosaic-cta {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.mosaic-1 { left: 16.56%; top: 5.75%; width: 40.57%; height: 8.9%; }
+.mosaic-2 { left: 58.44%; top: 5.75%; width: 23.125%; height: 8.9%; }
+.mosaic-3 { left: 16.4%; top: 15.39%; width: 30.52%; height: 8.9%; }
+.mosaic-4 { left: 47.97%; top: 15.39%; width: 33.59%; height: 8.9%; }
+.mosaic-5 { left: 16.4%; top: 25.03%; width: 35.89%; height: 8.9%; }
+.mosaic-6 { left: 53.49%; top: 25.03%; width: 28.07%; height: 18.54%; }
+.mosaic-7 { left: 16.4%; top: 34.67%; width: 35.89%; height: 8.9%; }
+.mosaic-8 { left: 16.56%; top: 44.31%; width: 31.61%; height: 10.24%; }
+.mosaic-9 { left: 49.69%; top: 44.31%; width: 31.875%; height: 10.24%; }
+
+@media (max-width: 900px) {
+  .projects-mosaic {
+    width: 70%;
+    --mosaic-aspect-pad: 238%;
+    /* שורה תחתונה: mosaic-8/9 → 95% + 12% (חורג מה־100% — התחתית הוויזואלית) */
+    --last-card-bottom: 1.07;
+    padding-bottom: var(--mosaic-aspect-pad);
+    transform: scale(var(--mosaic-scale));
+  }
+
+  .mosaic-1 { left: 2%; top: 2%; width: 96%; height: 12%; }
+  .mosaic-2 { left: 2%; top: 15%; width: 96%; height: 12%; }
+  .mosaic-3 { left: 2%; top: 28%; width: 96%; height: 12%; }
+  .mosaic-4 { left: 2%; top: 41%; width: 96%; height: 12%; }
+  .mosaic-5 { left: 2%; top: 54%; width: 96%; height: 12%; }
+  .mosaic-6 { left: 2%; top: 67%; width: 96%; height: 14%; }
+  .mosaic-7 { left: 2%; top: 82%; width: 96%; height: 12%; }
+  .mosaic-8 { left: 2%; top: 95%; width: 48%; height: 12%; }
+  .mosaic-9 { left: 52%; top: 95%; width: 46%; height: 12%; }
+}

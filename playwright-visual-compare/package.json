@@ -1,0 +1,13 @@
+{
+  "name": "playwright-visual-compare",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "compare": "node compare-pages.mjs",
+    "connect-qa": "node connect-qa.mjs",
+    "install-browsers": "npx playwright install chromium"
+  },
+  "devDependencies": {
+    "playwright": "^1.49.0"
+  }
+}

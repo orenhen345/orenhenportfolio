@@ -1,0 +1,61 @@
+/* Figma-derived design tokens / variables (test–1st / fishing man) */
+:root {
+  /* Background: Figma uses #E7F7F4. To add the background image, set in prototype.css or here:
+     --bg-image: url('media/your-image.png');
+     Image position: -911.724px 547.468px; size: 229.502% 118.191%; no-repeat; */
+  /* Colors (Figma: test–1st / fishing man) */
+  --color-bg: #E7F7F4;
+  --color-bg-header: #E7F7F4;
+  --color-surface: #fff;
+  --color-primary: #2d6a8a;
+  --color-primary-hover: #234d64;
+  --color-accent: #e8a64c;
+  --color-accent-hover: #d49338;
+  --color-text: #1a1a1a;
+  --color-text-muted: #555;
+  --color-border: #e0e0dc;
+  /* Amory's: header grid + sign blue */
+  --color-amory-red: #c0392b;
+  --color-amory-blue: #2980b9;
+  --color-amory-blue-dark: #1c5a85;
+
+  /* Typography */
+  --font-sans: "Segoe UI", system-ui, -apple-system, sans-serif;
+  --text-welcome: 1.75rem;
+  --text-title: 1.25rem;
+  --text-body: 1rem;
+  --text-small: 0.875rem;
+  --text-caption: 0.75rem;
+  --line-tight: 1.25;
+  --line-body: 1.5;
+
+  /* Spacing (Figma-style 4px base) */
+  --space-4: 4px;
+  --space-8: 8px;
+  --space-12: 12px;
+  --space-16: 16px;
+  --space-20: 20px;
+  --space-24: 24px;
+  --space-32: 32px;
+  --space-40: 40px;
+  --space-48: 48px;
+  --space-56: 56px;
+
+  /* Layout */
+  --width-max: 1206px;
+  --header-height: 224px;
+  --search-height: 78px;
+  --footer-height: 141px;
+  --total-bar-height: 84px;
+  --card-gap: 23px;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-full: 9999px;
+
+  /* Z-index */
+  --z-header: 10;
+  --z-total-bar: 20;
+  --z-basket: 30;
+  --z-nav: 25;
+}

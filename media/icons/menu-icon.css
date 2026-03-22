@@ -1,0 +1,80 @@
+.menu-icon-link {
+  position: fixed;
+  top: 1.2rem;
+  right: 1.2rem;
+  z-index: 10001;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 54px;
+  height: 54px;
+  color: #fff;
+  text-decoration: none;
+  transform: translate(-20px, 20px) scale(1.5);
+}
+
+.menu-icon-link .icon-default,
+.menu-icon-link .icon-hover,
+.menu-icon-link .icon-close,
+.menu-icon-link .icon-close-hover {
+  position: absolute;
+  width: 28px;
+  height: 28px;
+  display: block;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  transition: opacity 0.2s ease;
+}
+
+.menu-icon-link .icon-default {
+  opacity: 1;
+  background-image: url("./align-justify.svg");
+}
+
+.menu-icon-link .icon-hover {
+  opacity: 0;
+  background-image: url("./align-justify-solid.svg");
+}
+
+.menu-icon-link .icon-close {
+  opacity: 0;
+  background-image: url("./x.svg");
+}
+
+.menu-icon-link .icon-close-hover {
+  opacity: 0;
+  background-image: url("./x-solid.svg");
+}
+
+.menu-icon-link:hover .icon-default {
+  opacity: 0;
+}
+
+.menu-icon-link:hover .icon-hover {
+  opacity: 1;
+}
+
+body.menu-page .menu-icon-link .icon-default,
+body.menu-page .menu-icon-link .icon-hover {
+  opacity: 0;
+}
+
+body.menu-page .menu-icon-link .icon-close {
+  opacity: 1;
+}
+
+body.menu-page .menu-icon-link:hover .icon-close {
+  opacity: 0;
+}
+
+body.menu-page .menu-icon-link:hover .icon-close-hover {
+  opacity: 1;
+}
+
+@media (max-width: 640px) {
+  .menu-icon-link {
+    top: 0.8rem;
+    right: 0.8rem;
+  }
+}

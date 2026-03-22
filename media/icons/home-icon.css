@@ -1,0 +1,51 @@
+.home-icon-link {
+  position: fixed;
+  top: 1.2rem;
+  left: 1.2rem;
+  z-index: 10001;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 54px;
+  height: 54px;
+  color: #fff;
+  text-decoration: none;
+  transform: translate(20px, 20px) scale(1.5);
+}
+
+.home-icon-link .icon-default,
+.home-icon-link .icon-hover {
+  position: absolute;
+  width: 28px;
+  height: 28px;
+  display: block;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  transition: opacity 0.2s ease;
+}
+
+.home-icon-link .icon-default {
+  opacity: 1;
+  background-image: url("./cabin.svg");
+}
+
+.home-icon-link .icon-hover {
+  opacity: 0;
+  background-image: url("./cabin-solid.svg");
+}
+
+.home-icon-link:hover .icon-default {
+  opacity: 0;
+}
+
+.home-icon-link:hover .icon-hover {
+  opacity: 1;
+}
+
+@media (max-width: 640px) {
+  .home-icon-link {
+    top: 0.8rem;
+    left: 0.8rem;
+  }
+}

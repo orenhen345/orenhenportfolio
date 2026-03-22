@@ -1,0 +1,2697 @@
+:root {
+  --work-bg: #161517;
+  --work-panel: #12161b;
+  --work-text: #ffffff;
+  --work-muted: rgba(255, 255, 255, 0.78);
+  --work-accent: #f7f0c6;
+  --work-line: rgba(255, 255, 255, 0.16);
+
+  /*
+    פריים קונקט — טוקנס לקסיקון סופי (עמודי עבודה).
+    עקרון: קו תחתון של פריים הקונקט (הנראה) = סוף הגלילה — ראה docs/מושגים-גלילה-וקונקט.md
+  */
+  --work-connect-gap-above: 150px; /* מרווח בין תוכן מעל לבין .work-*-connect-wrap (כמו work-5) */
+  --work-connect-wrap-overflow: visible; /* לא לעטוף ב-hidden — חותך 100vw על .work-connect-frame */
+  --work-connect-stack-z: 4; /* z-index לעטיפה כשצריך מעל מסגרת צבעונית (work-6 מנטה) */
+  /* work-6 בלבד: מרווח בין תחתית מלבן הווידאו האחרון (מסגרת מנטה) לפריים קונקט */
+  --work-6-gap-mint-to-connect: 50px;
+}
+
+@font-face {
+  font-family: "AnimixInter";
+  src: url("../my_web/pages/animix/fonts/Inter-VariableFont_opsz,wght.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "AnimixGasoek";
+  src: url("../my_web/pages/animix/fonts/GasoekOne-Regular.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "AnimixGluten";
+  src: url("../my_web/pages/animix/fonts/Gluten-VariableFont_slnt,wght.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "AnimixInk";
+  src: url("../my_web/pages/animix/fonts/Inkfree.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "AnimixInstrumentSans";
+  src: url("../my_web/pages/animix/fonts/InstrumentSans-VariableFont_wdth,wght.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "DandInter";
+  src: url("../my_web/pages/dand/Inter-VariableFont_opsz,wght.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "DandInstrumentSerif";
+  src: url("../my_web/pages/dand/InstrumentSerif-Regular.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "SHOWG";
+  src: url("../my_web/FONTS/welcome/SHOWG.TTF") format("truetype");
+}
+
+@font-face {
+  font-family: "BekefGrandstander";
+  src: url("../my_web/pages/בכיף/Grandstander-VariableFont_wght.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "BekefFreckle";
+  src: url("../my_web/pages/בכיף/FreckleFace-Regular.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "EduAUVICWANTGuides";
+  src: url("../my_web/pages/2D/EduAUVICWANTGuides-VariableFont_wght.ttf") format("truetype");
+  font-weight: 100 900;
+  font-display: swap;
+}
+
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body.work-page {
+  margin: 0;
+  min-height: 100vh;
+  background: var(--work-bg);
+  color: var(--work-text);
+  font-family: "Sen", sans-serif;
+}
+
+/* work-5: negative margins / clipping can expose body; keep page edge same as yellow frame (not --work-bg). */
+body.work-page.work-5 {
+  background-color: #ffffcf;
+}
+
+body.work-page.work-6 {
+  background-color: #ffffcf;
+  min-height: unset;
+}
+
+html:has(body.work-page.work-6) {
+  height: auto;
+  min-height: 0;
+  overflow-x: clip;
+  scroll-padding-bottom: 0;
+  background-color: #ffffcf;
+}
+
+.work-page.work-6 .work-page-inner {
+  min-height: unset;
+}
+
+.work-page.work-6 .work-6-connect-wrap .work-connect-frame {
+  flex-grow: 0;
+  margin-bottom: 0;
+}
+
+.work-page.work-6 .work-6-connect-wrap .work-connect-frame .home-contact-frame {
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+body.work-page.work-7 {
+  background-color: #ffffcf;
+  /* סוף גלילה = תחתית פריים הקונקט — לא min-height:100vh שמייצר זנב גלילה */
+  min-height: unset;
+}
+
+/* work-7: סוף גלילה מיושר לפריים קונקט (כמו work-6 / all-projects) */
+html:has(body.work-page.work-7) {
+  height: auto;
+  min-height: 0;
+  overflow-x: clip;
+  scroll-padding-bottom: 0;
+  background-color: #ffffcf;
+}
+
+.work-page.work-7 .work-page-inner {
+  min-height: unset;
+}
+
+.work-page.work-7 .work-7-connect-wrap .work-connect-frame {
+  flex-grow: 0;
+  margin-bottom: 0;
+}
+
+.work-page.work-7 .work-7-connect-wrap .work-connect-frame .home-contact-frame {
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+/* work-4: soft pink below scroll end — same role as work-5 body (hide fixed video bleed past content). */
+body.work-page.work-4 {
+  background-color: #fff5f5;
+}
+
+body.work-page.work-1 {
+  background-color: #ffffcf;
+}
+
+/*
+  work-2: 100vw על פריים קונקט + zoom — גורם לגלילה אופקית ופס בתחתית;
+  html ברירת מחדל לבן — פערים בין סקשנים. clip-x + רקע html = אותו טון כמו body.
+*/
+html:has(body.work-page.work-2) {
+  overflow-x: clip;
+  background-color: #f5f3ff;
+}
+
+body.work-page.work-2 {
+  background-color: #f5f3ff;
+  overflow-x: clip;
+}
+
+.work-page.work-2 .work-page-inner {
+  overflow-x: clip;
+}
+
+body.work-page.work-3 {
+  background-color: #eef8ff;
+}
+
+.work-page a {
+  color: inherit;
+}
+
+.work-page-inner {
+  position: relative;
+  min-height: 100vh;
+}
+
+.work-corner-icon {
+  position: fixed;
+  top: 1.2rem;
+  z-index: 10001;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 54px;
+  height: 54px;
+  color: #fff;
+  text-decoration: none;
+}
+
+.work-home-icon {
+  left: 1.2rem;
+}
+
+.work-menu-icon {
+  right: 1.2rem;
+}
+
+.work-corner-icon svg {
+  width: 36px;
+  height: 36px;
+  display: block;
+  filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.35));
+}
+
+.work-corner-icon:hover {
+  opacity: 0.8;
+}
+
+.work-video-fixed {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  background: #000;
+}
+
+.work-video-fixed::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(to bottom, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.1) 28%, rgba(0, 0, 0, 0.72) 100%),
+    radial-gradient(circle at top right, rgba(247, 240, 198, 0.12), transparent 34%);
+  pointer-events: none;
+}
+
+.work-video-frame,
+.work-hero-poster,
+.work-video-fallback {
+  position: absolute;
+  inset: 0;
+}
+
+.work-video-frame {
+  top: 50%;
+  left: 50%;
+  width: 100vw;
+  height: calc(100vw * 9 / 16);
+  min-width: calc(100vh * 16 / 9);
+  min-height: 100vh;
+  transform: translate(-50%, -50%) scale(1.08);
+  border: 0;
+  pointer-events: none;
+}
+
+.work-hero-poster {
+  z-index: 1;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  transition: opacity 320ms ease;
+}
+
+.work-video-fixed.video-ready .work-hero-poster {
+  opacity: 0;
+}
+
+.work-video-fallback {
+  z-index: 2;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 0.75rem;
+  text-align: center;
+  padding: 1.5rem;
+  background: radial-gradient(circle at top, rgba(255, 255, 255, 0.06), transparent 55%);
+}
+
+.work-video-fixed.video-error .work-video-fallback {
+  display: flex;
+}
+
+.work-video-fallback-link {
+  color: var(--work-accent);
+  text-decoration: none;
+}
+
+.work-video-fallback-link:hover {
+  text-decoration: underline;
+}
+
+.work-top-arrows {
+  position: fixed;
+  top: 1.25rem;
+  left: 50%;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.1rem;
+  transform: translateX(-50%);
+  opacity: 0.95;
+  pointer-events: auto;
+}
+
+.work-arrow-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  background: rgba(15, 17, 20, 0.62);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  backdrop-filter: blur(10px);
+  text-decoration: none;
+  pointer-events: auto;
+}
+
+.work-arrow-link:hover {
+  background: rgba(26, 30, 36, 0.86);
+}
+
+.work-top-arrows .scroll-arrow {
+  width: 32px;
+  height: auto;
+  filter: drop-shadow(0 10px 24px rgba(0, 0, 0, 0.35));
+}
+
+.work-top-arrows .arrow-left {
+  transform: rotate(90deg);
+}
+
+.work-top-arrows .arrow-right {
+  transform: rotate(-90deg);
+}
+
+.work-scroll-hint {
+  position: fixed;
+  left: 50%;
+  bottom: calc(clamp(3.25rem, 8vh, 7rem) + 110px);
+  z-index: 1;
+  color: #fff;
+  text-decoration: none;
+  transform: translateX(-50%);
+}
+
+.work-scroll-hint .scroll-arrow-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: workScrollBounce 1.8s ease-in-out infinite;
+}
+
+.work-scroll-hint .scroll-arrow {
+  width: 42px;
+  height: auto;
+  filter: drop-shadow(0 10px 25px rgba(0, 0, 0, 0.35));
+}
+
+@keyframes workScrollBounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(10px); }
+}
+
+.work-spacer {
+  position: relative;
+  width: 100%;
+  height: calc(67vh + 130px);
+  z-index: 1;
+  pointer-events: none;
+}
+
+.work-scroll-content {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+}
+
+.work-content-wrapper {
+  margin-top: -33vh;
+}
+
+.work-content-section {
+  position: relative;
+  width: 100%;
+  min-height: 48vh;
+  overflow: hidden;
+  background: transparent;
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  text-align: center;
+}
+
+.work-content-svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  pointer-events: none;
+}
+
+.work-content-inner {
+  position: relative;
+  z-index: 1;
+  width: min(100%, 840px);
+  transform: translateY(-140px);
+  padding: clamp(4.8rem, 12vh, 7.5rem) 1.5rem 4.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.work-kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0.45rem 0.8rem;
+  border-radius: 999px;
+  border: 1px solid var(--work-line);
+  background: rgba(255, 255, 255, 0.04);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.project-name {
+  margin: 0;
+  font-size: clamp(2.1rem, 5vw, 3.8rem);
+  line-height: 0.96;
+  font-weight: 700;
+  color: #fff;
+}
+
+.words-about {
+  margin: 0;
+  max-width: 38rem;
+  font-size: clamp(1rem, 2vw, 1.14rem);
+  line-height: 1.6;
+  color: var(--work-muted);
+}
+
+.work-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.9rem;
+}
+
+.work-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 156px;
+  padding: 0.9rem 1.15rem;
+  border-radius: 999px;
+  border: 1px solid var(--work-line);
+  background: rgba(255, 255, 255, 0.05);
+  color: #fff;
+  text-decoration: none;
+  font-weight: 700;
+}
+
+.work-button:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.work-thumb {
+  width: min(100%, 520px);
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.36);
+}
+
+.work-thumb img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.work-page.work-7 .work-thumb img,
+.work-page.work-7 .work-hero-poster {
+  object-position: top center;
+  background-position: top center;
+}
+
+.work-page.work-1 .work-content-wrapper,
+.work-page.work-2 .work-content-wrapper,
+.work-page.work-3 .work-content-wrapper,
+.work-page.work-4 .work-content-wrapper,
+.work-page.work-5 .work-content-wrapper,
+.work-page.work-6 .work-content-wrapper,
+.work-page.work-7 .work-content-wrapper {
+  margin-top: calc(-33vh + 280px);
+}
+
+.work-page.work-1 .work-content-inner,
+.work-page.work-2 .work-content-inner,
+.work-page.work-3 .work-content-inner,
+.work-page.work-4 .work-content-inner,
+.work-page.work-5 .work-content-inner,
+.work-page.work-6 .work-content-inner,
+.work-page.work-7 .work-content-inner {
+  transform: translateY(-24px);
+  padding-top: clamp(5.8rem, 14vh, 8.2rem);
+  padding-bottom: 3.25rem;
+}
+
+.work-page.work-1 .work-top-arrows,
+.work-page.work-2 .work-top-arrows,
+.work-page.work-3 .work-top-arrows,
+.work-page.work-4 .work-top-arrows,
+.work-page.work-5 .work-top-arrows,
+.work-page.work-6 .work-top-arrows,
+.work-page.work-7 .work-top-arrows {
+  gap: 0.7rem;
+}
+
+.work-page.work-1 .work-arrow-link,
+.work-page.work-2 .work-arrow-link,
+.work-page.work-3 .work-arrow-link,
+.work-page.work-4 .work-arrow-link,
+.work-page.work-5 .work-arrow-link,
+.work-page.work-6 .work-arrow-link,
+.work-page.work-7 .work-arrow-link {
+  width: auto;
+  height: auto;
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  padding: 0;
+  backdrop-filter: none;
+}
+
+.work-page.work-1 .work-arrow-link:hover,
+.work-page.work-2 .work-arrow-link:hover,
+.work-page.work-3 .work-arrow-link:hover,
+.work-page.work-4 .work-arrow-link:hover,
+.work-page.work-5 .work-arrow-link:hover,
+.work-page.work-6 .work-arrow-link:hover,
+.work-page.work-7 .work-arrow-link:hover {
+  background: transparent;
+  opacity: 0.8;
+}
+
+/* work-1: same lexicon as work-5 — SVG absolute, content in-flow, crop overflow:hidden, scroll ends at connect bottom. */
+.work-page.work-1 .animix-yellow-frame-crop {
+  position: relative;
+  top: auto;
+  left: 50%;
+  z-index: 1;
+  width: 100vw;
+  /* Was margin 300px + translateY(-100px) — Y-transform broke scroll height vs visual bottom; use margin only. */
+  margin-top: 200px;
+  background: linear-gradient(
+    to bottom,
+    transparent 0,
+    transparent clamp(100px, 16vw, 260px),
+    #ffffcf clamp(100px, 16vw, 260px)
+  );
+  overflow: hidden;
+  transform: translateX(-50%);
+  pointer-events: auto;
+  padding-bottom: 0;
+}
+
+.work-page.work-1 .animix-yellow-frame {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  z-index: 1;
+  display: block;
+  width: calc(100% + 84px);
+  max-width: none;
+  height: auto;
+  margin: 0;
+  transform: translateX(calc(-50% - 42px));
+  aspect-ratio: 1895 / 2714;
+  pointer-events: none;
+  clip-path: inset(0 0 0 0);
+}
+
+.work-page.work-1 .animix-yellow-content {
+  position: relative;
+  top: auto;
+  left: auto;
+  z-index: 3;
+  width: min(100%, 760px);
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 28px;
+  transform: none;
+  pointer-events: auto;
+  padding-top: 220px;
+}
+
+.work-page.work-1 .animix-yellow-title {
+  margin: 0;
+  color: #000;
+  text-align: center;
+  font-family: "AnimixGasoek", sans-serif;
+  font-size: clamp(1rem, 2.1vw, 2.8rem);
+  font-weight: 400;
+  line-height: 1.05;
+  white-space: nowrap;
+}
+
+.work-page.work-1 .animix-yellow-video {
+  position: relative;
+  width: min(100%, 620px);
+  aspect-ratio: 16 / 9;
+  background: #000;
+  overflow: hidden;
+  border-radius: 18px;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.18);
+}
+
+.work-page.work-1 .animix-yellow-video iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+.work-page.work-1 .animix-yellow-info {
+  display: flex;
+  flex-direction: column;
+  gap: 34px;
+  margin-top: 50px;
+  width: min(100%, 760px);
+}
+
+.work-page.work-1 .animix-yellow-row {
+  display: grid;
+  align-items: center;
+  gap: 24px;
+}
+
+.work-page.work-1 .animix-yellow-row-character {
+  grid-template-columns: minmax(0, 1fr) 336px;
+}
+
+.work-page.work-1 .animix-yellow-row-character .animix-yellow-copy {
+  transform: translateX(-20px);
+}
+
+.work-page.work-1 .animix-yellow-row-walkman {
+  grid-template-columns: 528px minmax(0, 1fr);
+}
+
+.work-page.work-1 .animix-yellow-copy {
+  color: #000;
+  max-width: 240px;
+  text-align: center;
+  justify-self: center;
+}
+
+.work-page.work-1 .animix-yellow-mini-title {
+  margin: 0 0 10px;
+  color: #000;
+  text-align: center;
+  font-family: "AnimixGluten", sans-serif;
+  font-size: clamp(1rem, 1.7vw, 2rem);
+  font-weight: 700;
+  line-height: 1;
+}
+
+.work-page.work-1 .animix-yellow-handwriting {
+  margin: 0;
+  color: #000;
+  text-align: center;
+  font-family: "AnimixInk", cursive;
+  font-size: clamp(0.8rem, 1.3vw, 1.5rem);
+  font-weight: 400;
+  line-height: 1.15;
+}
+
+.work-page.work-1 .animix-yellow-figure {
+  margin: 0;
+}
+
+.work-page.work-1 .animix-yellow-figure img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.work-page.work-1 .animix-yellow-figure-character {
+  width: 336px;
+  justify-self: center;
+  transform: translateX(20px);
+}
+
+.work-page.work-1 .animix-yellow-figure-walkman {
+  width: 528px;
+  justify-self: center;
+  transform: translateX(-120px);
+}
+
+.work-page.work-1 .animix-yellow-vision {
+  width: min(100%, 560px);
+  margin: 70px 0 0;
+  color: #000;
+  text-align: center;
+  font-family: "AnimixInstrumentSans", sans-serif;
+  font-size: clamp(1rem, 1.2vw, 1.35rem);
+  font-weight: 400;
+  line-height: 1.2;
+}
+
+.work-page.work-1 .work-content-section {
+  overflow: visible;
+  min-height: 100%;
+}
+
+.work-page.work-1 .work-content-inner {
+  transform: translateY(76px);
+}
+
+.work-page.work-1 .words-about {
+  margin-top: calc(1rem + 30px);
+}
+
+.work-page.work-1 .work-content-wrapper {
+  position: relative;
+  min-height: auto;
+  margin-bottom: 0;
+}
+
+.work-page.work-1 .work-content-svg {
+  z-index: 0;
+  top: 0;
+  inset: auto 0 auto 0;
+  height: clamp(520px, 42vw, 620px);
+}
+
+.work-page.work-1 .work-content-fill {
+  position: absolute;
+  top: calc(clamp(520px, 42vw, 620px) - 2px);
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: #12161B;
+  z-index: 0;
+}
+
+.work-page.work-1 .work-content-section,
+.work-page.work-1 .work-content-inner {
+  position: relative;
+  z-index: 1;
+}
+
+
+.work-page.work-1 .work-content-inner {
+  z-index: 1;
+}
+
+.work-page.work-4 .animix-yellow-frame-crop,
+.work-page.work-5 .animix-yellow-frame-crop {
+  position: absolute;
+  top: calc(clamp(-160px, -10vw, 60px) + 300px);
+  left: 0;
+  z-index: 2;
+  width: 100%;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+/*
+  work-2: אותו לקסיקון כמו work-5 — crop + SVG absolute + overlay בגובה תוכן + work-2-connect-wrap.
+  בלי translateY על כל ה-crop / connect — סוף גלילה וקיווץ מסך כמו בעמוד 5.
+*/
+.work-page.work-2 .work-2-yellow-frame-crop {
+  position: relative;
+  top: auto;
+  left: 50%;
+  z-index: 1;
+  width: 100vw;
+  margin-top: 300px;
+  background: linear-gradient(
+    to bottom,
+    transparent 0,
+    transparent clamp(100px, 16vw, 260px),
+    #f5f3ff clamp(100px, 16vw, 260px)
+  );
+  overflow: hidden;
+  transform: translateX(-50%);
+  pointer-events: auto;
+  padding-bottom: 0;
+}
+
+.work-page.work-2 .work-frame-base.work-2-purple-frame-svg {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  z-index: 0;
+  display: block;
+  width: calc(100% + 84px);
+  max-width: none;
+  height: auto;
+  margin: 0;
+  transform: translateX(calc(-50% - 42px));
+  aspect-ratio: 1920 / 2192;
+  pointer-events: none;
+  clip-path: inset(0 0 0 0);
+}
+
+.work-page.work-2 .work-2-frame-overlay {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+  background-color: transparent;
+  /* כמו work-5: padding עליון — היה 340px על .animix-yellow-content */
+  padding: calc(340px + clamp(2.25rem, 5vw, 3.75rem)) clamp(1rem, 4vw, 2rem) 0 clamp(1rem, 4vw, 2rem);
+  box-sizing: border-box;
+  pointer-events: none;
+  /* בידוד stacking — כולל iframes מול SVG סגול ומול chrome קבוע בזום */
+  isolation: isolate;
+}
+
+.work-page.work-2 .work-2-frame-inner {
+  width: min(100%, 760px);
+  margin: 0 auto;
+  pointer-events: auto;
+  background-color: transparent;
+}
+
+/*
+  work-2 לעומת work-1: כאן שלושה iframes Vimeo בגלילה (לא רק אחד), וה-crop משתמש ב-transform.
+  בזום (במיוחד מובייל) שכבת ה-compositing של iframe יכולה “לצוץ” מעל חיתוך — נראה כפס מסגרת מוזאיקה
+  מעל פס האייקונים. work-1: פחות חשיפה + מבנה שונה.
+*/
+.work-page.work-2 .work-2-videos-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 28px;
+  isolation: isolate;
+}
+
+.work-page.work-2 .work-2-frame-inner .animix-yellow-video {
+  position: relative;
+  width: min(100%, 620px);
+  aspect-ratio: 16 / 9;
+  background: #000;
+  overflow: hidden;
+  border-radius: 18px;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.18);
+  /* מרכז את שכבת ה-iframe בתוך המיכל — מפחית בריחה מחוץ ל-border-radius בזום */
+  isolation: isolate;
+  transform: translateZ(0);
+}
+
+.work-page.work-2 .work-2-frame-inner .animix-yellow-video iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  /* לא לפרום שכבה מעל chrome של הדפדפן */
+  transform: translate3d(0, 0, 0);
+}
+
+/* work-2: עטיפת קונקט בלבד — שאר הכללים בבלוק work-2…7 למטה */
+.work-page.work-2 .work-2-connect-wrap {
+  margin-top: var(--work-connect-gap-above);
+  width: 100%;
+  pointer-events: auto;
+  position: relative;
+  z-index: 3;
+}
+
+/* פריים קונקט — work-2,3,4,5,6,7 (full-bleed, גובה לפי תוכן) */
+.work-page.work-2 .work-2-connect-wrap .work-connect-frame,
+.work-page.work-3 .cyan-project-content > .work-connect-frame,
+.work-page.work-4 .work-4-connect-wrap .work-connect-frame,
+.work-page.work-5 .work-5-connect-wrap .work-connect-frame,
+.work-page.work-6 .work-6-connect-wrap .work-connect-frame,
+.work-page.work-7 .work-7-connect-wrap .work-connect-frame {
+  align-self: stretch;
+  margin-top: 0;
+  max-height: none;
+  height: auto;
+  min-height: 0;
+  overflow: visible;
+  width: 100vw;
+  max-width: none;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+  box-sizing: border-box;
+  background-color: #ffffcf;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 0;
+  transform: none;
+  position: relative;
+  z-index: 1;
+}
+
+.work-page.work-3 .cyan-project-content > .work-connect-frame {
+  margin-top: 50px;
+}
+
+.work-page.work-2 .work-2-connect-wrap .work-connect-frame .hero-footer-bar,
+.work-page.work-3 .cyan-project-content > .work-connect-frame .hero-footer-bar,
+.work-page.work-4 .work-4-connect-wrap .work-connect-frame .hero-footer-bar,
+.work-page.work-5 .work-5-connect-wrap .work-connect-frame .hero-footer-bar,
+.work-page.work-6 .work-6-connect-wrap .work-connect-frame .hero-footer-bar,
+.work-page.work-7 .work-7-connect-wrap .work-connect-frame .hero-footer-bar {
+  width: 100%;
+  height: auto;
+  min-height: clamp(88px, 14vw, 220px);
+  max-height: none;
+  flex-shrink: 0;
+  overflow: hidden;
+}
+
+.work-page.work-2 .work-2-connect-wrap .work-connect-frame .hero-footer-bar-marquee,
+.work-page.work-3 .cyan-project-content > .work-connect-frame .hero-footer-bar-marquee,
+.work-page.work-4 .work-4-connect-wrap .work-connect-frame .hero-footer-bar-marquee,
+.work-page.work-5 .work-5-connect-wrap .work-connect-frame .hero-footer-bar-marquee,
+.work-page.work-6 .work-6-connect-wrap .work-connect-frame .hero-footer-bar-marquee,
+.work-page.work-7 .work-7-connect-wrap .work-connect-frame .hero-footer-bar-marquee {
+  overflow: hidden;
+  padding-inline: clamp(0.5rem, 2vw, 1.25rem);
+}
+
+.work-page.work-2 .work-2-connect-wrap .work-connect-frame .hero-footer-bar-marquee-inner,
+.work-page.work-3 .cyan-project-content > .work-connect-frame .hero-footer-bar-marquee-inner,
+.work-page.work-4 .work-4-connect-wrap .work-connect-frame .hero-footer-bar-marquee-inner,
+.work-page.work-5 .work-5-connect-wrap .work-connect-frame .hero-footer-bar-marquee-inner,
+.work-page.work-6 .work-6-connect-wrap .work-connect-frame .hero-footer-bar-marquee-inner,
+.work-page.work-7 .work-7-connect-wrap .work-connect-frame .hero-footer-bar-marquee-inner {
+  align-items: center;
+}
+
+.work-page.work-2 .work-2-connect-wrap .work-connect-frame .home-contact-frame,
+.work-page.work-3 .cyan-project-content > .work-connect-frame .home-contact-frame,
+.work-page.work-4 .work-4-connect-wrap .work-connect-frame .home-contact-frame,
+.work-page.work-5 .work-5-connect-wrap .work-connect-frame .home-contact-frame,
+.work-page.work-6 .work-6-connect-wrap .work-connect-frame .home-contact-frame,
+.work-page.work-7 .work-7-connect-wrap .work-connect-frame .home-contact-frame {
+  width: 100%;
+  flex: 0 0 auto;
+  aspect-ratio: unset;
+  height: auto;
+  min-height: 0;
+  overflow: hidden;
+  position: relative;
+  z-index: 1;
+  isolation: isolate;
+}
+
+.work-page.work-2 .work-2-connect-wrap .work-connect-frame .home-contact-bg,
+.work-page.work-3 .cyan-project-content > .work-connect-frame .home-contact-bg,
+.work-page.work-4 .work-4-connect-wrap .work-connect-frame .home-contact-bg,
+.work-page.work-5 .work-5-connect-wrap .work-connect-frame .home-contact-bg,
+.work-page.work-6 .work-6-connect-wrap .work-connect-frame .home-contact-bg,
+.work-page.work-7 .work-7-connect-wrap .work-connect-frame .home-contact-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  min-height: 100%;
+  display: block;
+  pointer-events: none;
+}
+
+.work-page.work-2 .work-2-connect-wrap .work-connect-frame .home-contact-inner,
+.work-page.work-3 .cyan-project-content > .work-connect-frame .home-contact-inner,
+.work-page.work-4 .work-4-connect-wrap .work-connect-frame .home-contact-inner,
+.work-page.work-5 .work-5-connect-wrap .work-connect-frame .home-contact-inner,
+.work-page.work-6 .work-6-connect-wrap .work-connect-frame .home-contact-inner,
+.work-page.work-7 .work-7-connect-wrap .work-connect-frame .home-contact-inner {
+  position: relative;
+  inset: auto;
+  z-index: 2;
+  max-width: min(1200px, 100%);
+  width: 100%;
+  max-height: none;
+  min-height: 0;
+  margin: 0 auto;
+  overflow: visible;
+  box-sizing: border-box;
+}
+
+.work-page.work-2 .work-2-connect-wrap .work-connect-frame .home-contact-about,
+.work-page.work-2 .work-2-connect-wrap .work-connect-frame .home-contact-talk,
+.work-page.work-3 .cyan-project-content > .work-connect-frame .home-contact-about,
+.work-page.work-3 .cyan-project-content > .work-connect-frame .home-contact-talk,
+.work-page.work-4 .work-4-connect-wrap .work-connect-frame .home-contact-about,
+.work-page.work-4 .work-4-connect-wrap .work-connect-frame .home-contact-talk,
+.work-page.work-5 .work-5-connect-wrap .work-connect-frame .home-contact-about,
+.work-page.work-5 .work-5-connect-wrap .work-connect-frame .home-contact-talk,
+.work-page.work-6 .work-6-connect-wrap .work-connect-frame .home-contact-about,
+.work-page.work-6 .work-6-connect-wrap .work-connect-frame .home-contact-talk,
+.work-page.work-7 .work-7-connect-wrap .work-connect-frame .home-contact-about,
+.work-page.work-7 .work-7-connect-wrap .work-connect-frame .home-contact-talk {
+  transform: none;
+}
+
+.work-page.work-2 .work-2-connect-wrap .work-connect-frame .home-contact-title,
+.work-page.work-3 .cyan-project-content > .work-connect-frame .home-contact-title,
+.work-page.work-4 .work-4-connect-wrap .work-connect-frame .home-contact-title,
+.work-page.work-5 .work-5-connect-wrap .work-connect-frame .home-contact-title,
+.work-page.work-6 .work-6-connect-wrap .work-connect-frame .home-contact-title,
+.work-page.work-7 .work-7-connect-wrap .work-connect-frame .home-contact-title {
+  font-size: clamp(1.5rem, 5.5vw, 4.75rem);
+  line-height: 1.05;
+}
+
+.work-page.work-2 .work-2-connect-wrap .work-connect-frame .home-contact-text,
+.work-page.work-2 .work-2-connect-wrap .work-connect-frame .home-contact-list,
+.work-page.work-3 .cyan-project-content > .work-connect-frame .home-contact-text,
+.work-page.work-3 .cyan-project-content > .work-connect-frame .home-contact-list,
+.work-page.work-4 .work-4-connect-wrap .work-connect-frame .home-contact-text,
+.work-page.work-4 .work-4-connect-wrap .work-connect-frame .home-contact-list,
+.work-page.work-5 .work-5-connect-wrap .work-connect-frame .home-contact-text,
+.work-page.work-5 .work-5-connect-wrap .work-connect-frame .home-contact-list,
+.work-page.work-6 .work-6-connect-wrap .work-connect-frame .home-contact-text,
+.work-page.work-6 .work-6-connect-wrap .work-connect-frame .home-contact-list,
+.work-page.work-7 .work-7-connect-wrap .work-connect-frame .home-contact-text,
+.work-page.work-7 .work-7-connect-wrap .work-connect-frame .home-contact-list {
+  font-size: clamp(0.9rem, 2.6vw, 1.08rem);
+  line-height: 1.55;
+  max-width: none;
+  overflow-wrap: anywhere;
+  word-wrap: break-word;
+}
+
+.work-page.work-2 .work-2-connect-wrap .work-connect-frame .marquee-item,
+.work-page.work-3 .cyan-project-content > .work-connect-frame .marquee-item,
+.work-page.work-4 .work-4-connect-wrap .work-connect-frame .marquee-item,
+.work-page.work-5 .work-5-connect-wrap .work-connect-frame .marquee-item,
+.work-page.work-6 .work-6-connect-wrap .work-connect-frame .marquee-item,
+.work-page.work-7 .work-7-connect-wrap .work-connect-frame .marquee-item {
+  font-size: clamp(1.25rem, 5vw, 3.25rem);
+}
+
+/* work-3: same lexicon as work-5 — cyan blob clipped to content; scroll ends at connect bottom */
+.work-page.work-3 .animix-yellow-frame-crop {
+  position: relative;
+  top: auto;
+  left: 50%;
+  z-index: 1;
+  width: 100vw;
+  margin-top: 210px;
+  background: linear-gradient(
+    to bottom,
+    transparent 0,
+    transparent clamp(100px, 16vw, 260px),
+    rgba(232, 246, 255, 0.98) clamp(100px, 16vw, 260px)
+  );
+  overflow: hidden;
+  transform: translateX(-50%);
+  pointer-events: auto;
+  padding-bottom: 0;
+}
+
+.work-page.work-4 .animix-yellow-frame-crop {
+  position: relative;
+  top: auto;
+  left: 50%;
+  z-index: 1;
+  width: 100vw;
+  margin-top: 350px;
+  /* Same pattern as work-5: top band transparent for SVG silhouette; then tint to plug .work-content-fill slits. */
+  background: linear-gradient(
+    to bottom,
+    transparent 0,
+    transparent clamp(100px, 16vw, 260px),
+    rgba(255, 236, 236, 0.98) clamp(100px, 16vw, 260px)
+  );
+  overflow: hidden;
+  transform: translateX(-50%);
+  pointer-events: auto;
+  padding-bottom: 0;
+}
+
+.work-page.work-5 .animix-yellow-frame-crop {
+  position: relative;
+  top: auto;
+  left: 50%;
+  z-index: 1;
+  width: 100vw;
+  margin-top: 300px;
+  /*
+    Solid #ffffcf on the full crop hid scallop “valleys” (flat bar). Transparent only on the crop
+    lets .work-content-fill (#12161B) show through subpixel gaps when width changes (SVG vs column vs 100vw).
+    Gradient: transparent only at the top band (scallop zone), then flat yellow below — plugs slits, keeps silhouette.
+  */
+  background: linear-gradient(
+    to bottom,
+    transparent 0,
+    transparent clamp(100px, 16vw, 260px),
+    #ffffcf clamp(100px, 16vw, 260px)
+  );
+  /*
+    overflow:hidden: yellow SVG is position:absolute + tall — clip its paint to this box’s bottom edge.
+    That bottom edge = bottom of in-flow overlay = end of scroll (with overlay padding-bottom:0 below).
+    If top scallops clip, add padding-top here and reduce margin-top by the same amount.
+  */
+  overflow: hidden;
+  transform: translateX(-50%);
+  pointer-events: auto;
+  padding-bottom: 0;
+}
+
+.work-page.work-5 .work-5-yellow-frame-crop {
+  position: relative;
+}
+
+/* SVG out of flow: yellow shape stays fixed height; overlay below grows with exercises + connect so document scroll ends at connect bottom. */
+.work-page.work-5 .work-frame-base.work-5-yellow-frame-svg {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  z-index: 1;
+  display: block;
+  width: calc(100% + 84px);
+  max-width: none;
+  height: auto;
+  margin: 0;
+  transform: translateX(calc(-50% - 42px));
+  aspect-ratio: 1920 / 3117;
+  pointer-events: none;
+  /* Crop box (.animix-yellow-frame-crop overflow:hidden) is primary bottom trim; keep tiny nudge if needed. */
+  clip-path: inset(0 0 0 0);
+}
+
+.work-page.work-5 .work-5-frame-overlay {
+  position: relative;
+  z-index: 2;
+  /* Height = content only. Do NOT min-height: full SVG blob — that left empty yellow below connect (lexicon: not “padding tail”, still scroll/visual tail). */
+  display: flex;
+  justify-content: center;
+  /* Transparent so scalloped SVG (z-index 1) stays visible at top; inner + connect carry flat yellow where needed. */
+  background-color: transparent;
+  /* +200px: shift inner layout only; bottom 0 — scroll end aligns with bottom of connect frame (lexicon). */
+  padding: calc(200px + clamp(2.25rem, 5vw, 3.75rem)) clamp(1rem, 4vw, 2rem) 0 clamp(1rem, 4vw, 2rem);
+  box-sizing: border-box;
+  pointer-events: none;
+}
+
+.work-page.work-5 .work-5-frame-inner {
+  width: min(100%, 1160px);
+  margin: 0 auto;
+  pointer-events: auto;
+  /* Flat yellow behind text/videos only — does not cover full viewport width, so scallop silhouette stays correct. */
+  background-color: #ffffcf;
+}
+
+.work-page.work-5 .work-5-exercises-block {
+  margin-top: var(--work-connect-gap-above);
+}
+
+/* Connect block: same markup as other work pages; טוקן --work-connect-gap-above מתחת למבנה למעלה */
+.work-page.work-5 .work-5-connect-wrap {
+  margin-top: var(--work-connect-gap-above);
+  width: 100%;
+  pointer-events: auto;
+  overflow: var(--work-connect-wrap-overflow);
+  /* Do NOT use overflow:hidden here — it clips the 100vw horizontal breakout of .work-connect-frame. */
+}
+
+/*
+  work-6: מנטה → פריים קונקט צמודים (בלי פס #12161B ביניהם או בצדדים).
+  המרווח 50px נמצא ב-padding-bottom של .work-6-mint-frame (רקע רציף), לא ב-padding על העטיפה הצרה — כך בזום/סקייל אין “חור” כהה מחוץ ל־840px.
+*/
+.work-page.work-6 .work-6-connect-wrap {
+  margin-top: 0;
+  flex-shrink: 0;
+  width: 100vw;
+  max-width: none;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+  pointer-events: auto;
+  position: relative;
+  z-index: var(--work-connect-stack-z);
+  overflow: var(--work-connect-wrap-overflow);
+  padding-top: 0;
+  background-color: transparent;
+  box-sizing: border-box;
+  /* Do NOT use overflow:hidden here — it clips the 100vw horizontal breakout of .work-connect-frame. */
+}
+
+.work-page.work-5 .work-5-studies-title {
+  margin: 0 0 clamp(1.75rem, 4.5vw, 3rem);
+  font-family: "EduAUVICWANTGuides", "BekefFreckle", cursive;
+  font-size: clamp(2.25rem, 5.8vw, 4.25rem);
+  font-weight: 700;
+  line-height: 1.08;
+  text-align: center;
+  color: #12161b;
+}
+
+.work-page.work-5 .work-5-text-box {
+  margin: 0;
+  font-family: "Inter", system-ui, -apple-system, sans-serif;
+  font-size: clamp(0.95rem, 1.35vw, 1.08rem);
+  font-weight: 400;
+  line-height: 1.55;
+  color: #12161b;
+}
+
+.work-page.work-5 .work-5-row {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(1.25rem, 3.5vw, 2.75rem);
+  margin-bottom: clamp(1.75rem, 4vw, 2.85rem);
+}
+
+.work-page.work-5 .work-5-row:last-child {
+  margin-bottom: 0;
+}
+
+.work-page.work-5 .work-5-row--video-left {
+  flex-direction: row;
+}
+
+.work-page.work-5 .work-5-row--text-left {
+  flex-direction: row;
+}
+
+.work-page.work-5 .work-5-row--stack {
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: clamp(1rem, 2.5vw, 1.35rem);
+}
+
+.work-page.work-5 .work-5-text-col {
+  flex: 1 1 280px;
+  max-width: min(100%, 520px);
+  margin: 0;
+  text-align: start;
+}
+
+.work-page.work-5 .work-5-row--stack .work-5-text-box {
+  text-align: center;
+}
+
+.work-page.work-5 .work-5-video-slot {
+  position: relative;
+  overflow: hidden;
+  flex: 0 1 min(100%, 440px);
+  width: min(100%, 440px);
+  max-width: 100%;
+  aspect-ratio: 16 / 9;
+  background: #d8d8d8;
+  border-radius: 14px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+.work-page.work-5 .work-5-video-slot--embed {
+  background: #0a0a0a;
+}
+
+.work-page.work-5 .work-5-video-slot iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+.work-page.work-5 .work-5-video-slot--square {
+  flex: 0 1 min(420px, 63vw);
+  width: min(420px, 63vw);
+  max-width: min(100%, 420px);
+  aspect-ratio: 1 / 1;
+}
+
+.work-page.work-5 .work-5-row--has-large-square {
+  gap: clamp(1.75rem, 4.5vw, 3rem);
+  align-items: center;
+  justify-content: center;
+}
+
+.work-page.work-5 .work-5-row--has-large-square .work-5-text-col {
+  flex: 1 1 min(280px, 46%);
+  max-width: min(100%, 560px);
+  min-width: 0;
+}
+
+.work-page.work-5 .work-5-video-slot--loops {
+  width: min(100%, 520px);
+  flex-basis: min(100%, 520px);
+  aspect-ratio: 16 / 9;
+}
+
+@media (max-width: 720px) {
+  .work-page.work-5 .work-5-row--video-left,
+  .work-page.work-5 .work-5-row--text-left {
+    flex-direction: column;
+  }
+
+  .work-page.work-5 .work-5-text-col {
+    text-align: center;
+    max-width: 100%;
+  }
+
+  .work-page.work-5 .work-5-video-slot {
+    width: 100%;
+    max-width: 420px;
+    flex: 1 1 auto;
+  }
+
+  .work-page.work-5 .work-5-video-slot--square {
+    width: 100%;
+    max-width: min(100%, 420px);
+    flex: 1 1 auto;
+  }
+
+  .work-page.work-5 .work-5-row--has-large-square .work-5-text-col {
+    max-width: 100%;
+  }
+}
+
+.work-page.work-4 .work-4-pink-frame-crop {
+  position: relative;
+}
+
+/* Pink blob out of flow — crop height = in-flow overlay; overflow:hidden clips SVG past connect (lexicon, same as work-5). */
+.work-page.work-4 .work-frame-base.work-4-pink-frame-svg {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  z-index: 1;
+  display: block;
+  width: calc(100% + 84px);
+  max-width: none;
+  height: auto;
+  margin: 0;
+  transform: translateX(calc(-50% - 42px));
+  aspect-ratio: 1916 / 2192;
+  pointer-events: none;
+  clip-path: inset(0 0 0 0);
+}
+
+.work-page.work-4 .work-4-frame-overlay {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  min-height: 0;
+  /* Bottom 0 — scroll/visual end aligns with bottom of connect frame (half-frame clip), not extra padding tail. */
+  padding: 300px clamp(20px, 4vw, 64px) 0;
+  box-sizing: border-box;
+  pointer-events: none;
+  background-color: transparent;
+}
+
+.work-page.work-4 .work-4-overlay-stack {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 100%;
+}
+
+.work-page.work-4 .work-4-zigzag-grid {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: clamp(1.25rem, 3.5vw, 2.25rem);
+  width: min(100%, 960px);
+  pointer-events: auto;
+}
+
+.work-page.work-4 .work-4-connect-wrap {
+  margin-top: 100px;
+  width: 100%;
+  pointer-events: auto;
+  overflow: visible;
+}
+
+.work-page.work-4 .work-4-frame-slot {
+  width: min(100%, 480px);
+  aspect-ratio: 16 / 9;
+  border-radius: 14px;
+  border: 2px solid rgba(255, 255, 255, 0.5);
+  background: rgba(255, 255, 255, 0.72);
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.work-page.work-4 .work-4-frame-slot--video {
+  position: relative;
+  padding: 0;
+  background: #0a0a0a;
+}
+
+.work-page.work-4 .work-4-frame-slot--video iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+.work-page.work-4 .work-4-frame-slot:nth-child(odd) {
+  align-self: flex-start;
+}
+
+.work-page.work-4 .work-4-frame-slot:nth-child(even) {
+  align-self: flex-end;
+}
+
+/* work-2: .work-2-purple-frame-svg — aspect-ratio 1920/2192 בבלוק work-2-yellow-frame-crop */
+.work-page.work-3 .work-frame-base,
+.work-page.work-4 .work-frame-base,
+.work-page.work-5 .work-frame-base {
+  display: block;
+  width: calc(100% + 84px);
+  aspect-ratio: 1895 / 2714;
+  margin-left: -42px;
+  pointer-events: none;
+}
+
+.work-page.work-3 .cyan-project-frame {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  z-index: 1;
+  width: 110%;
+  max-width: none;
+  height: auto;
+  margin: 0;
+  transform: translateX(-50%);
+  aspect-ratio: 1920 / 3171;
+  display: block;
+  pointer-events: none;
+  clip-path: inset(0 0 0 0);
+}
+
+.work-page.work-3 .cyan-project-content {
+  position: relative;
+  inset: auto;
+  z-index: 3;
+  width: min(100%, 1120px);
+  margin: 0 auto;
+  padding: clamp(110px, 8vw, 150px) clamp(24px, 4vw, 48px) 0;
+  color: #12161b;
+  pointer-events: auto;
+}
+
+.work-page.work-3 .cyan-project-title {
+  margin: 30px 0 0;
+  font-family: "BekefFreckle", cursive;
+  font-size: clamp(1.6rem, 2.2vw, 2.2rem);
+  font-weight: 700;
+  line-height: 1.05;
+  text-align: center;
+}
+
+.work-page.work-3 .cyan-project-feature-video {
+  position: relative;
+  width: min(100%, 480px);
+  aspect-ratio: 16 / 9;
+  margin: 2rem auto 2.4rem;
+  border: 2px solid rgba(255, 255, 255, 0.5);
+  border-radius: 14px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.72);
+}
+
+.work-page.work-3 .cyan-project-feature-video iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.work-page.work-3 .cyan-project-story {
+  display: grid;
+  grid-template-columns: minmax(110px, 150px) minmax(0, 1fr);
+  align-items: center;
+  gap: 40px;
+  width: min(100%, 760px);
+  margin: 0 auto;
+}
+
+.work-page.work-3 .cyan-project-grandma,
+.work-page.work-3 .cyan-project-woman {
+  margin: 0;
+  height: 100px;
+  overflow: visible;
+}
+
+.work-page.work-3 .cyan-project-grandma img {
+  display: block;
+  width: 500%;
+  max-width: none;
+  height: auto;
+  transform: translate(calc(-32% - 100px), calc(10% - 50px));
+  transform-origin: left center;
+}
+
+.work-page.work-3 .cyan-project-vision-box {
+  border: 0;
+  background: transparent;
+  padding: 0;
+  transform: translate(150px, 220px);
+}
+
+.work-page.work-3 .cyan-project-box-title {
+  margin: 0 0 0.2rem;
+  font-family: "BekefGrandstander", sans-serif;
+  font-size: clamp(0.95rem, 1.1vw, 1.15rem);
+  font-weight: 400;
+  line-height: 1.05;
+}
+
+.work-page.work-3 .cyan-project-box-text {
+  margin: 0;
+  font-family: "BekefGrandstander", sans-serif;
+  font-size: clamp(0.82rem, 0.95vw, 1rem);
+  line-height: 1.05;
+  letter-spacing: 0.01em;
+}
+
+.work-page.work-3 .cyan-project-approach {
+  display: grid;
+  grid-template-columns: minmax(0, 260px) minmax(180px, 320px);
+  align-items: end;
+  gap: 40px;
+  width: min(100%, 840px);
+  margin: 0.5rem auto 0;
+  justify-content: center;
+}
+
+.work-page.work-3 .cyan-project-approach-copy {
+  align-self: center;
+  transform: translateY(410px);
+}
+
+.work-page.work-3 .cyan-project-arrow {
+  display: none;
+}
+
+.work-page.work-3 .cyan-project-woman img {
+  display: block;
+  width: 500%;
+  max-width: none;
+  height: auto;
+  transform: translateX(calc(-40% - 220px)) translateY(calc(6% - 140px));
+  transform-origin: center center;
+}
+
+.work-page.work-3 .cyan-project-cards {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(0.75rem, 2vw, 1.5rem);
+  width: min(100%, 990px);
+  margin: 580px auto 0;
+  padding-inline: clamp(0.4rem, 1.65vw, 0.94rem);
+  box-sizing: border-box;
+}
+
+/* כרטיסייה בסגנון מסך אייפון — פינות ויחס דומים למסגרת בווידאו */
+.work-page.work-3 .cyan-project-card {
+  position: relative;
+  aspect-ratio: 9 / 19.5;
+  /* פינות דומות לרדיוס מסגרת אייפון (יחסי לרוחב הכרטיסייה) */
+  border-radius: min(13%, 2.75rem);
+  overflow: hidden;
+  background: #0a0a0a;
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.08),
+    0 8px 28px rgba(0, 0, 0, 0.18);
+}
+
+/*
+  זום + הזזה קלה: מיישרים את מסגרת האייפון שבתוך הווידאו לפינות הכרטיסייה.
+  אם סרטון מסוים לא מושלם — אפשר לכוון רק אותו דרך nth-child.
+*/
+.work-page.work-3 .cyan-project-card iframe {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: auto;
+  height: auto;
+  min-width: 100%;
+  min-height: 100%;
+  transform: translate(-50%, -50%) scale(1.119);
+  transform-origin: center center;
+}
+
+.work-page.work-3 .cyan-project-card:nth-child(1) iframe {
+  transform: translate(calc(-50% + 2px), calc(-49% - 5px)) scale(1.101);
+}
+
+.work-page.work-3 .cyan-project-card:nth-child(2) iframe {
+  transform: translate(calc(-50% + 5px), -50%) scale(1.063, 1.095);
+}
+
+.work-page.work-3 .cyan-project-card:nth-child(3) iframe {
+  transform: translate(calc(-50% + 9px), calc(-51% + 5px)) scale(1.137);
+}
+
+.work-page .work-connect-frame {
+  position: relative;
+  width: 100vw;
+  margin-top: 50px;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+  transform: none;
+}
+
+/*
+  work-1: פריים קונקט — Fill container (רוחב מלא לקצוות).
+  align-self: stretch — בלי זה flex (align-items:center) מצמצם רוחב וה-breakout לא עובד.
+  בלוק בהיר: גובה לפי תוכן (בלי aspect-ratio נוקשה), בלי גלילה פנימית.
+*/
+.work-page.work-1 .animix-yellow-content > .work-connect-frame {
+  align-self: stretch;
+  margin-top: 22px;
+  max-height: none;
+  height: auto;
+  overflow: visible;
+  width: 100vw;
+  max-width: none;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+  box-sizing: border-box;
+  background-color: #ffffcf;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.work-page.work-1 .work-connect-frame .hero-footer-bar {
+  width: 100%;
+  height: auto;
+  min-height: clamp(88px, 14vw, 220px);
+  max-height: none;
+  flex-shrink: 0;
+  overflow: hidden; /* marquee — רק אופקי; גובה לא חותך טקסט */
+}
+
+.work-page.work-1 .work-connect-frame .hero-footer-bar-marquee {
+  overflow: hidden;
+  padding-inline: clamp(0.5rem, 2vw, 1.25rem);
+}
+
+.work-page.work-1 .work-connect-frame .hero-footer-bar-marquee-inner {
+  align-items: center;
+}
+
+.work-page.work-1 .work-connect-frame .home-contact-frame {
+  width: 100%;
+  flex: 0 0 auto;
+  aspect-ratio: unset;
+  height: auto;
+  min-height: 0;
+}
+
+.work-page.work-1 .work-connect-frame .home-contact-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  min-height: 100%;
+}
+
+.work-page.work-1 .work-connect-frame .home-contact-inner {
+  position: relative;
+  inset: auto;
+  z-index: 2;
+  max-width: min(1200px, 100%);
+  width: 100%;
+  max-height: none;
+  min-height: 0;
+  margin: 0 auto;
+  overflow: visible;
+  box-sizing: border-box;
+}
+
+.work-page.work-1 .work-connect-frame .home-contact-about,
+.work-page.work-1 .work-connect-frame .home-contact-talk {
+  transform: none; /* בלי translateX — לא חותך מול overflow */
+}
+
+.work-page.work-1 .work-connect-frame .home-contact-title {
+  font-size: clamp(1.5rem, 5.5vw, 4.75rem);
+  line-height: 1.05;
+}
+
+.work-page.work-1 .work-connect-frame .home-contact-text,
+.work-page.work-1 .work-connect-frame .home-contact-list {
+  font-size: clamp(0.9rem, 2.6vw, 1.08rem);
+  line-height: 1.55;
+  max-width: none;
+  overflow-wrap: anywhere;
+  word-wrap: break-word;
+}
+
+.work-page.work-1 .work-connect-frame .marquee-item {
+  font-size: clamp(1.25rem, 5vw, 3.25rem);
+}
+
+.work-page .work-connect-frame .hero-footer-bar {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  height: 200px;
+  max-height: 22vh;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  background: #b4dcff;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.15);
+}
+
+.work-page .work-connect-frame .hero-footer-bar-marquee {
+  width: 100%;
+  overflow: hidden;
+  padding: 10px 0;
+}
+
+.work-page .work-connect-frame .hero-footer-bar-marquee-inner {
+  display: inline-flex;
+  align-items: center;
+  gap: 183px;
+  padding: 10px;
+  white-space: nowrap;
+  animation: marquee-left 104s linear infinite;
+}
+
+.work-page .work-connect-frame .marquee-item {
+  display: inline-block;
+  color: #1a1a1a;
+  font-size: clamp(4rem, 8vw, 5rem);
+  font-weight: 500;
+}
+
+.work-page .work-connect-frame .marquee-blender { font-family: "Barlow", sans-serif; }
+.work-page .work-connect-frame .marquee-procreate { font-family: "Cormorant Garamond", serif; }
+.work-page .work-connect-frame .marquee-maya { font-family: "Oswald", sans-serif; }
+.work-page .work-connect-frame .marquee-adobe { font-family: "Source Sans 3", sans-serif; }
+.work-page .work-connect-frame .marquee-cursor { font-family: "JetBrains Mono", monospace; }
+.work-page .work-connect-frame .marquee-figma { font-family: "Inter", sans-serif; }
+
+.work-page .work-connect-frame .home-contact-frame {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  background: #f7f0c6;
+  color: #111;
+  overflow: visible;
+  margin: 0;
+  padding: 0;
+  aspect-ratio: 3395 / 2093;
+}
+
+.work-page .work-connect-frame .home-contact-bg {
+  position: relative;
+  z-index: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.work-page .work-connect-frame .home-contact-inner {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  width: 100%;
+  max-width: min(1200px, 100%);
+  margin: 0 auto;
+  box-sizing: border-box;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(2rem, 6vw, 6rem);
+  align-items: start;
+  justify-items: start;
+  text-align: left;
+  padding: clamp(2rem, 4.2vw, 3.5rem) clamp(0.75rem, 3vw, 1.5rem);
+  min-width: 0;
+}
+
+.work-page .work-connect-frame .home-contact-about,
+.work-page .work-connect-frame .home-contact-talk {
+  min-width: 0;
+  max-width: 100%;
+}
+
+.work-page .work-connect-frame .home-contact-about {
+  transform: translateX(-100px);
+}
+
+.work-page .work-connect-frame .home-contact-talk {
+  transform: translateX(100px);
+}
+
+.work-page .work-connect-frame .home-contact-title {
+  margin: 0 0 1.25rem;
+  font-family: "SHOWG", "Welcome-Showg", system-ui, sans-serif;
+  font-size: clamp(2.5rem, 5.6vw, 4.75rem);
+  letter-spacing: 0.03em;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.work-page .work-connect-frame .home-contact-text,
+.work-page .work-connect-frame .home-contact-list {
+  font-family: "Sen", system-ui, -apple-system, sans-serif;
+  font-size: 1.05rem;
+}
+
+.work-page .work-connect-frame .home-contact-text {
+  max-width: 60ch;
+  margin: 0 0 1rem;
+  line-height: 1.65;
+}
+
+.work-page .work-connect-frame .home-contact-list {
+  list-style: none;
+  margin: 0.25rem 0 0;
+  padding: 0;
+}
+
+.work-page .work-connect-frame .home-contact-item {
+  padding: 0.55rem 0;
+}
+
+.work-page .work-connect-frame .home-contact-link {
+  display: inline-block;
+  box-sizing: border-box;
+  padding: 0.15rem 0.65rem;
+  border: 3px solid transparent;
+  border-radius: 30px;
+  color: #000;
+  text-decoration: none;
+  transform-origin: center;
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.work-page .work-connect-frame .home-contact-link:hover {
+  border-color: #000;
+  transform: scale(1.2);
+}
+
+@keyframes marquee-left {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.work-page.work-2 .moofa-purple-frame {
+  width: 100%;
+  height: auto;
+  margin-left: 0;
+  transform: scaleX(1.1);
+  transform-origin: center top;
+}
+
+.work-page.work-2 .moofa-purple-content {
+  position: absolute;
+  top: 200px;
+  left: 50%;
+  z-index: 3;
+  width: min(100%, 980px);
+  transform: translateX(-50%);
+  pointer-events: auto;
+}
+
+.work-page.work-2 .moofa-purple-copy {
+  color: #18191f;
+  text-align: center;
+}
+
+.work-page.work-2 .moofa-purple-title {
+  margin: 0;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(2rem, 3.2vw, 3.6rem);
+  font-weight: 400;
+  line-height: 1.05;
+}
+
+.work-page.work-2 .moofa-purple-text {
+  width: min(100%, 420px);
+  margin: 28px auto 0;
+  font-family: "AnimixInter", sans-serif;
+  font-size: clamp(1rem, 1.2vw, 1.25rem);
+  line-height: 1.35;
+}
+
+.work-page.work-2 .moofa-purple-panels {
+  position: relative;
+  width: 100%;
+  min-height: 980px;
+  margin-top: 72px;
+}
+
+.work-page.work-2 .moofa-panel {
+  position: absolute;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  background: #000;
+}
+
+.work-page.work-2 .moofa-panel iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+.work-page.work-2 .moofa-panel-top {
+  top: 0;
+  right: 6%;
+  width: min(44vw, 400px);
+}
+
+.work-page.work-2 .moofa-panel-left {
+  top: 260px;
+  left: 4%;
+  width: min(44vw, 400px);
+}
+
+.work-page.work-2 .moofa-panel-bottom {
+  top: 560px;
+  right: 6%;
+  width: min(44vw, 400px);
+}
+
+/* work-3,4,7: section נמתח עם ה-wrapper. work-6 — min-height:auto (לקסיקון כמו work-5; לא 100% — זנב גלילה). work-2 — clamp */
+.work-page.work-3 .work-content-section,
+.work-page.work-4 .work-content-section,
+.work-page.work-7 .work-content-section {
+  overflow: visible;
+  min-height: 100%;
+}
+
+.work-page.work-6 .work-content-section {
+  overflow: visible;
+  min-height: auto;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.work-page.work-2 .work-content-section {
+  overflow: visible;
+  min-height: clamp(520px, 42vw, 620px);
+  background-color: #12161b;
+}
+
+/* work-5: hero = רק פס הכותרת — לא min-height:100% על ה-wrapper (נפח גובה + .work-content-fill עד #12161B מתחת לקונקט) */
+.work-page.work-5 .work-content-section {
+  overflow: visible;
+  min-height: clamp(520px, 42vw, 620px);
+}
+
+.work-page.work-2 .work-content-inner,
+.work-page.work-3 .work-content-inner,
+.work-page.work-4 .work-content-inner,
+.work-page.work-5 .work-content-inner,
+.work-page.work-6 .work-content-inner,
+.work-page.work-7 .work-content-inner {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: min(100%, 840px);
+  transform: translate(-50%, 76px);
+  z-index: 1;
+}
+
+.work-page.work-2 .words-about,
+.work-page.work-3 .words-about,
+.work-page.work-4 .words-about,
+.work-page.work-5 .words-about,
+.work-page.work-6 .words-about,
+.work-page.work-7 .words-about {
+  font-family: "AnimixInter", sans-serif;
+  margin-top: calc(1rem + 30px);
+}
+
+.work-page.work-2 .work-content-wrapper,
+.work-page.work-3 .work-content-wrapper,
+.work-page.work-4 .work-content-wrapper,
+.work-page.work-5 .work-content-wrapper,
+.work-page.work-7 .work-content-wrapper {
+  position: relative;
+  min-height: clamp(2200px, 230vw, 3200px);
+}
+
+.work-page.work-6 .work-content-wrapper {
+  position: relative;
+  min-height: auto;
+  margin-bottom: 0;
+  height: fit-content;
+}
+
+/* work-4: scroll height from real content (zigzag + connect), not artificial floor — same intent as work-5. */
+.work-page.work-4 .work-content-wrapper {
+  min-height: auto;
+  margin-bottom: 0;
+}
+
+/* work-5: no artificial min-height — scroll ends with real content (connect bottom), not fixed hero “floor”. */
+.work-page.work-5 .work-content-wrapper {
+  min-height: auto;
+  margin-bottom: 0;
+}
+
+/* work-2 & work-3: content-driven height (lexicon) */
+.work-page.work-2 .work-content-wrapper,
+.work-page.work-3 .work-content-wrapper {
+  min-height: auto;
+  margin-bottom: 0;
+}
+
+.work-page.work-2 .work-content-svg,
+.work-page.work-3 .work-content-svg,
+.work-page.work-4 .work-content-svg,
+.work-page.work-5 .work-content-svg,
+.work-page.work-6 .work-content-svg,
+.work-page.work-7 .work-content-svg {
+  z-index: 0;
+  top: 0;
+  inset: auto 0 auto 0;
+  height: clamp(520px, 42vw, 620px);
+}
+
+.work-page.work-2 .work-content-fill,
+.work-page.work-3 .work-content-fill,
+.work-page.work-4 .work-content-fill,
+.work-page.work-5 .work-content-fill,
+.work-page.work-6 .work-content-fill,
+.work-page.work-7 .work-content-fill {
+  position: absolute;
+  top: calc(clamp(520px, 42vw, 620px) - 2px);
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: #12161B;
+  z-index: 0;
+}
+
+.work-page.work-2 .work-content-section,
+.work-page.work-2 .work-content-inner,
+.work-page.work-3 .work-content-section,
+.work-page.work-3 .work-content-inner,
+.work-page.work-4 .work-content-section,
+.work-page.work-4 .work-content-inner,
+.work-page.work-5 .work-content-section,
+.work-page.work-5 .work-content-inner,
+.work-page.work-6 .work-content-section,
+.work-page.work-6 .work-content-inner,
+.work-page.work-7 .work-content-section,
+.work-page.work-7 .work-content-inner {
+  position: relative;
+  z-index: 1;
+}
+
+/* work-2: crop כמו work-5; work-3+ */
+.work-page.work-2 .work-2-yellow-frame-crop,
+.work-page.work-3 .animix-yellow-frame-crop,
+.work-page.work-4 .animix-yellow-frame-crop,
+.work-page.work-5 .animix-yellow-frame-crop {
+  position: relative;
+  z-index: 1;
+}
+
+.work-page.work-2 .work-content-inner {
+  position: relative;
+  top: auto;
+  left: auto;
+  margin-inline: auto;
+  /* project title + words: +50px down vs previous 96px */
+  transform: translateY(146px);
+  padding-bottom: 0;
+}
+
+.work-page.work-3 .work-content-inner {
+  position: relative;
+  top: auto;
+  left: auto;
+  margin-inline: auto;
+  transform: translateY(176px);
+}
+
+.work-page.work-4 .work-content-inner {
+  position: relative;
+  top: auto;
+  left: auto;
+  margin-inline: auto;
+  transform: translateY(176px);
+}
+
+.work-page.work-5 .work-content-inner {
+  position: relative;
+  top: auto;
+  left: auto;
+  margin-inline: auto;
+  transform: translateY(176px);
+}
+
+/*
+  work-7: כותרת + תיאור; פריים אדום (SVG מפיגמה) + iframe במחסנית; פריים קונקט.
+*/
+.work-page.work-7 .work-content-wrapper {
+  min-height: auto;
+  margin-bottom: 0;
+  height: fit-content;
+}
+
+.work-page.work-7 .work-content-section {
+  min-height: auto;
+  overflow: visible;
+  align-items: flex-start;
+}
+
+.work-page.work-7 .work-content-inner {
+  position: relative;
+  top: auto;
+  left: auto;
+  margin-inline: auto;
+  /* translateY(176px) חיובי — לא אותו “זנב” כמו lift שלילי ב-work-6; סוף הגלילה נשען על fill בתוך section + html/body */
+  transform: translateY(176px);
+  align-items: flex-start;
+  justify-content: flex-start;
+  text-align: left;
+  /* בלי padding-bottom משותף לעמודי עבודה — אחרת זנב גלילה מתחת לפריים קונקט (#12161B) */
+  padding-bottom: 0;
+}
+
+.work-page.work-7 .project-name {
+  text-align: center;
+  align-self: center;
+  width: 100%;
+}
+
+.work-page.work-7 .words-about {
+  text-align: center;
+  align-self: center;
+  max-width: 42rem;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: clamp(1.25rem, 3vw, 2rem);
+  margin-bottom: 0;
+}
+
+/* מחסנית: SVG אבסולוטי (#662222) + iframe מעל — בלי רקע מלבני על המיכל (מונע קו ישר במקום גלים) */
+.work-page.work-7 .work-7-package.work-7-frame-stack {
+  position: relative;
+  width: 100vw;
+  max-width: none;
+  margin-top: clamp(1.5rem, 4vw, 2.5rem);
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+  align-self: stretch;
+  overflow: hidden;
+  isolation: isolate;
+  background: transparent;
+}
+
+.work-page.work-7 .work-7-blob-frame {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: auto;
+  z-index: 1;
+  pointer-events: none;
+  display: block;
+  aspect-ratio: 1920 / 3171;
+  max-width: none;
+}
+
+.work-page.work-7 .work-7-live-preview {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 1000px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: calc(200px + 400px - 300px);
+  align-self: stretch;
+}
+
+.work-page.work-7 .work-7-iframe-wrapper {
+  position: relative;
+  width: 100%;
+  /* הוקטן ב־50px מהמקור (600–800px) */
+  height: clamp(550px, 65vh, 750px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.28);
+  background: #0d0f12;
+}
+
+.work-page.work-7 .work-7-iframe-wrapper iframe {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+/* work-7: פריים קונקט — רצף צבע מה-blob */
+.work-page.work-7 .work-7-connect-wrap {
+  margin-top: -1px;
+  padding-top: 100px;
+  width: 100vw;
+  max-width: none;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+  box-sizing: border-box;
+  background-color: #662222;
+  pointer-events: auto;
+  position: relative;
+  z-index: 4;
+  overflow: visible;
+}
+
+/* work-6: כותרת + טקסט + פריים מנטה — offset אנכי (1100px = קודם +1500px, הועלה 400px) */
+.work-page.work-6 .work-content-inner {
+  position: relative;
+  top: auto;
+  left: auto;
+  margin-inline: auto;
+  /* translateY מזיז ויזואלית בלי לקצר flow — margin-bottom באותו ערך מיישר סוף גלילה לתחתית פריים הקונקט */
+  --work6-inner-lift: calc(176px - 1850px + 1100px);
+  transform: translateY(var(--work6-inner-lift));
+  margin-bottom: var(--work6-inner-lift);
+  padding-bottom: 0;
+  /* בידוד stacking מול .work-content-fill / .work-content-svg — מפחית “הצצות” כהות מאחורי פריים הקונקט בזום */
+  isolation: isolate;
+}
+
+/* כותרת פרויקט + פסקה בלבד — 800px למטה (לא פריים מנטה / קונקט) */
+.work-page.work-6 .work-6-project-heading {
+  padding-top: 800px;
+  box-sizing: border-box;
+}
+
+/*
+  work-6 מנטה: SVG מחוץ לזרימה (absolute) — גובה המיכל = עמודת הווידאו + padding-bottom (מרווח לקונקט).
+  רקע המיכל שקוף — בלי שכבת #ffffcf מאחורי צורת המנטה (המילוי הירוק מהגרדיאנט ב-SVG בלבד).
+*/
+.work-page.work-6 .work-6-mint-frame {
+  flex-shrink: 0;
+  width: 100vw;
+  max-width: none;
+  margin-top: 200px;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+  position: relative;
+  z-index: 2;
+  line-height: 0;
+  overflow: hidden;
+  background-color: transparent;
+  padding-bottom: var(--work-6-gap-mint-to-connect);
+  box-sizing: border-box;
+}
+
+.work-page.work-6 .work-6-mint-frame > svg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: auto;
+  display: block;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* שני מלבני 16:9 — בזרימה (לא absolute) כדי שגובה המסגרת ייגמר אחרי המלבן התחתון */
+.work-page.work-6 .work-6-mint-frame__videos {
+  position: relative;
+  z-index: 3;
+  margin-left: auto;
+  margin-right: auto;
+  padding-top: calc(clamp(72px, 11vw, 132px) + 200px);
+  width: min(100%, 92vw, 900px);
+  max-width: 100%;
+  pointer-events: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: clamp(1rem, 2.5vw, 1.5rem);
+  box-sizing: border-box;
+}
+
+.work-page.work-6 .work-6-mint-frame__slot {
+  width: 100%;
+  flex-shrink: 0;
+}
+
+.work-page.work-6 .work-6-mint-frame__slot--secondary {
+  margin-top: 50px;
+}
+
+.work-page.work-6 .work-6-video-slot {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  max-width: 100%;
+  aspect-ratio: 16 / 9;
+  background: #d8d8d8;
+  border-radius: 14px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+.work-page.work-6 .work-6-video-slot--embed {
+  background: #0a0a0a;
+}
+
+/* מלבן עליון: 16:9 */
+.work-page.work-6 .work-6-video-slot--showreel {
+  aspect-ratio: 16 / 9;
+}
+
+.work-page.work-6 .work-6-video-slot iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+
+
+
+@media (max-width: 900px) {
+  .work-pill-all {
+    right: auto;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .work-content-inner {
+    transform: translateY(-110px);
+  }
+
+  .work-page.work-6 .work-content-inner {
+    --work6-inner-lift: calc(-110px - 1850px + 1100px);
+    transform: translateY(var(--work6-inner-lift));
+    margin-bottom: var(--work6-inner-lift);
+  }
+
+  .work-scroll-hint {
+    bottom: calc(clamp(2.5rem, 7vh, 5rem) + 98px);
+  }
+
+  .work-page.work-1 .animix-yellow-content {
+    width: min(100%, 86vw);
+    padding-top: 2.2rem;
+  }
+
+  .work-page.work-1 .animix-yellow-info {
+    width: 100%;
+  }
+
+  .work-page.work-1 .animix-yellow-row-character,
+  .work-page.work-1 .animix-yellow-row-walkman {
+    grid-template-columns: 1fr;
+  }
+
+  .work-page.work-3 .cyan-project-story,
+  .work-page.work-3 .cyan-project-approach,
+  .work-page.work-3 .cyan-project-cards {
+    grid-template-columns: 1fr;
+  }
+
+  .work-page.work-3 .cyan-project-grandma,
+  .work-page.work-3 .cyan-project-woman {
+    width: min(100%, 200px);
+    margin-inline: auto;
+  }
+
+  .work-page.work-3 .cyan-project-grandma img,
+  .work-page.work-3 .cyan-project-woman img {
+    width: 100%;
+    max-width: 100%;
+    transform: none;
+  }
+
+  .work-page.work-3 .cyan-project-approach-copy,
+  .work-page.work-3 .cyan-project-arrow {
+    text-align: center;
+  }
+}
+
+/* פריים קונקט: ב־<1200px — ברירת מחדל בתוך העמוד; work-1 נשאר full-bleed לקצוות */
+@media (max-width: 1200px) {
+  .work-page .work-connect-frame {
+    width: 100%;
+    max-width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+    box-sizing: border-box;
+  }
+
+  .work-page.work-1 .animix-yellow-content > .work-connect-frame {
+    width: 100vw;
+    max-width: none;
+    margin-left: calc(50% - 50vw);
+    margin-right: calc(50% - 50vw);
+  }
+
+  .work-page.work-2 .work-2-connect-wrap .work-connect-frame {
+    width: 100vw;
+    max-width: none;
+    margin-left: calc(50% - 50vw);
+    margin-right: calc(50% - 50vw);
+  }
+
+  .work-page.work-3 .cyan-project-content > .work-connect-frame,
+  .work-page.work-4 .work-4-connect-wrap .work-connect-frame,
+  .work-page.work-5 .work-5-connect-wrap .work-connect-frame,
+  .work-page.work-6 .work-6-connect-wrap .work-connect-frame,
+  .work-page.work-7 .work-7-connect-wrap .work-connect-frame {
+    width: 100vw;
+    max-width: none;
+    margin-left: calc(50% - 50vw);
+    margin-right: calc(50% - 50vw);
+  }
+
+  .work-page .work-connect-frame .home-contact-inner {
+    grid-template-columns: 1fr;
+    gap: 2.25rem;
+    justify-items: stretch;
+  }
+
+  .work-page .work-connect-frame .home-contact-about,
+  .work-page .work-connect-frame .home-contact-talk {
+    transform: none;
+  }
+
+  .work-page .work-connect-frame .hero-footer-bar-marquee-inner {
+    gap: clamp(1.5rem, 4vw, 3rem);
+  }
+
+  .work-page .work-connect-frame .marquee-item {
+    font-size: clamp(1.5rem, 5vw, 3rem);
+  }
+}
+
+@media (max-width: 640px) {
+  .work-home-icon {
+    left: 0.8rem;
+  }
+
+  .work-menu-icon {
+    right: 0.8rem;
+  }
+
+  .work-arrow-link {
+    width: 48px;
+    height: 48px;
+  }
+
+  .work-spacer {
+    height: calc(62vh + 130px);
+  }
+
+  .work-content-wrapper {
+    margin-top: -28vh;
+  }
+
+  .work-content-inner {
+    transform: translateY(-92px);
+    padding-bottom: 3.5rem;
+  }
+
+  .work-page.work-6 .work-content-inner {
+    --work6-inner-lift: calc(-92px - 1850px + 1100px);
+    transform: translateY(var(--work6-inner-lift));
+    margin-bottom: var(--work6-inner-lift);
+    padding-bottom: 0;
+  }
+
+  .work-page.work-7 .work-content-inner {
+    padding-bottom: 0;
+  }
+
+  .work-page.work-2 .work-content-inner {
+    padding-bottom: 0;
+  }
+
+}
+
+.work-page.work-2 .dand-frame-22 {
+  position: relative;
+  width: 100vw;
+  min-height: inherit;
+  margin-left: calc(50% - 50vw);
+  overflow: hidden;
+  background: #12161b;
+}
+
+.work-page.work-2 .dand-hero-panel {
+  position: relative;
+  width: 100%;
+  height: clamp(1120px, 88vw, 1450px);
+  z-index: 2;
+  overflow: hidden;
+}
+
+.work-page.work-2 .dand-hero-shape {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.work-page.work-2 .dand-hero-copy {
+  position: absolute;
+  top: 52%;
+  left: 50%;
+  width: min(100%, 1180px);
+  padding: 0 2rem;
+  color: #a79fd9;
+  text-align: center;
+  transform: translate(-50%, -50%);
+}
+
+.work-page.work-2 .dand-hero-title {
+  margin: 0;
+  font-family: "DandInter", sans-serif;
+  font-size: clamp(4.25rem, 8.8vw, 10.625rem);
+  font-weight: 400;
+  line-height: 0.95;
+}
+
+.work-page.work-2 .dand-hero-text {
+  width: min(100%, 860px);
+  margin: clamp(1.5rem, 2.4vw, 2.25rem) auto 0;
+  font-family: "DandInter", sans-serif;
+  font-size: clamp(1.1rem, 2.1vw, 2.5rem);
+  font-weight: 400;
+  line-height: 1.15;
+}
+
+.work-page.work-2 .dand-purple-panel {
+  position: relative;
+  width: 100%;
+  min-height: clamp(1680px, 125vw, 1986px);
+  margin-top: clamp(-430px, -28vw, -320px);
+  z-index: 1;
+  overflow: hidden;
+}
+
+.work-page.work-2 .dand-purple-shape {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.work-page.work-2 .dand-purple-content {
+  position: absolute;
+  top: clamp(260px, 18vw, 308px);
+  left: 50%;
+  z-index: 3;
+  width: min(100%, 1400px);
+  padding: 0 2rem;
+  transform: translateX(-50%);
+}
+
+.work-page.work-2 .dand-purple-copy {
+  color: #12161b;
+  text-align: center;
+}
+
+.work-page.work-2 .dand-purple-title {
+  margin: 0;
+  font-family: "DandInstrumentSerif", serif;
+  font-size: clamp(2.6rem, 5vw, 6rem);
+  font-weight: 400;
+  line-height: 1.05;
+}
+
+.work-page.work-2 .dand-purple-text {
+  width: min(100%, 650px);
+  margin: clamp(1rem, 2vw, 1.9rem) auto 0;
+  font-family: "DandInstrumentSerif", serif;
+  font-size: clamp(1.2rem, 2.5vw, 3rem);
+  font-weight: 400;
+  line-height: 1.16;
+}
+
+.work-page.work-2 .dand-video-grid {
+  position: relative;
+  width: min(100%, 1380px);
+  height: clamp(980px, 80vw, 1286px);
+  margin: clamp(88px, 7vw, 140px) auto 0;
+}
+
+.work-page.work-2 .dand-video-card {
+  position: absolute;
+  width: clamp(220px, 34.6vw, 664px);
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  border-radius: 20px;
+  background: #000;
+  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.18);
+}
+
+.work-page.work-2 .dand-video-card iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+.work-page.work-2 .dand-video-card-top {
+  top: 0;
+  right: 0;
+}
+
+.work-page.work-2 .dand-video-card-left {
+  top: clamp(320px, 26vw, 451px);
+  left: 0;
+}
+
+.work-page.work-2 .dand-video-card-bottom {
+  top: clamp(640px, 52vw, 897px);
+  right: 0;
+}
+
+@media (max-width: 900px) {
+  .work-page.work-2 .dand-hero-panel {
+    height: 980px;
+  }
+
+  .work-page.work-2 .dand-purple-panel {
+    min-height: 1480px;
+    margin-top: -320px;
+  }
+
+  .work-page.work-2 .dand-purple-content {
+    top: 220px;
+  }
+
+  .work-page.work-2 .dand-video-grid {
+    width: min(100%, 720px);
+    height: 920px;
+  }
+
+  .work-page.work-2 .dand-video-card {
+    width: min(44vw, 320px);
+    border-radius: 14px;
+  }
+
+  .work-page.work-2 .dand-video-card-left {
+    top: 260px;
+  }
+
+  .work-page.work-2 .dand-video-card-bottom {
+    top: 520px;
+  }
+}
