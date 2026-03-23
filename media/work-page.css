@@ -2306,10 +2306,9 @@ body.work-page.work-3 {
 
 .work-page.work-6 .work-6-mint-frame > svg {
   position: absolute;
-  /* 110% כיסוי: גלישה קלה כדי למנוע "פס" תת-פיקסלי בקצה התחתון */
-  inset: -6px;
-  width: calc(100% + 12px);
-  height: calc(100% + 12px);
+  inset: 0;
+  width: 100%;
+  height: 100%;
   display: block;
   pointer-events: none;
   z-index: 0;
