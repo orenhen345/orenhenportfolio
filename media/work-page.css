@@ -14,7 +14,7 @@
   --work-connect-wrap-overflow: visible; /* לא לעטוף ב-hidden — חותך 100vw על .work-connect-frame */
   --work-connect-stack-z: 4; /* z-index לעטיפה כשצריך מעל מסגרת צבעונית (work-6 מנטה) */
   /* work-6 בלבד: מרווח בין תחתית מלבן הווידאו האחרון (מסגרת מנטה) לפריים קונקט */
-  --work-6-gap-mint-to-connect: 50px;
+  --work-6-gap-mint-to-connect: 150px;
 }
 
 @font-face {
@@ -2319,9 +2319,12 @@ body.work-page.work-3 {
 
 .work-page.work-6 .work-6-mint-frame > svg {
   position: absolute;
-  inset: 0;
   width: 100%;
-  height: 100%;
+  height: auto;
+  left: 0;
+  right: 0;
+  top: auto;
+  bottom: 0;
   display: block;
   pointer-events: none;
   z-index: 1;
