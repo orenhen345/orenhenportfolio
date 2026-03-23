@@ -1093,7 +1093,7 @@ body.work-page.work-3 {
     to bottom,
     transparent 0,
     transparent clamp(100px, 16vw, 260px),
-    rgba(255, 236, 236, 0.98) clamp(100px, 16vw, 260px)
+    #FFB8B8 clamp(100px, 16vw, 260px)
   );
   overflow: hidden;
   transform: translateX(-50%);
