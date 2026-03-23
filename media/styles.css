@@ -299,6 +299,7 @@ body {
   font-family: "Welcome-Bernhc", sans-serif;
   font-size: clamp(3.5rem, 16vw, 11rem);
   color: var(--accent);
+  white-space: nowrap; /* keep letters in the same word/line when compressing */
 }
 
 .hero-welcome-title .welcome-letter {
