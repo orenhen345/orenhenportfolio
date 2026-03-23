@@ -134,6 +134,14 @@ html:has(body.all-projects-page) {
   transform-origin: top center;
 }
 
+@media (max-width: 480px) {
+  /* On mobile the connect frame was lifting too much and could overlap
+     the last mosaic tile (e.g. "Jazz nigth"). */
+  .projects-mosaic {
+    --connect-lift: 0px;
+  }
+}
+
 .mosaic-card {
   position: absolute;
   border-radius: 12px;
