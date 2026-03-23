@@ -193,6 +193,11 @@ body {
     grid-template-columns: 1fr;
     padding: 1.6rem 1.1rem 1.7rem;
   }
+
+  /* Home cards: switch from portrait to landscape-ish on mobile. */
+  .work-card {
+    aspect-ratio: 4 / 3;
+  }
 }
 
 @media (min-width: 700px) {
