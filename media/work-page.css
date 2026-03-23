@@ -2304,6 +2304,19 @@ body.work-page.work-3 {
   box-sizing: border-box;
 }
 
+.work-page.work-6 .work-6-mint-frame::after {
+  /* מכסה את ה-padded-bottom השקוף (היכן שמתגלה #12161B) בצבע מנטה */
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: var(--work-6-gap-mint-to-connect);
+  background: #E0FFEB;
+  z-index: 0;
+  pointer-events: none;
+}
+
 .work-page.work-6 .work-6-mint-frame > svg {
   position: absolute;
   inset: 0;
@@ -2311,7 +2324,7 @@ body.work-page.work-3 {
   height: 100%;
   display: block;
   pointer-events: none;
-  z-index: 0;
+  z-index: 1;
 }
 
 /* שני מלבני 16:9 — בזרימה (לא absolute) כדי שגובה המסגרת ייגמר אחרי המלבן התחתון */
