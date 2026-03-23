@@ -139,14 +139,6 @@ html:has(body.all-projects-page) {
      the last mosaic tile (e.g. "Jazz nigth"). */
   .projects-mosaic {
     --connect-lift: 0px;
-    /* Keep a fixed gap (100px) between the mosaic and connect frame. */
-    margin-bottom: 100px;
-  }
-
-  /* Safety: ensure the mosaic tiles stay above the connect background if
-     there is still slight visual overlap due to transform scaling. */
-  .mosaic-card {
-    z-index: 3;
   }
 }
 
