@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Mobile Preview</title>
+    <style>
+      :root {
+        --frame-bg: #0d0f12;
+        --frame-border: rgba(255, 255, 255, 0.18);
+        --radius: 18px;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+        background: #111319;
+        color: rgba(255, 255, 255, 0.92);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 16px;
+      }
+
+      .wrap {
+        width: min(1100px, 100%);
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      .topbar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        flex-wrap: wrap;
+      }
+
+      .topbar .hint {
+        font-size: 13px;
+        opacity: 0.88;
+      }
+
+      .controls {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        flex-wrap: wrap;
+      }
+
+      label {
+        font-size: 13px;
+        opacity: 0.9;
+      }
+
+      select,
+      input {
+        border: 1px solid rgba(255, 255, 255, 0.18);
+        background: rgba(255, 255, 255, 0.06);
+        color: rgba(255, 255, 255, 0.95);
+        border-radius: 10px;
+        padding: 8px 10px;
+        outline: none;
+      }
+
+      .device-frame {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+      }
+
+      .phone-shell {
+        background: var(--frame-bg);
+        border: 1px solid var(--frame-border);
+        border-radius: var(--radius);
+        box-shadow: 0 10px 36px rgba(0, 0, 0, 0.35);
+        overflow: hidden;
+        position: relative;
+      }
+
+      .phone-shell::before {
+        content: "";
+        position: absolute;
+        left: 50%;
+        top: 10px;
+        transform: translateX(-50%);
+        width: 140px;
+        height: 24px;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.06);
+        pointer-events: none;
+      }
+
+      iframe {
+        width: 100%;
+        height: 100%;
+        border: 0;
+        display: block;
+        background: #000;
+      }
+
+      .err {
+        padding: 12px;
+        border-radius: 12px;
+        border: 1px solid rgba(255, 255, 255, 0.18);
+        background: rgba(255, 255, 255, 0.06);
+        font-size: 13px;
+        line-height: 1.35;
+      }
+
+      /* On very small screens show full height with no extra padding. */
+      @media (max-width: 420px) {
+        body {
+          padding: 0;
+        }
+
+        .wrap {
+          width: 100%;
+          height: 100vh;
+          padding: 0;
+          gap: 0;
+        }
+
+        .topbar {
+          display: none;
+        }
+
+        .device-frame {
+          height: 100vh;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <div class="topbar">
+        <div class="hint">
+          Loads an existing page inside a mobile-sized iframe.
+          <span style="opacity: 0.75">Use this link format:</span>
+          <code style="opacity: 0.95">mobile-preview.html?page=work-3.html&amp;device=iphone</code>
+        </div>
+        <div class="controls">
+          <label>
+            Page
+            <select id="pageSelect"></select>
+          </label>
+          <label>
+            Device
+            <select id="deviceSelect">
+              <option value="iphone">iPhone (390x844)</option>
+              <option value="iphone_small">iPhone (375x812)</option>
+              <option value="android">Android (412x915)</option>
+            </select>
+          </label>
+          <button id="applyBtn" style="cursor:pointer;border-radius:10px;padding:8px 12px;border:1px solid rgba(255,255,255,0.18);background:rgba(255,255,255,0.06);color:rgba(255,255,255,0.95);">
+            Preview
+          </button>
+        </div>
+      </div>
+
+      <div class="device-frame">
+        <div class="phone-shell" id="shell" style="width: 420px; height: 900px;">
+          <iframe
+            id="previewFrame"
+            title="Mobile preview frame"
+            loading="eager"
+            referrerpolicy="strict-origin-when-cross-origin"
+          ></iframe>
+        </div>
+      </div>
+
+      <div id="err" class="err" style="display:none;"></div>
+    </div>
+
+    <script>
+      const allowedPages = new Set([
+        "index.html",
+        "all-projects.html",
+        "menu.html",
+        "work-1.html",
+        "work-2.html",
+        "work-3.html",
+        "work-4.html",
+        "work-5.html",
+        "work-6.html",
+        "work-7.html"
+      ]);
+
+      const deviceMetrics = {
+        iphone: { w: 390, h: 844, shellW: 420, shellH: 900 },
+        iphone_small: { w: 375, h: 812, shellW: 405, shellH: 870 },
+        android: { w: 412, h: 915, shellW: 440, shellH: 980 }
+      };
+
+      function getQueryParam(name) {
+        const url = new URL(window.location.href);
+        return url.searchParams.get(name);
+      }
+
+      function showError(msg) {
+        document.getElementById("err").style.display = "block";
+        document.getElementById("err").textContent = msg;
+        document.getElementById("previewFrame").removeAttribute("src");
+      }
+
+      const pageSelect = document.getElementById("pageSelect");
+      const deviceSelect = document.getElementById("deviceSelect");
+      const applyBtn = document.getElementById("applyBtn");
+      const frame = document.getElementById("previewFrame");
+      const shell = document.getElementById("shell");
+
+      // Populate page dropdown.
+      for (const p of Array.from(allowedPages)) {
+        const opt = document.createElement("option");
+        opt.value = p;
+        opt.textContent = p;
+        pageSelect.appendChild(opt);
+      }
+
+      const initialPage = getQueryParam("page") || "work-1.html";
+      const initialDevice = getQueryParam("device") || "iphone";
+
+      if (!allowedPages.has(initialPage)) {
+        showError(
+          "Invalid page. Allowed: " + Array.from(allowedPages).join(", ")
+        );
+      } else if (!deviceMetrics[initialDevice]) {
+        showError("Invalid device. Allowed: " + Object.keys(deviceMetrics).join(", "));
+      } else {
+        pageSelect.value = initialPage;
+        deviceSelect.value = initialDevice;
+      }
+
+      function updatePreview() {
+        const page = pageSelect.value;
+        const device = deviceSelect.value;
+
+        if (!allowedPages.has(page)) {
+          showError("Invalid page: " + page);
+          return;
+        }
+        if (!deviceMetrics[device]) {
+          showError("Invalid device: " + device);
+          return;
+        }
+
+        const m = deviceMetrics[device];
+        shell.style.width = m.shellW + "px";
+        shell.style.height = m.shellH + "px";
+
+        // Build absolute URL for same-origin iframe load.
+        const targetUrl = new URL("./" + page, window.location.href);
+        frame.src = targetUrl.toString();
+      }
+
+      applyBtn.addEventListener("click", () => updatePreview());
+      window.addEventListener("popstate", () => updatePreview());
+
+      // Initial render.
+      updatePreview();
+    </script>
+  </body>
+</html>
+

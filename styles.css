@@ -19,6 +19,14 @@
   font-style: normal;
 }
 
+@font-face {
+  font-family: "AnomaliaLightAAA";
+  src: url("media/fonts/anomalia-light-aaa.otf") format("opentype");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
 *,
 *::before,
 *::after {
@@ -328,8 +336,9 @@ body {
 
 .event-details-title {
   text-align: center;
+  font-family: "AnomaliaLightAAA", sans-serif;
   font-size: calc(2rem + 6px);
-  font-weight: 800;
+  font-weight: 300;
   margin-bottom: 1.5rem;
 }
 
@@ -663,9 +672,9 @@ body {
   inset: 0;
 }
 
-.artist-card[data-size="1080x1377"] .artist-card-hover {
+.artist-card[data-size="1080x1350"] .artist-card-hover {
   width: min(360px, 40vw);
-  aspect-ratio: 1080 / 1377;
+  aspect-ratio: 1080 / 1350;
 }
 
 .artist-card[data-size="1080x1920"] .artist-card-hover {

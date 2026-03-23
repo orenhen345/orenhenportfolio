@@ -76,9 +76,9 @@
     <h2 class="artists-title">האמנים שלנו</h2>
     <p class="artists-subtitle">פגשו את המוזיקאים המוכשרים שיעלו על הבמה</p>
     <div class="artists-grid">
-      <article class="artist-card artist-maroon artist-has-video" data-size="1080x1377">
+      <article class="artist-card artist-maroon artist-has-video" data-size="1080x1350">
         <div class="artist-card-hover">
-          <video src="media/מתופף גמור.mp4" muted loop playsinline></video>
+          <video src="media/מתופף בלי טקסט.mp4" muted loop playsinline></video>
         </div>
         <span class="artist-icon">♪</span>
         <span class="artist-time">19:30</span>
@@ -86,9 +86,9 @@
         <p class="artist-instrument">על התופים</p>
         <p class="artist-desc">גרוב מדויק, אנרגיה מתפרצת ושליטה דינמית בקצב</p>
       </article>
-      <article class="artist-card artist-orange artist-has-video" data-size="1080x1377">
+      <article class="artist-card artist-orange artist-has-video" data-size="1080x1350">
         <div class="artist-card-hover">
-          <video src="media/קונטרה בס גמור.mp4" muted loop playsinline></video>
+          <video src="media/קונטרה בס בלי טקסט.mp4" muted loop playsinline></video>
         </div>
         <span class="artist-icon">♪</span>
         <span class="artist-time">20:15</span>
@@ -98,17 +98,17 @@
       </article>
       <article class="artist-card artist-orange artist-has-video" data-size="1080x1920">
         <div class="artist-card-hover">
-          <video src="media/סקסופוניסט גמור.mp4" muted loop playsinline></video>
+          <video src="media/סקסופוניסט בלי טקסט.mp4" muted loop playsinline></video>
         </div>
         <span class="artist-icon">♪</span>
         <span class="artist-time">21:45</span>
-        <h3>עידו רוזן</h3>
+        <h3>עידן רוזן</h3>
         <p class="artist-instrument">בסקסופון</p>
         <p class="artist-desc">סולן סיום סוחף עם פראזות מהירות ונשימה חיה</p>
       </article>
       <article class="artist-card artist-maroon artist-has-video" data-size="1080x1920">
         <div class="artist-card-hover">
-          <video src="media/חצוצרן גמור.mp4" muted loop playsinline></video>
+          <video src="media/חצוצרן בלי טקסט.mp4" muted loop playsinline></video>
         </div>
         <span class="artist-icon">♪</span>
         <span class="artist-time">21:00</span>
@@ -218,11 +218,12 @@
     function setVideosMuted(muted) {
       popupVideos.forEach(function(v) {
         v.muted = muted;
-        if (!muted) v.volume = 0.8;
+        v.volume = muted ? 0 : 1;
       });
+      // Strip videos stay silent always (background audio comes only from bgMusic).
       stripVideos.forEach(function(v) {
-        v.muted = muted;
-        if (!muted) v.volume = 0.6;
+        v.muted = true;
+        v.volume = 0;
       });
     }
 
@@ -262,7 +263,7 @@
       bgMusic.volume = 0;
       bgMusic.play().catch(function() {});
       var start = Date.now();
-      var dur = 4000;
+      var dur = 3500;
       bgMusicFadeTimer = setInterval(function() {
         var elapsed = Date.now() - start;
         if (elapsed >= dur) {
@@ -302,9 +303,12 @@
       function positionPopup() {
         if (!popup) return;
         var rect = card.getBoundingClientRect();
-        var size = card.getAttribute('data-size') || '1080x1377';
-        var pw = size === '1080x1920' ? Math.min(280, window.innerWidth * 0.3) : Math.min(360, window.innerWidth * 0.4);
-        var ph = size === '1080x1920' ? pw * 1920 / 1080 : pw * 1377 / 1080;
+        var size = card.getAttribute('data-size') || '1080x1350';
+        var parts = String(size).split('x');
+        var baseW = parseFloat(parts[0]) || 1080;
+        var baseH = parseFloat(parts[1]) || 1350;
+        var pw = baseH === 1920 ? Math.min(280, window.innerWidth * 0.3) : Math.min(360, window.innerWidth * 0.4);
+        var ph = pw * baseH / baseW;
         var spaceAbove = rect.top;
         var spaceBelow = window.innerHeight - rect.bottom;
         var above = spaceAbove >= ph || spaceAbove > spaceBelow;
@@ -322,10 +326,18 @@
           bgMusicFadeTimer = null;
         }
         bgMusic.pause();
+        // If another artist popup is open, stop it so audio swaps cleanly.
+        document.querySelectorAll('.artist-card-hover.artist-card-hover-visible').forEach(function(el) {
+          if (el !== popup) {
+            el.classList.remove('artist-card-hover-visible');
+            var otherVid = el.querySelector('video');
+            if (otherVid) { otherVid.pause(); otherVid.currentTime = 0; }
+          }
+        });
         positionPopup();
         popup.classList.add('artist-card-hover-visible');
         vid.muted = !isSoundOn();
-        vid.volume = 0.8;
+        vid.volume = isSoundOn() ? 1 : 0;
         vid.currentTime = 0;
         vid.play().catch(function() {});
       }
@@ -334,7 +346,7 @@
         if (hideTimeout) clearTimeout(hideTimeout);
         hideTimeout = null;
         if (popup) popup.classList.remove('artist-card-hover-visible');
-        if (vid) vid.pause();
+        if (vid) { vid.pause(); vid.currentTime = 0; }
         resumeBgMusicWithFade();
       }
 

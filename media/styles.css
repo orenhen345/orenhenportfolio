@@ -69,6 +69,12 @@ html {
   font-display: swap;
 }
 
+@font-face {
+  font-family: "AnomaliaLightAAA";
+  src: url("fonts/anomalia-light-aaa.otf") format("opentype");
+  font-display: swap;
+}
+
 body {
   font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
   background: #c9b8e0;
@@ -76,6 +82,12 @@ body {
   line-height: 1.6;
   font-size: 1rem;
   overflow-x: hidden;
+}
+
+/* Jazz event title font override */
+.event-details-title {
+  font-family: "AnomaliaLightAAA", sans-serif;
+  font-weight: 300;
 }
 
 /* ========== Home — Figma: fixed video + scroll-over content ========== */
