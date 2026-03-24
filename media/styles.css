@@ -345,6 +345,13 @@ body.mobile-flip-enabled .mobile-flip-overlay {
   z-index: 1;
 }
 
+/* Mobile: shift WELCOME + subtitle + work cards down */
+@media (max-width: 900px) {
+  .hero-scroll-content .hero-welcome {
+    margin-top: 100px;
+  }
+}
+
 /* גריד מלבנים — כיסויי עבודות */
 .works-grid {
   width: 100%;
