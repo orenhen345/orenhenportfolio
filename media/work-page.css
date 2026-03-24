@@ -2463,6 +2463,11 @@ body.work-page.work-3 {
     margin-top: -150px;
   }
 
+  /* work-4 mobile: lift the four video rectangles */
+  .work-page.work-4 .work-4-zigzag-grid {
+    margin-top: -150px;
+  }
+
   .work-page.work-3 .cyan-project-title {
     margin-top: -10px;
   }
