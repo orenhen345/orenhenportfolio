@@ -1211,6 +1211,7 @@ body.work-page.work-3 {
 
 .work-page.work-5 .work-5-studies-title {
   margin: 0 0 clamp(1.75rem, 4.5vw, 3rem);
+  transform: translateY(-30px);
   font-family: "EduAUVICWANTGuides", "BekefFreckle", cursive;
   font-size: clamp(2.25rem, 5.8vw, 4.25rem);
   font-weight: 700;
