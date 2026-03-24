@@ -13,8 +13,8 @@
   --work-connect-gap-above: 150px; /* מרווח בין תוכן מעל לבין .work-*-connect-wrap (כמו work-5) */
   --work-connect-wrap-overflow: visible; /* לא לעטוף ב-hidden — חותך 100vw על .work-connect-frame */
   --work-connect-stack-z: 4; /* z-index לעטיפה כשצריך מעל מסגרת צבעונית (work-6 מנטה) */
-  /* work-6 בלבד: מרווח בין תחתית מלבן הווידאו האחרון (מסגרת מנטה) לפריים קונקט */
-  --work-6-gap-mint-to-connect: 50px;
+  /* work-6 בלבד: מרווח בין תחתית מסגרת מנטה לפריים קונקט (היה 50px — צמוד לבקשה) */
+  --work-6-gap-mint-to-connect: 0px;
 }
 
 @font-face {
