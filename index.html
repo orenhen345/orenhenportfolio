@@ -4,6 +4,10 @@
   <meta charset="UTF-8" />
   <title>Oren Hen — Welcome</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <!-- Reduce stale HTML on phones after deploy (CDN/browsers often cache index.html aggressively). -->
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+  <meta http-equiv="Pragma" content="no-cache" />
+  <meta http-equiv="Expires" content="0" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Wallpoet&family=ZCOOL+KuaiLe&display=swap" rel="stylesheet" />
@@ -195,10 +199,13 @@
       var muteBtn = document.getElementById('heroMute');
       if (heroVid && muteBtn) {
         /* Scroll-linked volume: linear 0–100% as .hero-frame-svg top moves from viewport top to bottom.
-           (top at bottom of viewport ≈ full volume; top at 0 ≈ silent.) Only applies when unmuted. */
+           iOS/Safari ignore video.volume — use Web Audio GainNode when needed. */
         var heroFrameSvg = document.querySelector('.hero-frame-svg');
         var scrollVolRaf = null;
         var scrollVolDebugHud = null;
+        var scrollVolMode = null; /* null | 'volume' | 'gain' */
+        var scrollGainCtx = null;
+        var scrollGainNode = null;
         try {
           var _u = new URLSearchParams(window.location.search);
           if (_u.get('scrollVolDebug') === '1') {
@@ -210,16 +217,95 @@
           }
         } catch (_) {}
 
+        function prefersScrollGainPath() {
+          try {
+            var ua = navigator.userAgent || '';
+            if (/iPhone|iPad|iPod/i.test(ua)) return true;
+            if (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1) return true;
+          } catch (_) {}
+          return false;
+        }
+
+        function testVolumePropertyWorks() {
+          try {
+            var saved = heroVid.volume;
+            heroVid.volume = 0.314159;
+            var ok = Math.abs(heroVid.volume - 0.314159) < 0.02;
+            heroVid.volume = saved;
+            return ok;
+          } catch (_) {
+            return false;
+          }
+        }
+
+        function tryCreateScrollGainGraph() {
+          if (scrollGainNode) return true;
+          var AC = window.AudioContext || window.webkitAudioContext;
+          if (!AC) return false;
+          try {
+            scrollGainCtx = new AC();
+            var src = scrollGainCtx.createMediaElementSource(heroVid);
+            scrollGainNode = scrollGainCtx.createGain();
+            src.connect(scrollGainNode);
+            scrollGainNode.connect(scrollGainCtx.destination);
+            scrollGainNode.gain.value = 1;
+            heroVid.volume = 1;
+            return true;
+          } catch (_) {
+            scrollGainCtx = null;
+            scrollGainNode = null;
+            return false;
+          }
+        }
+
+        function ensureScrollVolumePath() {
+          if (scrollVolMode !== null) return;
+          if (prefersScrollGainPath()) {
+            if (tryCreateScrollGainGraph()) {
+              scrollVolMode = 'gain';
+              return;
+            }
+          }
+          if (testVolumePropertyWorks()) {
+            scrollVolMode = 'volume';
+            return;
+          }
+          if (tryCreateScrollGainGraph()) {
+            scrollVolMode = 'gain';
+            return;
+          }
+          scrollVolMode = 'volume';
+        }
+
+        function resumeScrollAudioIfNeeded() {
+          try {
+            if (scrollGainCtx && scrollGainCtx.state === 'suspended') {
+              scrollGainCtx.resume().catch(function() {});
+            }
+          } catch (_) {}
+        }
+
         function applyHeroScrollVolume() {
           if (!heroFrameSvg) return;
           var rect = heroFrameSvg.getBoundingClientRect();
           var vh = window.innerHeight || 1;
           var factor = Math.max(0, Math.min(1, rect.top / vh));
           if (scrollVolDebugHud) {
-            scrollVolDebugHud.textContent = 'Scroll vol: ' + Math.round(factor * 100) + '% (demo)';
+            var modeLabel = scrollVolMode === 'gain' ? 'gain' : scrollVolMode === 'volume' ? 'vol' : '…';
+            scrollVolDebugHud.textContent = 'Scroll: ' + Math.round(factor * 100) + '% [' + modeLabel + ']';
           }
-          if (heroVid.muted) return;
-          heroVid.volume = factor;
+          if (heroVid.muted) {
+            if (scrollGainNode) scrollGainNode.gain.value = 0;
+            return;
+          }
+          ensureScrollVolumePath();
+          resumeScrollAudioIfNeeded();
+          if (scrollVolMode === 'gain' && scrollGainNode) {
+            scrollGainNode.gain.value = factor;
+            heroVid.volume = 1;
+          } else {
+            heroVid.volume = factor;
+          }
         }
 
         function scheduleHeroScrollVolume() {
@@ -238,6 +324,10 @@
           heroVid.muted = !heroVid.muted;
           muteBtn.setAttribute('aria-label', heroVid.muted ? 'Unmute video' : 'Mute video');
           muteBtn.textContent = heroVid.muted ? '🔇' : '🔊';
+          if (!heroVid.muted) {
+            ensureScrollVolumePath();
+            resumeScrollAudioIfNeeded();
+          }
           applyHeroScrollVolume();
         });
 

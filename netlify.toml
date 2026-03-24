@@ -1,3 +1,9 @@
 # Netlify – פרסום האתר (סטטי)
 [build]
   publish = "."
+
+# HTML should revalidate after each deploy so phones don’t keep an old index.html forever.
+[[headers]]
+  for = "/**/*.html"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
