@@ -2469,6 +2469,11 @@ body.work-page.work-3 {
     margin-top: -150px;
   }
 
+  /* work-6 mobile: lift the two video rectangles */
+  .work-page.work-6 .work-6-mint-frame__videos {
+    margin-top: -150px;
+  }
+
   .work-page.work-3 .cyan-project-title {
     margin-top: -10px;
   }
