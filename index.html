@@ -211,11 +211,24 @@
         );
 
         if (flipOverlay && flipSoundToggle && isMobileLike) {
+          var openedViaPortfolioLink = false;
+          try {
+            var queryParams = new URLSearchParams(window.location.search);
+            openedViaPortfolioLink = queryParams.has('orenportfolio');
+          } catch (_) {}
+
+          if (!openedViaPortfolioLink) {
+            flipOverlay.classList.add('is-hidden');
+            flipOverlay.setAttribute('aria-hidden', 'true');
+            heroVid.play().catch(function() {});
+            return;
+          }
+
           var flipSeenKey = 'oren_mobile_flip_seen_v1';
           var alreadySeen = false;
           var cameFromInternalPage = false;
           try {
-            alreadySeen = window.localStorage && window.localStorage.getItem(flipSeenKey) === '1';
+            alreadySeen = window.sessionStorage && window.sessionStorage.getItem(flipSeenKey) === '1';
           } catch (_) {}
           try {
             if (document.referrer) {
@@ -236,8 +249,15 @@
 
           // Mark immediately so this intro is one-time even if user leaves mid-animation.
           try {
-            if (window.localStorage) window.localStorage.setItem(flipSeenKey, '1');
+            if (window.sessionStorage) window.sessionStorage.setItem(flipSeenKey, '1');
           } catch (_) {}
+
+          // Reset on page exit so next visit via link can show it again.
+          window.addEventListener('pagehide', function() {
+            try {
+              if (window.sessionStorage) window.sessionStorage.removeItem(flipSeenKey);
+            } catch (_) {}
+          }, { once: true });
 
           document.body.classList.add('mobile-flip-enabled');
           flipOverlay.setAttribute('aria-hidden', 'false');
