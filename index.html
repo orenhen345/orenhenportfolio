@@ -249,24 +249,48 @@
           muteBtn.setAttribute('aria-label', 'Unmute video');
 
           var allowSoundOnStart = false;
+          var fadeTimerId = null;
+          var hideTimerId = null;
+          var overlayClosed = false;
+
+          function closeOverlayAndStartVideo() {
+            if (overlayClosed) return;
+            overlayClosed = true;
+            if (fadeTimerId) window.clearTimeout(fadeTimerId);
+            if (hideTimerId) window.clearTimeout(hideTimerId);
+
+            heroVid.currentTime = 0;
+            heroVid.play().catch(function() {});
+            heroVid.muted = !allowSoundOnStart;
+            muteBtn.textContent = heroVid.muted ? '🔇' : '🔊';
+            muteBtn.setAttribute('aria-label', heroVid.muted ? 'Unmute video' : 'Mute video');
+
+            flipOverlay.classList.add('is-fading');
+            hideTimerId = window.setTimeout(function() {
+              flipOverlay.classList.add('is-hidden');
+              flipOverlay.setAttribute('aria-hidden', 'true');
+            }, 1500);
+          }
+
           flipSoundToggle.addEventListener('click', function() {
             allowSoundOnStart = !allowSoundOnStart;
             flipSoundToggle.classList.toggle('is-on', allowSoundOnStart);
             flipSoundToggle.setAttribute('aria-label', allowSoundOnStart ? 'Sound enabled' : 'Enable sound');
           });
 
+          // Click anywhere on the message to dismiss it immediately.
+          flipOverlay.addEventListener('click', function(event) {
+            if (event.target && event.target.closest('#mobileFlipSoundToggle')) return;
+            closeOverlayAndStartVideo();
+          });
+
           // 6s display, then begin fade; this is also when video starts.
-          window.setTimeout(function() {
-            heroVid.currentTime = 0;
-            heroVid.play().catch(function() {});
-            heroVid.muted = !allowSoundOnStart;
-            muteBtn.textContent = heroVid.muted ? '🔇' : '🔊';
-            muteBtn.setAttribute('aria-label', heroVid.muted ? 'Unmute video' : 'Mute video');
-            flipOverlay.classList.add('is-fading');
+          fadeTimerId = window.setTimeout(function() {
+            closeOverlayAndStartVideo();
           }, 6000);
 
           // Remove from interaction after fade (1.5s).
-          window.setTimeout(function() {
+          hideTimerId = window.setTimeout(function() {
             flipOverlay.classList.add('is-hidden');
             flipOverlay.setAttribute('aria-hidden', 'true');
           }, 7500);
