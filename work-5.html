@@ -3,6 +3,16 @@
 <head>
   <meta charset="UTF-8" />
   <script src="media/work-page-url-fix.js"></script>
+  <script>
+    (function () {
+      try {
+        var params = new URLSearchParams(window.location.search);
+        if (params.get("mobilepreview") === "1") {
+          document.documentElement.classList.add("mobilepreview-work5");
+        }
+      } catch (_) {}
+    })();
+  </script>
   <title>My Exercises - Oren Hen</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />

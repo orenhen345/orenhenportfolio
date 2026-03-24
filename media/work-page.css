@@ -2616,6 +2616,46 @@ body.work-page.work-3 {
     min-width: 148px;
     scroll-snap-align: start;
   }
+
+  /* Preview-only: work-5 mobile flow (text above each video) */
+  .mobilepreview-work5 .work-page.work-5 .work-5-exercises-block {
+    margin-top: 0;
+  }
+
+  .mobilepreview-work5 .work-page.work-5 .work-5-studies-title {
+    margin-top: -65px;
+    margin-bottom: 2em;
+  }
+
+  .mobilepreview-work5 .work-page.work-5 .work-5-exercises-block > .work-5-row:nth-child(-n+3) {
+    flex-direction: column !important;
+    align-items: stretch;
+    justify-content: flex-start;
+    gap: 1em;
+    margin-bottom: 30px;
+  }
+
+  .mobilepreview-work5 .work-page.work-5 .work-5-exercises-block > .work-5-row:nth-child(3) {
+    margin-bottom: 44px;
+  }
+
+  .mobilepreview-work5 .work-page.work-5 .work-5-exercises-block > .work-5-row:nth-child(-n+3) .work-5-text-col,
+  .mobilepreview-work5 .work-page.work-5 .work-5-exercises-block > .work-5-row:nth-child(-n+3) .work-5-text-box {
+    order: 1;
+    flex: 0 0 auto;
+    width: 100%;
+    max-width: 100%;
+    text-align: center;
+    margin: 0;
+  }
+
+  .mobilepreview-work5 .work-page.work-5 .work-5-exercises-block > .work-5-row:nth-child(-n+3) .work-5-video-slot {
+    order: 2;
+    flex: 0 0 auto;
+    width: 100%;
+    max-width: 420px;
+    margin: 0 auto;
+  }
 }
 
 @media (max-width: 640px) {
