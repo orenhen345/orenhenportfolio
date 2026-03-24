@@ -347,12 +347,6 @@
         }
 
         if (flipOverlay && flipSoundToggle && isMobileLike) {
-          var openedViaPortfolioLink = false;
-          try {
-            var queryParams = new URLSearchParams(window.location.search);
-            openedViaPortfolioLink = queryParams.has('orenportfolio');
-          } catch (_) {}
-
           var flipSeenKey = 'oren_mobile_flip_seen_v1';
           var alreadySeen = false;
           var cameFromInternalPage = false;
@@ -369,12 +363,7 @@
             }
           } catch (_) {}
 
-          if (!openedViaPortfolioLink) {
-            flipOverlay.classList.add('is-hidden');
-            flipOverlay.setAttribute('aria-hidden', 'true');
-            heroVid.play().catch(function() {});
-            applyHeroScrollVolume();
-          } else if (alreadySeen || cameFromInternalPage) {
+          if (alreadySeen || cameFromInternalPage) {
             flipOverlay.classList.add('is-hidden');
             flipOverlay.setAttribute('aria-hidden', 'true');
             heroVid.play().catch(function() {});
