@@ -610,11 +610,12 @@ body.work-page.work-3 {
   gap: 28px;
   transform: none;
   pointer-events: auto;
-  padding-top: 220px;
+  padding-top: 320px;
 }
 
 .work-page.work-1 .animix-yellow-title {
   margin: 0;
+  transform: translateY(-30px);
   color: #000;
   text-align: center;
   font-family: "AnimixGasoek", sans-serif;
@@ -2408,7 +2409,7 @@ body.work-page.work-3 {
 
   .work-page.work-1 .animix-yellow-content {
     width: min(100%, 86vw);
-    padding-top: 2.2rem;
+    padding-top: calc(2.2rem + 100px);
   }
 
   .work-page.work-1 .animix-yellow-info {
@@ -2418,6 +2419,43 @@ body.work-page.work-3 {
   .work-page.work-1 .animix-yellow-row-character,
   .work-page.work-1 .animix-yellow-row-walkman {
     grid-template-columns: 1fr;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+    max-width: 100%;
+  }
+
+  /* work-1 mobile: Meet text → Shlomi illus → Walkman text → Walkman illus; centered */
+  .work-page.work-1 .animix-yellow-row-character .animix-yellow-copy {
+    transform: none;
+  }
+
+  .work-page.work-1 .animix-yellow-row-walkman .animix-yellow-copy {
+    order: 1;
+  }
+
+  .work-page.work-1 .animix-yellow-row-walkman .animix-yellow-figure-walkman {
+    order: 2;
+  }
+
+  .work-page.work-1 .animix-yellow-row-character .animix-yellow-copy,
+  .work-page.work-1 .animix-yellow-row-walkman .animix-yellow-copy {
+    width: 100%;
+    max-width: min(100%, 280px);
+    margin-inline: auto;
+  }
+
+  .work-page.work-1 .animix-yellow-figure-character,
+  .work-page.work-1 .animix-yellow-figure-walkman {
+    transform: none;
+    width: min(100%, 336px);
+    max-width: 100%;
+  }
+
+  .work-page.work-1 .animix-yellow-figure-walkman {
+    width: min(100%, 400px);
   }
 
   .work-page.work-3 .cyan-project-title {
