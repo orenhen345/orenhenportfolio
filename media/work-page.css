@@ -2500,6 +2500,80 @@ body.work-page.work-3 {
   }
 }
 
+/*
+  Preview-only tweaks for work-3 mobile layout.
+  Active only when URL contains ?mobilepreview=1 (html.mobilepreview-work3).
+*/
+@media (max-width: 900px) {
+  .mobilepreview-work3 .work-page.work-3 .cyan-project-title {
+    margin-top: -10px;
+  }
+
+  .mobilepreview-work3 .work-page.work-3 .cyan-project-story {
+    grid-template-columns: minmax(96px, 132px) minmax(0, 1fr);
+    gap: 14px;
+    align-items: center;
+    width: min(100%, 680px);
+  }
+
+  .mobilepreview-work3 .work-page.work-3 .cyan-project-approach {
+    grid-template-columns: minmax(0, 1fr) minmax(96px, 132px);
+    gap: 14px;
+    align-items: center;
+    width: min(100%, 720px);
+    margin-top: 64px;
+  }
+
+  .mobilepreview-work3 .work-page.work-3 .cyan-project-vision-box,
+  .mobilepreview-work3 .work-page.work-3 .cyan-project-approach-copy,
+  .mobilepreview-work3 .work-page.work-3 .cyan-project-grandma img,
+  .mobilepreview-work3 .work-page.work-3 .cyan-project-woman img {
+    transform: none;
+  }
+
+  .mobilepreview-work3 .work-page.work-3 .cyan-project-grandma,
+  .mobilepreview-work3 .work-page.work-3 .cyan-project-woman {
+    width: 100%;
+    max-width: 264px;
+    height: auto;
+    margin-inline: 0;
+  }
+
+  .mobilepreview-work3 .work-page.work-3 .cyan-project-grandma img,
+  .mobilepreview-work3 .work-page.work-3 .cyan-project-woman img {
+    width: 400%;
+    max-width: none;
+    transform: translateX(calc(-25% - 160px));
+  }
+
+  .mobilepreview-work3 .work-page.work-3 .cyan-project-approach-copy,
+  .mobilepreview-work3 .work-page.work-3 .cyan-project-vision-box {
+    text-align: left;
+    padding-inline: 2px;
+  }
+
+  .mobilepreview-work3 .work-page.work-3 .cyan-project-cards {
+    display: flex;
+    grid-template-columns: none;
+    gap: 12px;
+    width: 100%;
+    margin: 56px auto 0;
+    padding: 0 6px 2px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
+  }
+
+  .mobilepreview-work3 .work-page.work-3 .cyan-project-card {
+    flex: 0 0 calc(50% - 6px);
+    max-width: 180px;
+    min-width: 148px;
+    scroll-snap-align: start;
+  }
+}
+
 @media (max-width: 640px) {
   .work-home-icon {
     left: 0.8rem;
