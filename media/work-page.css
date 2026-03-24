@@ -2458,6 +2458,11 @@ body.work-page.work-3 {
     width: min(100%, 400px);
   }
 
+  /* work-2 mobile: lift the three video rectangles */
+  .work-page.work-2 .work-2-videos-block {
+    margin-top: -150px;
+  }
+
   .work-page.work-3 .cyan-project-title {
     margin-top: -10px;
   }
