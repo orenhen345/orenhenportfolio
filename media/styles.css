@@ -244,6 +244,7 @@ body.mobile-flip-enabled .mobile-flip-overlay {
   height: 82%;
   pointer-events: none;
   transition: opacity 220ms ease;
+  animation: mobileFlipCtaPulse 1.15s ease-in-out infinite;
 }
 
 .mobile-flip-record-x::before,
@@ -264,6 +265,7 @@ body.mobile-flip-enabled .mobile-flip-overlay {
 
 .mobile-flip-sound-toggle.is-on .mobile-flip-record-x {
   opacity: 0;
+  animation: none;
 }
 
 .mobile-flip-sound-toggle.is-on .mobile-flip-record-icon {
@@ -279,6 +281,11 @@ body.mobile-flip-enabled .mobile-flip-overlay {
 @keyframes mobileFlipDiscSpin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
+}
+
+@keyframes mobileFlipCtaPulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.18); }
 }
 
 /* Never show this overlay on desktop-like devices */

@@ -211,6 +211,34 @@
         );
 
         if (flipOverlay && flipSoundToggle && isMobileLike) {
+          var flipSeenKey = 'oren_mobile_flip_seen_v1';
+          var alreadySeen = false;
+          var cameFromInternalPage = false;
+          try {
+            alreadySeen = window.localStorage && window.localStorage.getItem(flipSeenKey) === '1';
+          } catch (_) {}
+          try {
+            if (document.referrer) {
+              var refUrl = new URL(document.referrer);
+              cameFromInternalPage = (
+                refUrl.origin === window.location.origin &&
+                refUrl.pathname !== window.location.pathname
+              );
+            }
+          } catch (_) {}
+
+          if (alreadySeen || cameFromInternalPage) {
+            flipOverlay.classList.add('is-hidden');
+            flipOverlay.setAttribute('aria-hidden', 'true');
+            heroVid.play().catch(function() {});
+            return;
+          }
+
+          // Mark immediately so this intro is one-time even if user leaves mid-animation.
+          try {
+            if (window.localStorage) window.localStorage.setItem(flipSeenKey, '1');
+          } catch (_) {}
+
           document.body.classList.add('mobile-flip-enabled');
           flipOverlay.setAttribute('aria-hidden', 'false');
           // Keep the hero video paused behind the overlay until fade start.
