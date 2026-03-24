@@ -479,19 +479,31 @@
       }
 
       var welcomeSection = document.querySelector('.hero-welcome');
-      var scrollContent = document.querySelector('.hero-scroll-content');
-      if (welcomeSection && scrollContent && 'IntersectionObserver' in window) {
+      if (welcomeSection && 'IntersectionObserver' in window) {
         var welcomeAnimated = false;
-        var welcomeObserver = new IntersectionObserver(function(entries) {
+        var welcomeObserver = null;
+        function markWelcomeInView() {
           if (welcomeAnimated) return;
+          welcomeSection.classList.add('welcome-in-view');
+          welcomeAnimated = true;
+          if (welcomeObserver) welcomeObserver.disconnect();
+        }
+        welcomeObserver = new IntersectionObserver(function(entries) {
           var ent = entries[0];
-          if (ent.isIntersecting) {
-            welcomeSection.classList.add('welcome-in-view');
-            welcomeAnimated = true;
-            welcomeObserver.disconnect();
-          }
-        }, { root: null, rootMargin: '0px 0px -50% 0px', threshold: 0 });
-        welcomeObserver.observe(scrollContent);
+          if (ent.isIntersecting) markWelcomeInView();
+        }, { root: null, rootMargin: '0px', threshold: 0 });
+        welcomeObserver.observe(welcomeSection);
+        function fallbackWelcomeIfVisible() {
+          if (welcomeAnimated) return;
+          var r = welcomeSection.getBoundingClientRect();
+          if (r.top < window.innerHeight && r.bottom > 0) markWelcomeInView();
+        }
+        window.addEventListener('scroll', fallbackWelcomeIfVisible, { passive: true });
+        window.addEventListener('resize', fallbackWelcomeIfVisible);
+        window.requestAnimationFrame(fallbackWelcomeIfVisible);
+        setTimeout(fallbackWelcomeIfVisible, 0);
+      } else if (welcomeSection) {
+        welcomeSection.classList.add('welcome-in-view');
       }
 
       // --- Marquee: insert random local icons along the blue strip ---
