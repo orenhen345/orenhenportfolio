@@ -2249,6 +2249,18 @@ body.work-page.work-3 {
   border: 0;
 }
 
+/* work-7 mobile: להצמיד את ה-iframe ל-200px גובה */
+@media (max-width: 900px) {
+  .work-page.work-7 .work-7-iframe-wrapper {
+    height: 200px;
+    max-height: 200px;
+  }
+
+  .work-page.work-7 .work-7-iframe-wrapper iframe {
+    height: 200px;
+  }
+}
+
 /* work-7: פריים קונקט — רצף צבע מה-blob */
 .work-page.work-7 .work-7-connect-wrap {
   margin-top: -1px;
