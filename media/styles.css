@@ -689,6 +689,24 @@ body.mobile-flip-enabled .mobile-flip-overlay {
   .home-contact-inner {
     grid-template-columns: 1fr;
     gap: 2.25rem;
+    text-align: center;
+    justify-items: center;
+  }
+
+  .home-contact-about,
+  .home-contact-talk {
+    text-align: center;
+    width: 100%;
+    max-width: min(100%, 32rem);
+  }
+
+  .home-contact-list {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .home-contact-item {
+    text-align: center;
   }
 }
 
