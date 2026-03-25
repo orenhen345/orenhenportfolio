@@ -350,6 +350,11 @@ body.mobile-flip-enabled .mobile-flip-overlay {
   .hero-scroll-content .hero-welcome {
     margin-top: 100px;
   }
+
+  /* חץ גלילה מעל הווידאו — 50px למעלה (יותר מרחק מתחתית הפריים) */
+  .hero-video-fixed .hero-scroll-hint {
+    bottom: calc(2rem + 50px);
+  }
 }
 
 /* גריד מלבנים — כיסויי עבודות */
