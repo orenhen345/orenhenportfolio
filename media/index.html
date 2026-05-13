@@ -30,17 +30,17 @@
   <!-- תמונה 1: הכרזה + סרטוני אמנים בתנועה -->
   <section id="hero" class="hero">
     <div class="hero-bg-slides">
-      <img class="hero-bg-img" src="media/רקעים/רקע 1.png" alt="" />
-      <img class="hero-bg-img" src="media/רקעים/רקע 2.png" alt="" />
-      <img class="hero-bg-img" src="media/רקעים/רקע 3.png" alt="" />
-      <img class="hero-bg-img" src="media/רקעים/רקע 4.png" alt="" />
-      <img class="hero-bg-img" src="media/רקעים/רקע 5.png" alt="" />
-      <img class="hero-bg-img" src="media/רקעים/רקע 6.png" alt="" />
-      <img class="hero-bg-img" src="media/רקעים/רקע 7.png" alt="" />
-      <img class="hero-bg-img" src="media/רקעים/רקע 8.png" alt="" />
-      <img class="hero-bg-img" src="media/רקעים/רקע 9.png" alt="" />
-      <img class="hero-bg-img" src="media/רקעים/רקע 10.png" alt="" />
-      <img class="hero-bg-img" src="media/רקעים/רקע 11.png" alt="" />
+      <img class="hero-bg-img" src="media/backgrounds/bg-1.png" alt="" />
+      <img class="hero-bg-img" src="media/backgrounds/bg-2.png" alt="" />
+      <img class="hero-bg-img" src="media/backgrounds/bg-3.png" alt="" />
+      <img class="hero-bg-img" src="media/backgrounds/bg-4.png" alt="" />
+      <img class="hero-bg-img" src="media/backgrounds/bg-5.png" alt="" />
+      <img class="hero-bg-img" src="media/backgrounds/bg-6.png" alt="" />
+      <img class="hero-bg-img" src="media/backgrounds/bg-7.png" alt="" />
+      <img class="hero-bg-img" src="media/backgrounds/bg-8.png" alt="" />
+      <img class="hero-bg-img" src="media/backgrounds/bg-9.png" alt="" />
+      <img class="hero-bg-img" src="media/backgrounds/bg-10.png" alt="" />
+      <img class="hero-bg-img" src="media/backgrounds/bg-11.png" alt="" />
     </div>
     <div class="hero-strip-wrap" dir="ltr">
       <div class="hero-strip"><!-- המבנה נבנה ע"י JS עם סדר אקראי --></div>
@@ -79,7 +79,7 @@
     <div class="artists-grid">
       <article class="artist-card artist-maroon artist-has-video" data-size="1080x1350">
         <div class="artist-card-hover">
-          <video src="media/מתופף בלי טקסט.mp4" muted loop playsinline></video>
+          <video src="media/drummer.mp4" muted loop playsinline></video>
         </div>
         <span class="artist-icon">♪</span>
         <span class="artist-time">19:30</span>
@@ -89,7 +89,7 @@
       </article>
       <article class="artist-card artist-orange artist-has-video" data-size="1080x1350">
         <div class="artist-card-hover">
-          <video src="media/קונטרה בס בלי טקסט.mp4" muted loop playsinline></video>
+          <video src="media/contrabass.mp4" muted loop playsinline></video>
         </div>
         <span class="artist-icon">♪</span>
         <span class="artist-time">20:15</span>
@@ -99,7 +99,7 @@
       </article>
       <article class="artist-card artist-orange artist-has-video" data-size="1080x1920">
         <div class="artist-card-hover">
-          <video src="media/סקסופוניסט בלי טקסט.mp4" muted loop playsinline></video>
+          <video src="media/saxophone.mp4" muted loop playsinline></video>
         </div>
         <span class="artist-icon">♪</span>
         <span class="artist-time">21:45</span>
@@ -109,7 +109,7 @@
       </article>
       <article class="artist-card artist-maroon artist-has-video" data-size="1080x1920">
         <div class="artist-card-hover">
-          <video src="media/חצוצרן בלי טקסט.mp4" muted loop playsinline></video>
+          <video src="media/trumpet.mp4" muted loop playsinline></video>
         </div>
         <span class="artist-icon">♪</span>
         <span class="artist-time">21:00</span>
@@ -174,11 +174,11 @@
         order[j] = t;
       }
       var items = {
-        poster: { cls: 'strip-poster', src: 'media/כרזה זה בלי קו.mp4' },
-        trumpet_nt: { cls: 'strip-trumpet-nt', src: 'media/חצוצרן בלי טקסט.mp4' },
-        bass_nt: { cls: 'strip-bass-nt', src: 'media/קונטרה בס בלי טקסט.mp4' },
-        drummer_nt: { cls: 'strip-drummer-nt', src: 'media/מתופף בלי טקסט.mp4' },
-        sax_nt: { cls: 'strip-sax-nt', src: 'media/סקסופוניסט בלי טקסט.mp4' }
+        poster: { cls: 'strip-poster', src: 'media/poster.mp4' },
+        trumpet_nt: { cls: 'strip-trumpet-nt', src: 'media/trumpet.mp4' },
+        bass_nt: { cls: 'strip-bass-nt', src: 'media/contrabass.mp4' },
+        drummer_nt: { cls: 'strip-drummer-nt', src: 'media/drummer.mp4' },
+        sax_nt: { cls: 'strip-sax-nt', src: 'media/saxophone.mp4' }
       };
       var strip = document.querySelector('.hero-strip');
       strip.innerHTML = '';
