@@ -2249,11 +2249,10 @@ body.work-page.work-3 {
   border: 0;
 }
 
-/* work-7 mobile: להצמיד את ה-iframe ל-200px גובה */
+/* work-7 mobile: הזזת ה-iframe למעלה בלי translate (ההורה עם overflow:hidden חותך transform) */
 @media (max-width: 900px) {
-  .work-page.work-7 .work-7-iframe-wrapper {
-    /* תזוזה מעלה ב-200px (לא קיצור גובה) */
-    transform: translateY(-200px);
+  .work-page.work-7 .work-7-live-preview {
+    margin-top: calc(200px + 400px - 300px - 200px);
   }
 }
 
