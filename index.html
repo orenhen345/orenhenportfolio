@@ -23,32 +23,6 @@
     <span class="icon-close" aria-hidden="true"></span>
     <span class="icon-close-hover" aria-hidden="true"></span>
   </a>
-  <div class="mobile-flip-overlay" id="mobileFlipOverlay" aria-hidden="true">
-    <div class="mobile-flip-panel" role="status" aria-live="polite">
-      <p class="mobile-flip-line-1">I recommend to flip the phone</p>
-      <p class="mobile-flip-line-2">Welcome to my world</p>
-      <div class="mobile-flip-phone-demo" aria-hidden="true"></div>
-      <button class="mobile-flip-sound-toggle" id="mobileFlipSoundToggle" type="button" aria-label="Enable sound">
-        <svg class="mobile-flip-record-icon" viewBox="0 0 64 64" aria-hidden="true">
-          <defs>
-            <radialGradient id="mobileFlipDiscGrad" cx="48%" cy="42%" r="62%">
-              <stop offset="0%" stop-color="#2E3B4F" />
-              <stop offset="62%" stop-color="#18263A" />
-              <stop offset="100%" stop-color="#111B2A" />
-            </radialGradient>
-          </defs>
-          <circle cx="32" cy="32" r="30" fill="url(#mobileFlipDiscGrad)" />
-          <circle cx="32" cy="32" r="23.5" fill="none" stroke="#4B5B73" stroke-width="1.8" opacity="0.92" />
-          <circle cx="32" cy="32" r="18.5" fill="none" stroke="#4B5B73" stroke-width="1.7" opacity="0.88" />
-          <circle cx="32" cy="32" r="13.5" fill="none" stroke="#4B5B73" stroke-width="1.6" opacity="0.85" />
-          <circle cx="32" cy="32" r="8.5" fill="#F25C73" />
-          <circle cx="32" cy="32" r="2.4" fill="#0F1C26" />
-          <ellipse cx="28.2" cy="26.6" rx="8.2" ry="4.4" fill="#6B7C95" opacity="0.22" />
-        </svg>
-        <span class="mobile-flip-record-x" aria-hidden="true"></span>
-      </button>
-    </div>
-  </div>
   <!-- Fixed video layer: stays in place when you scroll (upper screen = video) -->
   <div class="hero-video-fixed" id="heroVideoFixed">
     <div class="hero-video-placeholder" aria-hidden="true"></div>
@@ -331,114 +305,8 @@
           applyHeroScrollVolume();
         });
 
-        // Mobile-only intro overlay: shown on top of the homepage.
-        // It controls whether sound starts when the overlay begins to fade.
-        var flipOverlay = document.getElementById('mobileFlipOverlay');
-        var flipSoundToggle = document.getElementById('mobileFlipSoundToggle');
-        var isMobileLike = window.matchMedia && (
-          window.matchMedia('(max-width: 900px)').matches ||
-          window.matchMedia('(hover: none)').matches ||
-          window.matchMedia('(pointer: coarse)').matches
-        );
-
-        if (!(flipOverlay && flipSoundToggle && isMobileLike)) {
-          heroVid.play().catch(function() {});
-          applyHeroScrollVolume();
-        }
-
-        if (flipOverlay && flipSoundToggle && isMobileLike) {
-          var flipSeenKey = 'oren_mobile_flip_seen_v1';
-          var alreadySeen = false;
-          var cameFromInternalPage = false;
-          try {
-            alreadySeen = window.sessionStorage && window.sessionStorage.getItem(flipSeenKey) === '1';
-          } catch (_) {}
-          try {
-            if (document.referrer) {
-              var refUrl = new URL(document.referrer);
-              cameFromInternalPage = (
-                refUrl.origin === window.location.origin &&
-                refUrl.pathname !== window.location.pathname
-              );
-            }
-          } catch (_) {}
-
-          if (alreadySeen || cameFromInternalPage) {
-            flipOverlay.classList.add('is-hidden');
-            flipOverlay.setAttribute('aria-hidden', 'true');
-            heroVid.play().catch(function() {});
-            applyHeroScrollVolume();
-          } else {
-            // Mark immediately so this intro is one-time even if user leaves mid-animation.
-            try {
-              if (window.sessionStorage) window.sessionStorage.setItem(flipSeenKey, '1');
-            } catch (_) {}
-
-            // Reset on page exit so next visit via link can show it again.
-            window.addEventListener('pagehide', function() {
-              try {
-                if (window.sessionStorage) window.sessionStorage.removeItem(flipSeenKey);
-              } catch (_) {}
-            }, { once: true });
-
-            document.body.classList.add('mobile-flip-enabled');
-            flipOverlay.setAttribute('aria-hidden', 'false');
-            // Keep the hero video paused behind the overlay until fade start.
-            heroVid.muted = true;
-            heroVid.currentTime = 0;
-            heroVid.pause();
-            muteBtn.textContent = '🔇';
-            muteBtn.setAttribute('aria-label', 'Unmute video');
-
-            var allowSoundOnStart = false;
-            var fadeTimerId = null;
-            var hideTimerId = null;
-            var overlayClosed = false;
-
-            function closeOverlayAndStartVideo() {
-              if (overlayClosed) return;
-              overlayClosed = true;
-              if (fadeTimerId) window.clearTimeout(fadeTimerId);
-              if (hideTimerId) window.clearTimeout(hideTimerId);
-
-              heroVid.currentTime = 0;
-              heroVid.play().catch(function() {});
-              heroVid.muted = !allowSoundOnStart;
-              muteBtn.textContent = heroVid.muted ? '🔇' : '🔊';
-              muteBtn.setAttribute('aria-label', heroVid.muted ? 'Unmute video' : 'Mute video');
-              applyHeroScrollVolume();
-
-              flipOverlay.classList.add('is-fading');
-              hideTimerId = window.setTimeout(function() {
-                flipOverlay.classList.add('is-hidden');
-                flipOverlay.setAttribute('aria-hidden', 'true');
-              }, 1500);
-            }
-
-            flipSoundToggle.addEventListener('click', function() {
-              allowSoundOnStart = !allowSoundOnStart;
-              flipSoundToggle.classList.toggle('is-on', allowSoundOnStart);
-              flipSoundToggle.setAttribute('aria-label', allowSoundOnStart ? 'Sound enabled' : 'Enable sound');
-            });
-
-            // Click anywhere on the message to dismiss it immediately.
-            flipOverlay.addEventListener('click', function(event) {
-              if (event.target && event.target.closest('#mobileFlipSoundToggle')) return;
-              closeOverlayAndStartVideo();
-            });
-
-            // 6s display, then begin fade; this is also when video starts.
-            fadeTimerId = window.setTimeout(function() {
-              closeOverlayAndStartVideo();
-            }, 6000);
-
-            // Remove from interaction after fade (1.5s).
-            hideTimerId = window.setTimeout(function() {
-              flipOverlay.classList.add('is-hidden');
-              flipOverlay.setAttribute('aria-hidden', 'true');
-            }, 7500);
-          }
-        }
+        heroVid.play().catch(function() {});
+        applyHeroScrollVolume();
       }
 
       var welcomeFonts = [
