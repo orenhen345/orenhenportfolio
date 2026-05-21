@@ -295,6 +295,7 @@
         applyHeroScrollVolume();
 
         muteBtn.addEventListener('click', function() {
+          muteBtn.classList.remove('hero-mute--intro');
           heroVid.muted = !heroVid.muted;
           muteBtn.setAttribute('aria-label', heroVid.muted ? 'Unmute video' : 'Mute video');
           muteBtn.textContent = heroVid.muted ? '🔇' : '🔊';
@@ -307,6 +308,7 @@
 
         heroVid.play().catch(function() {});
         applyHeroScrollVolume();
+        muteBtn.classList.add('hero-mute--intro');
       }
 
       var welcomeFonts = [
