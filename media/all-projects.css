@@ -79,6 +79,10 @@ html:has(body.all-projects-page) {
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 1.5rem;
+  /* .projects-mosaic is scaled via transform, which visually bleeds far below its own
+     layout box; clip that bleed here so it can't add empty scrollable space below the
+     last tile row (see docs/מושגים-גלילה-וקונקט.md — scroll end must track visible content). */
+  overflow: hidden;
 }
 
 .all-projects-pill {
@@ -120,7 +124,7 @@ html:has(body.all-projects-page) {
   /* רווח בין כרטיס אחרון לפריים קונקט (ויזואלי) */
   --gap-after-last-tile: 100px;
   /* מעלה את פריים הקונקט למעלה (מקטין רווח מתחת למוזאיקה) */
-  --connect-lift: 400px;
+  --connect-lift: 40px;
   position: relative;
   width: 70%;
   padding-bottom: var(--mosaic-aspect-pad);
@@ -171,7 +175,7 @@ html:has(body.all-projects-page) {
   display: block;
 }
 
-.mosaic-7 .mosaic-cover img {
+.mosaic-9 .mosaic-cover img {
   object-position: top center;
 }
 

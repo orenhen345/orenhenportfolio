@@ -11,7 +11,7 @@ cursor/   (או שם הריפו שלך)
 ├── index.html              ← עמוד בית
 ├── menu.html               ← תפריט
 ├── all-projects.html       ← כל הפרויקטים (מוזאיקה)
-├── work-1.html … work-7.html
+├── work-1.html … work-9.html
 ├── media/
 │   ├── styles.css
 │   ├── all-projects.css
@@ -42,7 +42,7 @@ cursor/   (או שם הריפו שלך)
 | **בית** `index.html` | `media/styles.css`, `media/icons/menu-icon.css` | `my_web/Oren Showreel.mp4`, `my_web/covers/*` (4 כרטיסים), `my_web/icons/*.svg` (מארקי) |
 | **תפריט** `menu.html` | `media/menu.css`, `media/icons/menu-icon.css` | — (קישורים ל־`index`, `all-projects`) |
 | **כל הפרויקטים** `all-projects.html` | `media/styles.css`, `media/all-projects.css` | `my_web/covers/*` (7 תמונות) |
-| **עבודות 1–7** `work-*.html` | `media/work-page.css`, `work-page.js`, `work-page-url-fix.js` | כריכות ב־`my_web/covers/`, Vimeo (URLs בקוד), תמונות נוספות לפי עמוד |
+| **עבודות 1–9** `work-*.html` | `media/work-page.css`, `work-page.js`, `work-page-url-fix.js` | כריכות ב־`my_web/covers/`, Vimeo (URLs בקוד), תמונות נוספות לפי עמוד |
 
 ### Vimeo
 

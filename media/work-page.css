@@ -2973,3 +2973,604 @@ body.work-page.work-3 {
     transform: none;
   }
 }
+
+/* ===================================================================
+   work-8: "Sunset" (short film) — design slot for URL work-1.html
+   Uses the same lexicon as work-1 (Animix): .work-content-section/-svg/-fill
+   for the video→black title transition, then a frame-crop (like
+   .animix-yellow-frame-crop) for the colored body, ending with
+   .work-connect-frame nested inside like every other project page.
+   Colors + SVG paths are exact values from Figma (Oren, 2026-07-18).
+   Character/mountain/thumbnail illustrations are still placeholders
+   pending PNG/SVG export from Figma (see TODO labels in work-1.html).
+   =================================================================== */
+
+body.work-page.work-8 {
+  background-color: #ff9472;
+}
+
+.work-page.work-8 .work-content-wrapper {
+  position: relative;
+  min-height: auto;
+  margin-bottom: 0;
+}
+
+.work-page.work-8 .work-content-svg {
+  z-index: 0;
+  top: 0;
+  inset: auto 0 auto 0;
+  height: clamp(520px, 42vw, 620px);
+}
+
+.work-page.work-8 .work-content-fill {
+  position: absolute;
+  top: calc(clamp(520px, 42vw, 620px) - 2px);
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: #12161b;
+  z-index: 0;
+}
+
+.work-page.work-8 .work-content-section,
+.work-page.work-8 .work-content-inner {
+  position: relative;
+  z-index: 1;
+}
+
+.work-page.work-8 .work-content-section {
+  overflow: visible;
+  min-height: clamp(520px, 42vw, 620px);
+}
+
+.work-page.work-8 .work-content-inner {
+  transform: translateY(76px);
+}
+
+.work-page.work-8 .project-name,
+.work-page.work-8 .words-about {
+  color: #ff9472;
+  text-align: center;
+  font-family: "Inter", sans-serif;
+}
+
+.work-page.work-8 .words-about {
+  margin-top: calc(1rem + 30px);
+}
+
+/* orange frame-crop: same technique as .animix-yellow-frame-crop (work-1).
+   NOTE: do not put a flat background-color here — it would paint straight over
+   the jagged top edge of .sunset-frame (the whole point of that SVG is the
+   contrast between its orange shape and the black behind it in the gaps/notches).
+   The footer gap issue is fixed below by closing the gap itself, not painting it. */
+.sunset-frame-crop {
+  position: relative;
+  left: 50%;
+  z-index: 1;
+  width: 100vw;
+  margin-top: 200px;
+  overflow: hidden;
+  transform: translateX(-50%);
+}
+
+/* Safety net: .sunset-frame is aspect-ratio locked to its Figma proportions, so at
+   narrow/mobile widths it can run out of height (and width vs. the 100vw crop) before
+   the (taller, stacked) content below it ends. A full-bleed matching fill keeps this
+   part of the section orange edge-to-edge regardless of content size. Scoped to just
+   the character/mountain content — NOT the outro edge below, which needs the black
+   fill to show through its jagged mountain silhouette. */
+.sunset-body {
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+  background: #ff9472;
+}
+
+.sunset-body-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+  width: min(100%, 960px);
+  margin: 0 auto;
+  /* Extends the orange background (from .sunset-body, the parent) 40px past the
+     team text, per Oren's request — done as padding here (still inside .sunset-body's
+     own box) rather than margin on the text itself, so it can't be undermined by
+     the flex gap between .sunset-body and .work-connect-frame revealing black. */
+  padding-bottom: 40px;
+}
+
+.sunset-frame {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  z-index: 1;
+  display: block;
+  width: calc(100% + 84px);
+  max-width: none;
+  height: auto;
+  margin: 0;
+  transform: translateX(calc(-50% - 42px));
+  aspect-ratio: 1919 / 2391;
+  pointer-events: none;
+}
+
+.sunset-content {
+  position: relative;
+  z-index: 3;
+  width: min(100%, 960px);
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+  padding-top: 320px;
+}
+
+.sunset-confetti {
+  position: absolute;
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* Figma exported these as wide scattered-fragment groups (viewBox ~1600px, near full
+   design width) — keep them near full width here too, or the individual shards shrink
+   to near-invisible specks instead of the clear torn-paper look from the design. */
+.sunset-confetti-top {
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+
+.sunset-confetti-bottom {
+  bottom: 0;
+  left: 0;
+  width: 100%;
+}
+
+.sunset-confetti svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* Container ratio must match the Figma rectangle (1695.6 x 1150.1), NOT the raw
+   texture asset's own natural size (1920x1080) — otherwise the text-position
+   percentages below (read from Figma) land in the wrong spot. */
+.sunset-process-blob {
+  position: relative;
+  width: 100%;
+  max-width: 840px;
+  aspect-ratio: 1695.6 / 1150.1;
+  margin: 0 auto;
+}
+
+/* Figma actually layers TWO renders: a desaturated/offset "shadow" copy
+   (mask mosaic 1, 106:111) behind a sharper colored copy (mask mosaic 2,
+   107:269) — that's what reads as a drop shadow. Both PNGs are pre-rendered
+   straight from Figma (filters/opacity baked in), so no CSS filter guessing. */
+.sunset-blob-shadow {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.sunset-blob-texture {
+  position: absolute;
+  left: 21.69%;
+  top: 26.35%;
+  width: 58.30%;
+  height: 49.83%;
+  display: block;
+}
+
+.sunset-blob-text {
+  position: absolute;
+  left: 26.72%;
+  top: 42.35%;
+  width: 48.25%;
+  height: 21.39%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-family: "Rubik Mono One", sans-serif;
+  letter-spacing: 0.02em;
+  font-size: clamp(0.85rem, 2.2vw, 1.5rem);
+  line-height: 1.3;
+  color: #f7d9a6;
+}
+
+.sunset-character-row {
+  width: 100%;
+  max-width: 920px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.sunset-row-label {
+  margin: 0 0 15px;
+  font-family: "Rum Raisin", cursive;
+  font-weight: 400;
+  font-size: 1.15rem;
+  letter-spacing: 0.02em;
+  color: #f7d9a6;
+}
+
+/* Images are pre-cropped to their actual drawn content (see young-hila-crop.png
+   etc.) so the box's aspect-ratio matches the art almost exactly — object-fit:
+   contain is just a rounding safety net here, not doing the heavy lifting like
+   it was against the raw Figma export (which had a lot of empty canvas).
+   Widths match Figma's own relative proportions: Young Hila and Adult Hila are
+   both full-width (1622/1622 in Figma) and Miriam is exactly half that
+   (818/1622 ≈ 0.5) — not three arbitrarily-different sizes. */
+.sunset-character-strip {
+  width: 100%;
+  max-width: 630px; /* 900px - 30% per Oren, applies to both Young Hila and Adult Hila */
+  aspect-ratio: 1054 / 466;
+  margin: 0 auto;
+}
+
+.sunset-character-strip--adult {
+  aspect-ratio: 1065 / 666;
+}
+
+.sunset-character-strip--miriam {
+  max-width: 450px;
+  aspect-ratio: 991 / 737;
+}
+
+.sunset-character-strip img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.sunset-placeholder-label {
+  font-family: "Sen", sans-serif;
+  font-size: 0.6rem;
+  color: rgba(18, 22, 27, 0.55);
+  word-break: break-word;
+  padding: 0 0.3rem;
+  text-align: center;
+}
+
+/* Rectangle 20 in Figma — sits at the top of the "Process & Concept Art" mosaic. */
+.sunset-video-block {
+  width: 100%;
+  max-width: 400px;
+  aspect-ratio: 652 / 367;
+  margin: 0 auto;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.sunset-video-block iframe {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+/* Mountain scene — full composition (mountain + 7 cloud puffs + 2 house photos +
+   "location" label) as ONE absolutely-positioned group, at the exact percentages
+   from Figma's Frame 36 (107:308). Each element sets both width AND height inline
+   (not just width, relying on natural aspect ratio) to match Figma's own box
+   exactly regardless of the source asset's native proportions. */
+/* Trimmed from the full Figma frame height (2919) to ~content height (houses end
+   at 73.65%) — otherwise this box has a large empty bottom margin, which reads as
+   a much bigger visual gap to whatever comes after it than the CSS gap actually is. */
+.sunset-mountain-scene {
+  position: relative;
+  width: 100%;
+  max-width: 920px;
+  aspect-ratio: 1936 / 2180;
+  margin: 0 auto;
+}
+
+.sunset-mountain-scene img {
+  position: absolute;
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.ms-house {
+  border-radius: 8px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  object-fit: cover;
+}
+
+.ms-location {
+  position: absolute;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Rum Raisin", cursive;
+  font-weight: 400;
+  font-size: 1.15rem;
+  letter-spacing: 0.02em;
+  color: #f7d9a6;
+  text-align: center;
+}
+
+.sunset-team-text {
+  max-width: 620px;
+  /* .sunset-body-inner's flex gap already gives 30px before this element;
+     +10px here makes that gap exactly 40px, per Oren's spacing spec. The extra
+     40px of orange AFTER this text is handled by .sunset-body-inner's own
+     padding-bottom below — not by margin here — so it stays inside .sunset-body's
+     own background instead of relying on the (black-revealing) flex gap. */
+  margin: 10px auto 0;
+  text-align: center;
+  font-family: "Saira", sans-serif;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #f7d9a6;
+}
+
+.sunset-outro-edge {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1920 / 727;
+}
+
+.sunset-outro-edge svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.sunset-content > .work-connect-frame {
+  align-self: stretch;
+  /* Cancels .sunset-content's 30px flex gap right before this element — that gap
+     is empty space with nothing painting it, which reveals the black
+     .work-content-fill layer sitting behind everything. All the actual desired
+     spacing (40px past the team text) is added as .sunset-body-inner's own
+     padding-bottom instead, which IS covered by .sunset-body's orange background. */
+  margin-top: -30px;
+  max-height: none;
+  height: auto;
+  overflow: visible;
+  width: 100vw;
+  max-width: none;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+  box-sizing: border-box;
+  background-color: #ff9472;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+@media (max-width: 700px) {
+  .sunset-content {
+    width: min(100%, 86vw);
+    padding-top: calc(2.2rem + 100px);
+  }
+
+  .sunset-content > .work-connect-frame {
+    width: 100vw;
+    max-width: none;
+    margin-left: calc(50% - 50vw);
+    margin-right: calc(50% - 50vw);
+  }
+}
+
+/* ===================================================================
+   work-9: "Chasing Stars" (game) — design slot for URL work-3.html.
+   Same lexicon as work-8/Sunset (work-content-section/-svg/-fill for the
+   video→black transition). Only the title-area animation and body color
+   are final; the body content is still a placeholder pending real copy
+   from Oren — Figma still shows the old Animix template text there.
+   =================================================================== */
+
+body.work-page.work-9 {
+  background-color: #12161b;
+}
+
+.work-page.work-9 .work-content-wrapper {
+  position: relative;
+  min-height: auto;
+  margin-bottom: 0;
+}
+
+.work-page.work-9 .work-content-svg {
+  z-index: 0;
+  top: 0;
+  inset: auto 0 auto 0;
+  height: clamp(520px, 42vw, 620px);
+}
+
+.work-page.work-9 .work-content-fill {
+  position: absolute;
+  top: calc(clamp(520px, 42vw, 620px) - 2px);
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: #12161b;
+  z-index: 0;
+}
+
+.work-page.work-9 .work-content-section,
+.work-page.work-9 .work-content-inner {
+  position: relative;
+  z-index: 1;
+}
+
+.work-page.work-9 .work-content-section {
+  overflow: visible;
+  min-height: clamp(520px, 42vw, 620px);
+}
+
+.work-page.work-9 .work-content-inner {
+  transform: translateY(76px);
+}
+
+.work-page.work-9 .words-about {
+  margin-top: calc(1rem + 24px);
+  color: rgba(255, 255, 255, 0.75);
+  font-family: "Saira", sans-serif;
+}
+
+/* The animated "כותרת" placeholder — cycles through the 43 CS BACK_##### PNGs
+   (see work-3.html's inline script) at 15fps, matching the source frame's own
+   very wide/short aspect ratio (3229 x 672). */
+.cs-title-anim {
+  width: 100%;
+  max-width: 720px;
+  aspect-ratio: 3229 / 672;
+  margin: 0 auto;
+}
+
+.cs-title-anim img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.cs-body {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  background: linear-gradient(180deg, #12161b 0%, #2d1b92 100%);
+  padding: 60px 1.5rem;
+  text-align: center;
+}
+
+/* Real content pulled from the live itch.io page (oriperez.itch.io/chasing-stars) —
+   itch.io blocks iframe embedding via CSP, so instead of a link-out card, the
+   actual description/controls/credits/screenshots are reproduced here directly. */
+.cs-story {
+  max-width: 620px;
+  margin: 0 auto 2rem;
+  padding: 0 0 0 1.1rem;
+  border-left: 3px solid rgba(255, 255, 255, 0.2);
+  text-align: left;
+}
+
+.cs-story p {
+  margin: 0 0 0.85rem;
+  font-family: "Saira", sans-serif;
+  font-style: italic;
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+.cs-story p:last-child {
+  margin-bottom: 0;
+}
+
+.cs-desc {
+  max-width: 620px;
+  margin: 0 auto 2.5rem;
+  font-family: "Saira", sans-serif;
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+.cs-screens {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  max-width: 900px;
+  margin: 0 auto 2.75rem;
+}
+
+.cs-screens img {
+  display: block;
+  width: 260px;
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+.cs-subhead {
+  margin: 0 0 0.5rem;
+  font-family: "Rubik Mono One", sans-serif;
+  font-size: 1.1rem;
+  color: #ff9fc0;
+}
+
+.cs-controls {
+  max-width: 500px;
+  margin: 0 auto 2.75rem;
+}
+
+.cs-controls-note {
+  margin: 0 0 1.25rem;
+  font-family: "Saira", sans-serif;
+  font-size: 0.85rem;
+  font-style: italic;
+  color: rgba(255, 255, 255, 0.55);
+}
+
+.cs-controls-cols {
+  display: flex;
+  justify-content: center;
+  gap: 2.5rem;
+  flex-wrap: wrap;
+  text-align: left;
+}
+
+.cs-controls-col h4 {
+  margin: 0 0 0.5rem;
+  font-family: "Saira", sans-serif;
+  font-weight: 700;
+  color: #fff;
+  font-size: 0.95rem;
+}
+
+.cs-controls-col p {
+  margin: 0;
+  font-family: "Saira", sans-serif;
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 0.88rem;
+  line-height: 1.7;
+}
+
+.cs-credits {
+  max-width: 500px;
+  margin: 0 auto 2.75rem;
+}
+
+.cs-credits p {
+  margin: 0 0 1rem;
+  font-family: "Saira", sans-serif;
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 0.88rem;
+  line-height: 1.7;
+}
+
+.cs-credits p:last-child {
+  margin-bottom: 0;
+}
+
+.cs-itch-cta {
+  display: inline-block;
+  padding: 0.9rem 1.75rem;
+  border-radius: 8px;
+  background: #ff2449;
+  color: #fff;
+  font-family: "Saira", sans-serif;
+  font-weight: 700;
+  text-decoration: none;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.cs-itch-cta:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(255, 36, 73, 0.35);
+}
