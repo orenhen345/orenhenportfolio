@@ -20,26 +20,20 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Sen:wght@400;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="../media/work-page.css" />
   <link rel="stylesheet" href="../media/icons/home-icon.css" />
-  <link rel="stylesheet" href="../media/icons/menu-icon.css" />
 </head>
 <body class="work-page work-5">
     <a href="../index.html?orenportfolio" class="home-icon-link" aria-label="Home">
     <span class="icon-default" aria-hidden="true"></span>
     <span class="icon-hover" aria-hidden="true"></span>
   </a>
-  <a href="menu.html" class="menu-icon-link" aria-label="Menu">
-    <span class="icon-default" aria-hidden="true"></span>
-    <span class="icon-hover" aria-hidden="true"></span>
-    <span class="icon-close" aria-hidden="true"></span>
-    <span class="icon-close-hover" aria-hidden="true"></span>
-  </a>
 
   <div class="work-page-inner">
     <div class="work-video-fixed">
       <div class="work-hero-poster" style="background-image: url('../my_web/covers/2D style.jpg');"></div>
       <iframe
+        id="workVideoFrame"
         class="work-video-frame"
-        src="https://www.youtube.com/embed/9gMfGB1Okgo?si=5YrwRn_qH9KNV-0B&autoplay=1&mute=1&controls=0&loop=1&playlist=9gMfGB1Okgo&playsinline=1&modestbranding=1&rel=0&showinfo=0"
+        src="https://www.youtube.com/embed/9gMfGB1Okgo?si=5YrwRn_qH9KNV-0B&autoplay=1&mute=1&controls=0&loop=1&playlist=9gMfGB1Okgo&playsinline=1&modestbranding=1&rel=0&showinfo=0&enablejsapi=1"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen"
         referrerpolicy="strict-origin-when-cross-origin"
         title="YouTube video player"
@@ -50,6 +44,9 @@
         <p>Video preview unavailable.</p>
         <a class="work-video-fallback-link" href="https://www.youtube.com/watch?v=9gMfGB1Okgo" target="_blank" rel="noopener noreferrer">Open on YouTube</a>
       </div>
+      <button type="button" class="work-mute" id="workMute" aria-label="Unmute video">
+        <img class="work-mute-frame" id="workMuteFrame" src="../media/icons/icon animation/icon_00000.png" alt="" aria-hidden="true" />
+      </button>
     </div>
 
     <div class="work-top-arrows" aria-label="Move between projects">
@@ -252,5 +249,6 @@
 
   <script src="https://player.vimeo.com/api/player.js"></script>
   <script src="../media/work-page.js"></script>
+  <script src="../media/work-mute.js"></script>
 </body>
 </html>

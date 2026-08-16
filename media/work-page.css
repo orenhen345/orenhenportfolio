@@ -251,6 +251,41 @@ body.work-page.work-3 {
   inset: 0;
 }
 
+/* כפתור השתקה/הגברה של סרטון עמוד עבודה — זהה במבנה לכפתור המקביל בדף הבית (media/styles.css .hero-mute),
+   בשם נפרד (work-mute) כדי לא לתלות בטעינת media/styles.css על עמודי העבודה. */
+.work-mute {
+  position: absolute;
+  bottom: 1.5rem;
+  left: 1.5rem;
+  z-index: 3;
+  width: 76px;
+  height: 146px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  border: none;
+  background: transparent;
+  padding: 0;
+  cursor: pointer;
+}
+
+.work-mute-frame {
+  display: block;
+  max-width: 76px;
+  max-height: 146px;
+  width: auto;
+  height: auto;
+  pointer-events: none;
+}
+
+.work-mute-frame.work-mute-frame--anim {
+  transform: translateY(10px);
+}
+
+.work-mute-frame.work-mute-frame--black-static {
+  transform: translateY(0px);
+}
+
 .work-video-frame {
   top: 50%;
   left: 50%;
@@ -374,10 +409,11 @@ body.work-page.work-3 {
   50% { transform: translateY(10px); }
 }
 
+/* כמו בדף הבית — הסרטון תופס מסך מלא (100vh) לפני שהתוכן מתחיל לעלות, בכל העמודים. */
 .work-spacer {
   position: relative;
   width: 100%;
-  height: calc(67vh + 130px);
+  height: 100vh;
   z-index: 1;
   pointer-events: none;
 }
@@ -506,7 +542,9 @@ body.work-page.work-3 {
 .work-page.work-4 .work-content-wrapper,
 .work-page.work-5 .work-content-wrapper,
 .work-page.work-6 .work-content-wrapper,
-.work-page.work-7 .work-content-wrapper {
+.work-page.work-7 .work-content-wrapper,
+.work-page.work-8 .work-content-wrapper,
+.work-page.work-9 .work-content-wrapper {
   margin-top: calc(-33vh + 280px);
 }
 
@@ -528,7 +566,9 @@ body.work-page.work-3 {
 .work-page.work-4 .work-top-arrows,
 .work-page.work-5 .work-top-arrows,
 .work-page.work-6 .work-top-arrows,
-.work-page.work-7 .work-top-arrows {
+.work-page.work-7 .work-top-arrows,
+.work-page.work-8 .work-top-arrows,
+.work-page.work-9 .work-top-arrows {
   gap: 0.7rem;
 }
 
@@ -538,7 +578,9 @@ body.work-page.work-3 {
 .work-page.work-4 .work-arrow-link,
 .work-page.work-5 .work-arrow-link,
 .work-page.work-6 .work-arrow-link,
-.work-page.work-7 .work-arrow-link {
+.work-page.work-7 .work-arrow-link,
+.work-page.work-8 .work-arrow-link,
+.work-page.work-9 .work-arrow-link {
   width: auto;
   height: auto;
   background: transparent;
@@ -554,7 +596,9 @@ body.work-page.work-3 {
 .work-page.work-4 .work-arrow-link:hover,
 .work-page.work-5 .work-arrow-link:hover,
 .work-page.work-6 .work-arrow-link:hover,
-.work-page.work-7 .work-arrow-link:hover {
+.work-page.work-7 .work-arrow-link:hover,
+.work-page.work-8 .work-arrow-link:hover,
+.work-page.work-9 .work-arrow-link:hover {
   background: transparent;
   opacity: 0.8;
 }
@@ -2965,7 +3009,9 @@ body.work-page.work-3 {
   .work-page.work-4 .work-content-wrapper,
   .work-page.work-5 .work-content-wrapper,
   .work-page.work-6 .work-content-wrapper,
-  .work-page.work-7 .work-content-wrapper {
+  .work-page.work-7 .work-content-wrapper,
+  .work-page.work-8 .work-content-wrapper,
+  .work-page.work-9 .work-content-wrapper {
     margin-top: 0;
   }
 

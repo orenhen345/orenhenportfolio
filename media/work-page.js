@@ -32,14 +32,14 @@
   if (!marqueeInner) return;
 
   var iconFiles = [
-    "my_web/icons/adobe-photoshop-2.svg",
-    "my_web/icons/logo-blender.svg",
-    "my_web/icons/adobe-illustrator-cc-3.svg",
-    "my_web/icons/edge-animate-app-cc.svg",
-    "my_web/icons/figma-icon.svg",
-    "my_web/icons/after-effects-1.svg",
-    "my_web/icons/adobe-44195.svg",
-    "my_web/icons/maya-2017.svg"
+    "../my_web/icons/adobe-photoshop-2.svg",
+    "../my_web/icons/logo-blender.svg",
+    "../my_web/icons/adobe-illustrator-cc-3.svg",
+    "../my_web/icons/edge-animate-app-cc.svg",
+    "../my_web/icons/figma-icon.svg",
+    "../my_web/icons/after-effects-1.svg",
+    "../my_web/icons/adobe-44195.svg",
+    "../my_web/icons/maya-2017.svg"
   ];
 
   function makeIconSpan(iconPath) {

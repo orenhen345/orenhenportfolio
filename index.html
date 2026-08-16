@@ -14,22 +14,17 @@
   <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600&family=Inter:wght@500;600&family=Barlow:wght@500;600&family=Oswald:wght@500;600&family=JetBrains+Mono:wght@500&family=Cormorant+Garamond:wght@500;600&display=swap" rel="stylesheet" />
   <link href="https://fonts.googleapis.com/css2?family=Sen:wght@400;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="media/styles.css" />
-  <link rel="stylesheet" href="media/icons/menu-icon.css" />
 </head>
 <body>
-  <a href="pages/menu.html" class="menu-icon-link" aria-label="Menu">
-    <span class="icon-default" aria-hidden="true"></span>
-    <span class="icon-hover" aria-hidden="true"></span>
-    <span class="icon-close" aria-hidden="true"></span>
-    <span class="icon-close-hover" aria-hidden="true"></span>
-  </a>
   <!-- Fixed video layer: stays in place when you scroll (upper screen = video) -->
   <div class="hero-video-fixed" id="heroVideoFixed">
     <div class="hero-video-placeholder" aria-hidden="true"></div>
     <video class="hero-video" muted loop playsinline aria-label="Intro video">
       <source src="my_web/Oren Showreel.mp4" type="video/mp4" />
     </video>
-    <button type="button" class="hero-mute" id="heroMute" aria-label="Unmute video">🔇</button>
+    <button type="button" class="hero-mute" id="heroMute" aria-label="Unmute video">
+      <img class="hero-mute-frame" id="heroMuteFrame" src="media/icons/icon animation/icon_00000.png" alt="" aria-hidden="true" />
+    </button>
     <a href="#footer-bar" class="hero-scroll-hint" aria-label="Scroll down">
       <div class="scroll-arrow-wrap">
         <svg class="scroll-arrow" viewBox="0 0 66 55" preserveAspectRatio="xMidYMax meet" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
@@ -60,36 +55,72 @@
       </p>
     </section>
 
-    <!-- גריד כיסויי עבודות — לחיצה מעבר לעמוד הפרויקט -->
-    <section class="works-grid" aria-label="עבודות">
-      <a href="pages/work-1.html?orenportfolio" class="work-card">
-        <span class="work-card-cover" aria-hidden="true">
+    <!-- מוזאיקת כיסויי עבודות — לחיצה מעבר לעמוד הפרויקט -->
+    <div class="works-mosaic-inner">
+    <div class="projects-mosaic" aria-label="עבודות">
+      <a href="pages/work-1.html?orenportfolio" class="mosaic-card mosaic-1">
+        <span class="mosaic-cover" aria-hidden="true">
           <img src="my_web/covers/Sunset.png" alt="Sunset cover" />
         </span>
-        <span class="work-card-cta">Sunset</span>
+        <span class="mosaic-cta">Sunset</span>
       </a>
-      <a href="pages/work-2.html?orenportfolio" class="work-card">
-        <span class="work-card-cover" aria-hidden="true">
+
+      <a href="pages/work-2.html?orenportfolio" class="mosaic-card mosaic-2">
+        <span class="mosaic-cover" aria-hidden="true">
           <img src="my_web/covers/Animix festival .png" alt="Animix festival cover" />
         </span>
-        <span class="work-card-cta">Animix festival</span>
+        <span class="mosaic-cta">Animix festival</span>
       </a>
-      <a href="pages/work-3.html?orenportfolio" class="work-card">
-        <span class="work-card-cover" aria-hidden="true">
+
+      <a href="pages/work-3.html?orenportfolio" class="mosaic-card mosaic-3">
+        <span class="mosaic-cover" aria-hidden="true">
           <img src="my_web/covers/Chasing Stars.png" alt="Chasing Stars cover" />
         </span>
-        <span class="work-card-cta">Chasing Stars</span>
+        <span class="mosaic-cta">Chasing Stars</span>
       </a>
-      <a href="pages/work-4.html?orenportfolio" class="work-card">
-        <span class="work-card-cover" aria-hidden="true">
+
+      <a href="pages/work-4.html?orenportfolio" class="mosaic-card mosaic-4">
+        <span class="mosaic-cover" aria-hidden="true">
           <img src="my_web/covers/Dan David project.jpg" alt="Dan David project cover" />
         </span>
-        <span class="work-card-cta">Dan David project</span>
+        <span class="mosaic-cta">Dan David project</span>
       </a>
-    </section>
 
-    <div class="works-cta-wrap">
-      <a href="pages/all-projects.html?orenportfolio" class="btn-all-projects">All projects</a>
+      <a href="pages/work-5.html?orenportfolio" class="mosaic-card mosaic-5">
+        <span class="mosaic-cover" aria-hidden="true">
+          <img src="my_web/covers/Your way to Save time .png" alt="Your way to Save time cover" />
+        </span>
+        <span class="mosaic-cta">Your way to Save time</span>
+      </a>
+
+      <a href="pages/work-6.html?orenportfolio" class="mosaic-card mosaic-6">
+        <span class="mosaic-cover" aria-hidden="true">
+          <img src="my_web/covers/3D Animation.jpg" alt="3D Animation cover" />
+        </span>
+        <span class="mosaic-cta">3D Animation</span>
+      </a>
+
+      <a href="pages/work-7.html?orenportfolio" class="mosaic-card mosaic-7">
+        <span class="mosaic-cover" aria-hidden="true">
+          <img src="my_web/covers/2D style.jpg" alt="2D Style cover" />
+        </span>
+        <span class="mosaic-cta">2D Style</span>
+      </a>
+
+      <a href="pages/work-8.html?orenportfolio" class="mosaic-card mosaic-8">
+        <span class="mosaic-cover" aria-hidden="true">
+          <img src="my_web/covers/3D Rigging.png" alt="3D Rigging cover" />
+        </span>
+        <span class="mosaic-cta">3D Rigging</span>
+      </a>
+
+      <a href="pages/work-9.html?orenportfolio" class="mosaic-card mosaic-9">
+        <span class="mosaic-cover" aria-hidden="true">
+          <img src="my_web/covers/Jazz nigth.png" alt="Jazz nigth cover" />
+        </span>
+        <span class="mosaic-cta">Jazz nigth</span>
+      </a>
+    </div>
     </div>
 
     <div class="home-connect-bundle">
@@ -167,321 +198,6 @@
 
   </main>
 
-  <script>
-    (function() {
-      var heroVid = document.querySelector('.hero-video');
-      var muteBtn = document.getElementById('heroMute');
-      if (heroVid && muteBtn) {
-        /* Scroll-linked volume: linear 0–100% as .hero-frame-svg top moves from viewport top to bottom.
-           iOS/Safari ignore video.volume — use Web Audio GainNode when needed. */
-        var heroFrameSvg = document.querySelector('.hero-frame-svg');
-        var scrollVolRaf = null;
-        var scrollVolDebugHud = null;
-        var scrollVolMode = null; /* null | 'volume' | 'gain' */
-        var scrollGainCtx = null;
-        var scrollGainNode = null;
-        try {
-          var _u = new URLSearchParams(window.location.search);
-          if (_u.get('scrollVolDebug') === '1') {
-            scrollVolDebugHud = document.createElement('div');
-            scrollVolDebugHud.id = 'scrollVolDebugHud';
-            scrollVolDebugHud.setAttribute('aria-hidden', 'true');
-            scrollVolDebugHud.style.cssText = 'position:fixed;left:8px;bottom:8px;z-index:10060;padding:6px 10px;font:12px/1.2 system-ui,sans-serif;background:rgba(15,28,38,.85);color:#e8f0ff;border-radius:6px;pointer-events:none;';
-            document.body.appendChild(scrollVolDebugHud);
-          }
-        } catch (_) {}
-
-        function prefersScrollGainPath() {
-          try {
-            var ua = navigator.userAgent || '';
-            if (/iPhone|iPad|iPod/i.test(ua)) return true;
-            if (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1) return true;
-          } catch (_) {}
-          return false;
-        }
-
-        function testVolumePropertyWorks() {
-          try {
-            var saved = heroVid.volume;
-            heroVid.volume = 0.314159;
-            var ok = Math.abs(heroVid.volume - 0.314159) < 0.02;
-            heroVid.volume = saved;
-            return ok;
-          } catch (_) {
-            return false;
-          }
-        }
-
-        function tryCreateScrollGainGraph() {
-          if (scrollGainNode) return true;
-          var AC = window.AudioContext || window.webkitAudioContext;
-          if (!AC) return false;
-          try {
-            scrollGainCtx = new AC();
-            var src = scrollGainCtx.createMediaElementSource(heroVid);
-            scrollGainNode = scrollGainCtx.createGain();
-            src.connect(scrollGainNode);
-            scrollGainNode.connect(scrollGainCtx.destination);
-            scrollGainNode.gain.value = 1;
-            heroVid.volume = 1;
-            return true;
-          } catch (_) {
-            scrollGainCtx = null;
-            scrollGainNode = null;
-            return false;
-          }
-        }
-
-        function ensureScrollVolumePath() {
-          if (scrollVolMode !== null) return;
-          if (prefersScrollGainPath()) {
-            if (tryCreateScrollGainGraph()) {
-              scrollVolMode = 'gain';
-              return;
-            }
-          }
-          if (testVolumePropertyWorks()) {
-            scrollVolMode = 'volume';
-            return;
-          }
-          if (tryCreateScrollGainGraph()) {
-            scrollVolMode = 'gain';
-            return;
-          }
-          scrollVolMode = 'volume';
-        }
-
-        function resumeScrollAudioIfNeeded() {
-          try {
-            if (scrollGainCtx && scrollGainCtx.state === 'suspended') {
-              scrollGainCtx.resume().catch(function() {});
-            }
-          } catch (_) {}
-        }
-
-        function applyHeroScrollVolume() {
-          if (!heroFrameSvg) return;
-          var rect = heroFrameSvg.getBoundingClientRect();
-          var vh = window.innerHeight || 1;
-          var factor = Math.max(0, Math.min(1, rect.top / vh));
-          if (scrollVolDebugHud) {
-            var modeLabel = scrollVolMode === 'gain' ? 'gain' : scrollVolMode === 'volume' ? 'vol' : '…';
-            scrollVolDebugHud.textContent = 'Scroll: ' + Math.round(factor * 100) + '% [' + modeLabel + ']';
-          }
-          if (heroVid.muted) {
-            if (scrollGainNode) scrollGainNode.gain.value = 0;
-            return;
-          }
-          ensureScrollVolumePath();
-          resumeScrollAudioIfNeeded();
-          if (scrollVolMode === 'gain' && scrollGainNode) {
-            scrollGainNode.gain.value = factor;
-            heroVid.volume = 1;
-          } else {
-            heroVid.volume = factor;
-          }
-        }
-
-        function scheduleHeroScrollVolume() {
-          if (scrollVolRaf != null) return;
-          scrollVolRaf = window.requestAnimationFrame(function() {
-            scrollVolRaf = null;
-            applyHeroScrollVolume();
-          });
-        }
-
-        window.addEventListener('scroll', scheduleHeroScrollVolume, { passive: true });
-        window.addEventListener('resize', scheduleHeroScrollVolume, { passive: true });
-        applyHeroScrollVolume();
-
-        muteBtn.addEventListener('click', function() {
-          muteBtn.classList.remove('hero-mute--intro');
-          heroVid.muted = !heroVid.muted;
-          muteBtn.setAttribute('aria-label', heroVid.muted ? 'Unmute video' : 'Mute video');
-          muteBtn.textContent = heroVid.muted ? '🔇' : '🔊';
-          if (!heroVid.muted) {
-            ensureScrollVolumePath();
-            resumeScrollAudioIfNeeded();
-          }
-          applyHeroScrollVolume();
-        });
-
-        heroVid.play().catch(function() {});
-        applyHeroScrollVolume();
-        muteBtn.classList.add('hero-mute--intro');
-      }
-
-      var welcomeFonts = [
-        "Welcome-Bernhc",
-        "Welcome-Showg",
-        "Welcome-Broadw",
-        "Welcome-Bauhs93",
-        "Welcome-Segmdl2",
-        "Welcome-Coopbl",
-        "Welcome-Latinwd"
-      ];
-      var letters = document.querySelectorAll('.hero-welcome-title .welcome-letter');
-      if (letters.length && welcomeFonts.length) {
-        var timeIndex = 0;
-        var n = welcomeFonts.length;
-        setInterval(function() {
-          for (var i = 0; i < letters.length; i++) {
-            var fontIndex = ((timeIndex - i) % n + n) % n;
-            letters[i].style.fontFamily = '"' + welcomeFonts[fontIndex] + '", sans-serif';
-          }
-          timeIndex++;
-        }, 1000);
-      }
-
-      var welcomeSection = document.querySelector('.hero-welcome');
-      if (welcomeSection && 'IntersectionObserver' in window) {
-        var welcomeAnimated = false;
-        var welcomeObserver = null;
-        function markWelcomeInView() {
-          if (welcomeAnimated) return;
-          welcomeSection.classList.add('welcome-in-view');
-          welcomeAnimated = true;
-          if (welcomeObserver) welcomeObserver.disconnect();
-        }
-        welcomeObserver = new IntersectionObserver(function(entries) {
-          var ent = entries[0];
-          if (ent.isIntersecting) markWelcomeInView();
-        }, { root: null, rootMargin: '0px', threshold: 0 });
-        welcomeObserver.observe(welcomeSection);
-        function fallbackWelcomeIfVisible() {
-          if (welcomeAnimated) return;
-          var r = welcomeSection.getBoundingClientRect();
-          if (r.top < window.innerHeight && r.bottom > 0) markWelcomeInView();
-        }
-        window.addEventListener('scroll', fallbackWelcomeIfVisible, { passive: true });
-        window.addEventListener('resize', fallbackWelcomeIfVisible);
-        window.requestAnimationFrame(fallbackWelcomeIfVisible);
-        setTimeout(fallbackWelcomeIfVisible, 0);
-      } else if (welcomeSection) {
-        welcomeSection.classList.add('welcome-in-view');
-      }
-
-      // --- Marquee: insert random local icons along the blue strip ---
-      try {
-        var marqueeInner = document.querySelector('.hero-footer-bar-marquee-inner');
-        if (marqueeInner) {
-          var iconFiles = [
-            'my_web/icons/adobe-photoshop-2.svg',
-            'my_web/icons/logo-blender.svg',
-            'my_web/icons/adobe-illustrator-cc-3.svg',
-            'my_web/icons/edge-animate-app-cc.svg',
-            'my_web/icons/figma-icon.svg',
-            'my_web/icons/after-effects-1.svg',
-            'my_web/icons/adobe-44195.svg',
-            'my_web/icons/maya-2017.svg'
-          ];
-
-          function makeIconSpan(iconPath) {
-            var s = document.createElement('span');
-            s.className = 'marquee-icon';
-            s.setAttribute('aria-hidden', 'true');
-            s.style.backgroundImage = "url('" + iconPath + "')";
-            return s;
-          }
-
-          // Remove previously inserted marquee icons (if any)
-          var existingIcons = marqueeInner.querySelectorAll('.marquee-icon');
-          for (var ei = 0; ei < existingIcons.length; ei++) {
-            existingIcons[ei].remove();
-          }
-
-          var items = Array.prototype.slice.call(marqueeInner.querySelectorAll('.marquee-item'));
-          // Deterministic: put an icon after every word, fixed order.
-          for (var i = 0; i < items.length; i++) {
-            var iconPath = iconFiles[i % iconFiles.length];
-            // Insert after the label.
-            var next = items[i].nextSibling;
-            items[i].parentNode.insertBefore(makeIconSpan(iconPath), next);
-          }
-        }
-      } catch (_) {}
-
-      // --- Contact: letter-by-letter drop-in when reaching bottom quarter ---
-      try {
-        var contactAbout = document.querySelector('#contact .home-contact-about');
-        var contactTalk = document.querySelector('#contact .home-contact-talk');
-        if (contactAbout && contactTalk && 'IntersectionObserver' in window) {
-          function splitTextToLetters(container) {
-            if (!container || container.dataset.lettersSplit === '1') return;
-            // Split ONLY the big titles (h2). Do not touch the smaller text/links.
-            var nodes = container.querySelectorAll('h2');
-            for (var n = 0; n < nodes.length; n++) {
-              var el = nodes[n];
-              if (!el || el.dataset.lettersSplit === '1') continue;
-              var txt = el.textContent || '';
-              el.textContent = '';
-              var letterIndex = 0;
-              for (var i = 0; i < txt.length; i++) {
-                var ch = txt[i];
-                if (ch === ' ') {
-                  el.appendChild(document.createTextNode(' '));
-                  continue;
-                }
-                var span = document.createElement('span');
-                span.className = 'contact-letter';
-                span.textContent = ch;
-                span.style.setProperty('--i', letterIndex);
-                el.appendChild(span);
-                letterIndex++;
-              }
-              el.dataset.lettersSplit = '1';
-            }
-            container.dataset.lettersSplit = '1';
-          }
-
-          splitTextToLetters(contactAbout);
-          splitTextToLetters(contactTalk);
-
-          var revealObserver = new IntersectionObserver(function(entries) {
-            for (var i = 0; i < entries.length; i++) {
-              var ent = entries[i];
-              if (ent.isIntersecting) {
-                if (ent.target === contactAbout) contactAbout.classList.add('contact-revealed');
-                if (ent.target === contactTalk) contactTalk.classList.add('contact-revealed');
-                revealObserver.unobserve(ent.target);
-              }
-            }
-          }, { root: null, rootMargin: '0px 0px -25% 0px', threshold: 0 });
-
-          revealObserver.observe(contactAbout);
-          revealObserver.observe(contactTalk);
-        }
-      } catch (_) {}
-
-      // #region agent log
-      try {
-        var footerBar = document.getElementById('footer-bar');
-        if (footerBar && window.fetch) {
-          fetch('http://127.0.0.1:7428/ingest/70b0c38e-0b3f-44ad-adc5-5c7874f47e48', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-              'X-Debug-Session-Id': '2dccee'
-            },
-            body: JSON.stringify({
-              sessionId: '2dccee',
-              runId: 'pre-fix',
-              hypothesisId: 'H_footer_position',
-              location: 'index.html:footer-debug',
-              message: 'Footer visual position on load',
-              data: {
-                viewportHeight: window.innerHeight,
-                footerRect: footerBar.getBoundingClientRect(),
-                scrollHeight: document.documentElement.scrollHeight
-              },
-              timestamp: Date.now()
-            })
-          }).catch(function() {});
-        }
-      } catch (e) {}
-      // #endregion
-
-    })();
-  </script>
+  <script src="media/home.js" defer></script>
 </body>
 </html>

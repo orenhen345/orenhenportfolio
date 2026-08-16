@@ -10,27 +10,22 @@
   <link href="https://fonts.googleapis.com/css2?family=Sen:wght@400;700&family=Saira:wght@400;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="../media/work-page.css" />
   <link rel="stylesheet" href="../media/icons/home-icon.css" />
-  <link rel="stylesheet" href="../media/icons/menu-icon.css" />
   <script src="../media/work-page.js" defer></script>
+  <script src="../media/work-mute.js" defer></script>
 </head>
 <body class="work-page work-9">
     <a href="../index.html?orenportfolio" class="home-icon-link" aria-label="Home">
     <span class="icon-default" aria-hidden="true"></span>
     <span class="icon-hover" aria-hidden="true"></span>
   </a>
-  <a href="menu.html" class="menu-icon-link" aria-label="Menu">
-    <span class="icon-default" aria-hidden="true"></span>
-    <span class="icon-hover" aria-hidden="true"></span>
-    <span class="icon-close" aria-hidden="true"></span>
-    <span class="icon-close-hover" aria-hidden="true"></span>
-  </a>
 
   <div class="work-page-inner">
     <div class="work-video-fixed">
       <div class="work-hero-poster" style="background-image: url('../my_web/covers/Chasing Stars.png');"></div>
       <iframe
+        id="workVideoFrame"
         class="work-video-frame"
-        src="https://www.youtube.com/embed/gG1seISqT54?autoplay=1&mute=1&controls=0&loop=1&playlist=gG1seISqT54&playsinline=1&modestbranding=1&rel=0&showinfo=0"
+        src="https://www.youtube.com/embed/gG1seISqT54?autoplay=1&mute=1&controls=0&loop=1&playlist=gG1seISqT54&playsinline=1&modestbranding=1&rel=0&showinfo=0&enablejsapi=1"
         frameborder="0"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen"
         referrerpolicy="strict-origin-when-cross-origin"
@@ -41,6 +36,9 @@
         <p>Video preview unavailable.</p>
         <a class="work-video-fallback-link" href="https://youtu.be/gG1seISqT54" target="_blank" rel="noopener noreferrer">Open on YouTube</a>
       </div>
+      <button type="button" class="work-mute" id="workMute" aria-label="Unmute video">
+        <img class="work-mute-frame" id="workMuteFrame" src="../media/icons/icon animation/icon_00000.png" alt="" aria-hidden="true" />
+      </button>
     </div>
 
     <div class="work-top-arrows" aria-label="Move between projects">
@@ -79,7 +77,7 @@
             <path d="M1941 5410V57.2218C1941 57.2218 1796.68 141.783 1698.38 141.783C1600.07 141.783 1456.63 0 1456.63 0C1456.63 0 1307.18 243.812 1190.74 232.066C1089.41 221.845 968.23 105.542 968.23 105.542C968.23 105.542 782.17 279.93 651.877 232.066C570.583 202.202 369.33 0 369.33 0C369.33 0 320.057 182.527 206.361 168.486C119.123 157.713 0 57.2218 0 57.2218V5410H1941Z" fill="#12161B"/>
           </svg>
           <div class="work-content-inner">
-            <!-- "כותרת" placeholder from Figma — replaced with the CS BACK_##### frame animation from chaising stars/מסך פתיחה -->
+            <!-- "כותרת" placeholder from Figma — replaced with the CS BACK_##### frame animation from raw-sources/chasing-stars/מסך פתיחה -->
             <div class="cs-title-anim" role="img" aria-label="Chasing Stars — animated title logo">
               <img id="csTitleFrame" src="../my_web/pages/chasing-stars/opening/CS BACK_00000.png" alt="Chasing Stars — animated title logo" />
             </div>

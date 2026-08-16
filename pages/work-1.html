@@ -11,27 +11,22 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Rubik+Mono+One&family=Rum+Raisin&family=Saira:wght@400;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="../media/work-page.css" />
   <link rel="stylesheet" href="../media/icons/home-icon.css" />
-  <link rel="stylesheet" href="../media/icons/menu-icon.css" />
   <script src="https://player.vimeo.com/api/player.js" defer></script>
   <script src="../media/work-page.js" defer></script>
+  <script src="../media/work-mute.js" defer></script>
 </head>
 <body class="work-page work-8">
     <a href="../index.html?orenportfolio" class="home-icon-link" aria-label="Home">
     <span class="icon-default" aria-hidden="true"></span>
     <span class="icon-hover" aria-hidden="true"></span>
   </a>
-  <a href="menu.html" class="menu-icon-link" aria-label="Menu">
-    <span class="icon-default" aria-hidden="true"></span>
-    <span class="icon-hover" aria-hidden="true"></span>
-    <span class="icon-close" aria-hidden="true"></span>
-    <span class="icon-close-hover" aria-hidden="true"></span>
-  </a>
 
   <div class="work-page-inner">
     <div class="work-video-fixed">
       <iframe
+        id="workVideoFrame"
         class="work-video-frame"
-        src="https://www.youtube.com/embed/OQtg0Weel30?autoplay=1&mute=1&controls=0&loop=1&playlist=OQtg0Weel30&playsinline=1&modestbranding=1&rel=0&showinfo=0"
+        src="https://www.youtube.com/embed/OQtg0Weel30?autoplay=1&mute=1&controls=0&loop=1&playlist=OQtg0Weel30&playsinline=1&modestbranding=1&rel=0&showinfo=0&enablejsapi=1"
         frameborder="0"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen"
         referrerpolicy="strict-origin-when-cross-origin"
@@ -42,6 +37,9 @@
         <p>Video preview unavailable.</p>
         <a class="work-video-fallback-link" href="https://youtu.be/OQtg0Weel30" target="_blank" rel="noopener noreferrer">Open on YouTube</a>
       </div>
+      <button type="button" class="work-mute" id="workMute" aria-label="Unmute video">
+        <img class="work-mute-frame" id="workMuteFrame" src="../media/icons/icon animation/icon_00000.png" alt="" aria-hidden="true" />
+      </button>
     </div>
 
     <div class="work-top-arrows" aria-label="Move between projects">
@@ -112,12 +110,15 @@
             <div class="sunset-body-inner">
             <div class="sunset-video-block">
               <iframe
-                src="https://www.youtube.com/embed/OQtg0Weel30?rel=0&modestbranding=1"
-                title="Sunset — film"
-                frameborder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                referrerpolicy="strict-origin-when-cross-origin"
-                allowfullscreen
+                  width="900"
+                  height="506"
+                  src="https://www.youtube.com/embed/OQtg0Weel30?rel=0&modestbranding=1"
+                  title="Sunset — film"
+                  frameborder="0"
+                  style="width: 100% !important; max-width: 900px !important; aspect-ratio: 16 / 9; height: auto !important;"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  referrerpolicy="strict-origin-when-cross-origin"
+                  allowfullscreen>
               ></iframe>
             </div>
 

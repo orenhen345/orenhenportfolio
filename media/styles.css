@@ -69,12 +69,6 @@ html {
   font-display: swap;
 }
 
-@font-face {
-  font-family: "AnomaliaLightAAA";
-  src: url("fonts/anomalia-light-aaa.otf") format("opentype");
-  font-display: swap;
-}
-
 body {
   font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
   background: #c9b8e0;
@@ -82,12 +76,6 @@ body {
   line-height: 1.6;
   font-size: 1rem;
   overflow-x: hidden;
-}
-
-/* Jazz event title font override */
-.event-details-title {
-  font-family: "AnomaliaLightAAA", sans-serif;
-  font-weight: 300;
 }
 
 /* ========== Home — Figma: fixed video + scroll-over content ========== */
@@ -125,30 +113,36 @@ body {
   bottom: 1.5rem;
   left: 1.5rem;
   z-index: 3;
-  width: 44px;
-  height: 44px;
+  width: 76px;
+  height: 146px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
   border: none;
-  border-radius: 50%;
-  background: rgba(0, 0, 0, 0.5);
-  color: #fff;
-  font-size: 1.25rem;
+  background: transparent;
+  padding: 0;
   cursor: pointer;
-  transition: background 0.2s ease, transform 0.75s cubic-bezier(0.34, 1.15, 0.64, 1);
 }
 
-.hero-mute:hover {
-  background: rgba(0, 0, 0, 0.75);
+.hero-mute-frame {
+  display: block;
+  max-width: 76px;
+  max-height: 146px;
+  width: auto;
+  height: auto;
+  pointer-events: none;
 }
 
-.hero-mute.hero-mute--intro {
-  transform: translate(calc(50vw - 1.5rem - 22px), calc(-50vh + 1.5rem + 22px)) scale(2.2);
-  background: rgba(0, 0, 0, 0.65);
-  animation: heroMutePulse 1.8s ease-in-out infinite;
+/* חל רק בזמן ריצת אנימציית הקפיצה (לפני הלחיצה הראשונה) — לא משפיע על שני האייקונים הסטטיים.
+   שנה את translateY כדי להזיז את האנימציה למטה (מספר גדול יותר = יותר למטה), בלי לגעת במיקום הכללי של הכפתור. */
+.hero-mute-frame.hero-mute-frame--anim {
+  transform: translateY(10px);
 }
 
-@keyframes heroMutePulse {
-  0%, 100% { box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.4); }
-  50% { box-shadow: 0 0 0 16px rgba(255, 255, 255, 0); }
+/* חל על האייקון השחור במצב מנוחה (סטטי) — גם כשעוברים אליו ישירות וגם אחרי שהאנימציה
+   השחורה מסתיימת ונרגעת. לא משפיע על האייקון החלול הסטטי. */
+.hero-mute-frame.hero-mute-frame--black-static {
+  transform: translateY(0px);
 }
 
 
@@ -197,7 +191,7 @@ body {
 }
 
 .hero-scroll-content .hero-welcome,
-.hero-scroll-content .works-grid {
+.hero-scroll-content .works-mosaic-inner {
   position: relative;
   z-index: 1;
 }
@@ -225,120 +219,123 @@ body {
   .hero-spacer {
     height: 56.25vw;
   }
-
-  .hero-mute.hero-mute--intro {
-    transform: translate(calc(50vw - 1.5rem - 22px), calc(-28.125vw + 1.5rem + 22px)) scale(1.8);
-  }
 }
 
-/* גריד מלבנים — כיסויי עבודות */
-.works-grid {
+/* מוזאיקת עבודות — כיסויים בגדלים משתנים (מועתק מעמוד "כל הפרויקטים" הישן) */
+.works-mosaic-inner {
   width: 100%;
-  max-width: 880px;
-  padding: clamp(2rem, 5vw, 3rem) 1.5rem clamp(1.5rem, 5vw, 2.5rem);
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 1.25rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: clamp(2rem, 5vw, 3rem) 1.5rem 0;
+  overflow: hidden;
+}
+
+.projects-mosaic {
+  --mosaic-scale: 1.7208;
+  --mosaic-aspect-pad: 202%;
+  --last-card-bottom: 0.5455;
+  --gap-after-last-tile: 100px;
+  --connect-lift: 40px;
+  position: relative;
+  width: 70%;
+  padding-bottom: var(--mosaic-aspect-pad);
+  max-width: 1920px;
+  margin: 0 auto;
+  margin-bottom: calc(
+    var(--mosaic-aspect-pad) * ((var(--last-card-bottom) * var(--mosaic-scale)) - 1) + var(--gap-after-last-tile) -
+      var(--connect-lift)
+  );
+  transform: scale(var(--mosaic-scale));
+  transform-origin: top center;
 }
 
 @media (max-width: 480px) {
-  .works-grid {
-    grid-template-columns: 1fr;
-    padding: 1.6rem 1.1rem 1.7rem;
-  }
-
-  /* Home cards: switch from portrait to landscape-ish on mobile. */
-  .work-card {
-    aspect-ratio: 4 / 3;
+  .projects-mosaic {
+    --connect-lift: 0px;
   }
 }
 
-@media (min-width: 700px) {
-  .works-grid {
-    gap: 1.5rem;
-    padding: 4rem 2rem 3.25rem;
-  }
-}
-
-.work-card {
-  display: block;
-  position: relative;
+.mosaic-card {
+  position: absolute;
   border-radius: 12px;
   overflow: hidden;
-  aspect-ratio: 3 / 4;
   background: #2a2a2c;
   text-decoration: none;
   color: #fff;
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-.work-card:hover {
-  transform: scale(1.03);
+.mosaic-card:hover {
+  transform: scale(1.02);
   box-shadow: 0 12px 32px rgba(0, 0, 0, 0.4);
 }
 
-.work-card-cover {
+.mosaic-cover {
   position: absolute;
   inset: 0;
-  background: linear-gradient(145deg, #353538 0%, #252528 100%);
   display: block;
+  background: linear-gradient(145deg, #353538 0%, #252528 100%);
 }
 
-.work-card-cover img {
+.mosaic-cover img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   display: block;
 }
 
-.work-card-cta {
+.mosaic-9 .mosaic-cover img {
+  object-position: top center;
+}
+
+.mosaic-cta {
   position: absolute;
+  right: 0;
   bottom: 0;
   left: 0;
-  right: 0;
-  padding: 1rem 1.25rem;
-  background: linear-gradient(to top, rgba(0,0,0,0.85), transparent);
-  font-size: 0.95rem;
-  font-weight: 500;
+  padding: 0.75rem 1rem;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.85), transparent);
   color: var(--accent);
+  font-size: 0.85rem;
+  font-weight: 500;
   opacity: 0;
-  transform: translateY(6px);
+  transform: translateY(4px);
   transition: opacity 0.25s ease, transform 0.25s ease;
 }
 
-.work-card:hover .work-card-cta {
+.mosaic-card:hover .mosaic-cta {
   opacity: 1;
   transform: translateY(0);
 }
 
-/* כפתור All projects — פיל עם מסגרת זוהרת, CTA בהובר */
-.works-cta-wrap {
-  padding: 0 1.5rem 40px;
-  text-align: center;
-  position: relative;
-  z-index: 1;
-}
+.mosaic-1 { left: 16.56%; top: 5.75%; width: 40.57%; height: 8.9%; }
+.mosaic-2 { left: 58.44%; top: 5.75%; width: 23.125%; height: 8.9%; }
+.mosaic-3 { left: 16.4%; top: 15.39%; width: 30.52%; height: 8.9%; }
+.mosaic-4 { left: 47.97%; top: 15.39%; width: 33.59%; height: 8.9%; }
+.mosaic-5 { left: 16.4%; top: 25.03%; width: 35.89%; height: 8.9%; }
+.mosaic-6 { left: 53.49%; top: 25.03%; width: 28.07%; height: 18.54%; }
+.mosaic-7 { left: 16.4%; top: 34.67%; width: 35.89%; height: 8.9%; }
+.mosaic-8 { left: 16.56%; top: 44.31%; width: 31.61%; height: 10.24%; }
+.mosaic-9 { left: 49.69%; top: 44.31%; width: 31.875%; height: 10.24%; }
 
-.btn-all-projects {
-  display: inline-block;
-  padding: 0.75rem 2rem;
-  border-radius: 999px;
-  background: transparent;
-  color: var(--accent);
-  font-size: 0.95rem;
-  font-weight: 500;
-  text-decoration: none;
-  border: 1px solid rgba(180, 220, 255, 0.45);
-  box-shadow: none;
-  transition: background 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease, color 0.25s ease;
-}
+@media (max-width: 900px) {
+  .projects-mosaic {
+    width: 70%;
+    --mosaic-aspect-pad: 238%;
+    --last-card-bottom: 1.07;
+    padding-bottom: var(--mosaic-aspect-pad);
+    transform: scale(var(--mosaic-scale));
+  }
 
-.btn-all-projects:hover {
-  background: var(--accent-solid);
-  border-color: var(--accent-solid);
-  box-shadow: none;
-  color: #000;
-  transform: scale(1.02);
+  .mosaic-1 { left: 2%; top: 2%; width: 96%; height: 12%; }
+  .mosaic-2 { left: 2%; top: 15%; width: 96%; height: 12%; }
+  .mosaic-3 { left: 2%; top: 28%; width: 96%; height: 12%; }
+  .mosaic-4 { left: 2%; top: 41%; width: 96%; height: 12%; }
+  .mosaic-5 { left: 2%; top: 54%; width: 96%; height: 12%; }
+  .mosaic-6 { left: 2%; top: 67%; width: 96%; height: 14%; }
+  .mosaic-7 { left: 2%; top: 82%; width: 96%; height: 12%; }
+  .mosaic-8 { left: 2%; top: 95%; width: 48%; height: 12%; }
+  .mosaic-9 { left: 52%; top: 95%; width: 46%; height: 12%; }
 }
 
 /* Welcome block (WELCOME + MY NAME IS OREN HEN) */
@@ -731,205 +728,3 @@ body {
   background: #c9b8e0;
 }
 
-/* ========== אודות ========== */
-.about {
-  padding: 4rem 1.5rem;
-  background: #1f1f1f;
-}
-
-.about-inner {
-  max-width: 720px;
-  margin: 0 auto;
-  text-align: center;
-}
-
-.about-title {
-  font-size: clamp(1.75rem, 4vw, 2.75rem);
-  font-weight: 700;
-  color: #7dd3fc;
-  margin-bottom: 1.25rem;
-}
-
-.about-lead {
-  font-size: clamp(1.05rem, 2vw, 1.2rem);
-  color: #fff;
-  margin-bottom: 1rem;
-  line-height: 1.6;
-}
-
-.about-text {
-  color: rgba(255,255,255,0.88);
-  margin-bottom: 1.5rem;
-}
-
-.about-cta {
-  color: #7dd3fc;
-  text-decoration: underline;
-  font-weight: 500;
-  transition: opacity 0.2s ease;
-}
-
-.about-cta:hover {
-  opacity: 0.85;
-}
-
-/* ========== עבודות (גיפים) ========== */
-.works {
-  padding: 4rem 1.5rem 3rem;
-  background: #181818;
-}
-
-.works-inner {
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-.works-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 1rem;
-}
-
-@media (min-width: 700px) {
-  .works-grid {
-    gap: 1.5rem;
-  }
-}
-
-@media (max-width: 500px) {
-  .works-grid {
-    grid-template-columns: 1fr;
-  }
-}
-
-.work-item {
-  border-radius: 12px;
-  overflow: hidden;
-  background: #222;
-}
-
-.work-media {
-  position: relative;
-  aspect-ratio: 4 / 3;
-  overflow: hidden;
-}
-
-.work-media img {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-}
-
-.work-placeholder {
-  display: flex;
-  position: absolute;
-  inset: 0;
-  align-items: center;
-  justify-content: center;
-  background: linear-gradient(135deg, #2a2a2a 0%, #1f1f1f 100%);
-  color: rgba(255,255,255,0.3);
-  font-size: 1rem;
-}
-
-.works-cta-wrap {
-  text-align: center;
-  margin-top: 2rem;
-}
-
-.btn-pill {
-  display: inline-block;
-  padding: 0.6rem 1.5rem;
-  border: 2px solid rgba(255,255,255,0.5);
-  border-radius: 999px;
-  color: #fff;
-  text-decoration: none;
-  font-size: 0.95rem;
-  transition: border-color 0.2s ease, background 0.2s ease;
-}
-
-.btn-pill:hover {
-  border-color: rgba(255,255,255,0.9);
-  background: rgba(255,255,255,0.08);
-}
-
-/* ========== צור קשר + פוטר ========== */
-.contact {
-  padding: 4rem 1.5rem 2rem;
-  background: #e9d5ff;
-}
-
-.contact-inner {
-  max-width: 900px;
-  margin: 0 auto;
-}
-
-.contact-title {
-  font-size: clamp(2rem, 5vw, 3rem);
-  font-weight: 700;
-  color: #1a1a1a;
-  margin-bottom: 2rem;
-}
-
-.contact-columns {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 1.5rem;
-  margin-bottom: 3rem;
-}
-
-@media (min-width: 600px) {
-  .contact-columns {
-    grid-template-columns: repeat(3, 1fr);
-  }
-}
-
-.contact-col h3 {
-  font-size: 1rem;
-  font-weight: 600;
-  color: #374151;
-  margin-bottom: 0.5rem;
-}
-
-.contact-col a {
-  color: #1a1a1a;
-  text-decoration: underline;
-  font-size: 0.95rem;
-}
-
-.contact-col a:hover {
-  opacity: 0.8;
-}
-
-.footer {
-  padding-top: 2rem;
-  border-top: 1px solid rgba(0,0,0,0.1);
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1rem;
-}
-
-.footer-copy {
-  font-size: 0.9rem;
-  color: #4b5563;
-}
-
-.footer-links {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
-}
-
-.footer-links a {
-  color: #374151;
-  text-decoration: none;
-  font-size: 0.9rem;
-}
-
-.footer-links a:hover {
-  text-decoration: underline;
-}

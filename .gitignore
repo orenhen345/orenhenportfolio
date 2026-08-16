@@ -9,3 +9,6 @@ Desktop.ini
 # Node tooling (playwright-visual-compare)
 node_modules/
 package-lock.json
+
+# Raw source file over GitHub's 100MB hard limit — not part of the live site anyway
+raw-sources/chasing-stars/Trailer (1080p).mp4

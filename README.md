@@ -7,15 +7,12 @@
 ## מבנה תיקייה (חובה לפריסה)
 
 ```
-cursor/   (או שם הריפו שלך)
-├── index.html              ← עמוד בית
-├── menu.html               ← תפריט
-├── all-projects.html       ← כל הפרויקטים (מוזאיקה)
-├── work-1.html … work-9.html
-├── media/
+Portfolio/
+├── index.html              ← עמוד בית (כולל את כל 9 העבודות, במוזאיקה)
+├── pages/work-1.html … work-9.html
+├── media/                  ← קוד ונכסי עיצוב של האתר (CSS/JS/אייקונים)
 │   ├── styles.css
-│   ├── all-projects.css
-│   ├── menu.css
+│   ├── home.js             ← לוגיקת דף הבית (וידאו, mute, WELCOME, מארקי)
 │   ├── work-page.css
 │   ├── work-page.js
 │   ├── work-page-url-fix.js   ← תיקון Referrer ל-Vimeo עם ?orenportfolio
@@ -26,9 +23,12 @@ cursor/   (או שם הריפו שלך)
 │   ├── icons/              ← אייקונים למארקי (בית)
 │   ├── FONTS/welcome/      ← פונטים ל־WELCOME (מוגדרים ב־styles.css)
 │   └── pages/…             ← תמונות לפרויקטים ספציפיים (עמודים 1, 3, וכו')
-└── docs/
-    ├── COLORS.md           ← טבלת צבעים
-    └── FIGMA-FRAMES.md     ← איפה נמצאים נתיבי ה־SVG מפיגמה
+├── raw-sources/            ← חומר גלם/עבודה בתהליך, לא חלק מהאתר החי (Premiere, screenshots וכו')
+├── docs/
+│   ├── COLORS.md           ← טבלת צבעים
+│   └── FIGMA-FRAMES.md     ← איפה נמצאים נתיבי ה־SVG מפיגמה
+└── tools/
+    └── playwright-visual-compare/   ← כלי בדיקה מקומי (לא חלק מהאתר)
 ```
 
 **אל תמחקו** את `my_web/` אם אתם רוצים שוידאו, כריכות ופונטים ייטענו בפרודקשן.
@@ -39,10 +39,8 @@ cursor/   (או שם הריפו שלך)
 
 | עמוד | קבצים | תלויות עיקריות |
 |------|--------|-----------------|
-| **בית** `index.html` | `media/styles.css`, `media/icons/menu-icon.css` | `my_web/Oren Showreel.mp4`, `my_web/covers/*` (4 כרטיסים), `my_web/icons/*.svg` (מארקי) |
-| **תפריט** `menu.html` | `media/menu.css`, `media/icons/menu-icon.css` | — (קישורים ל־`index`, `all-projects`) |
-| **כל הפרויקטים** `all-projects.html` | `media/styles.css`, `media/all-projects.css` | `my_web/covers/*` (7 תמונות) |
-| **עבודות 1–9** `work-*.html` | `media/work-page.css`, `work-page.js`, `work-page-url-fix.js` | כריכות ב־`my_web/covers/`, Vimeo (URLs בקוד), תמונות נוספות לפי עמוד |
+| **בית** `index.html` | `media/styles.css`, `media/home.js` | `my_web/Oren Showreel.mp4`, `my_web/covers/*` (9 כרטיסים — כל העבודות), `my_web/icons/*.svg` (מארקי) |
+| **עבודות 1–9** `pages/work-*.html` | `media/work-page.css`, `work-page.js`, `work-page-url-fix.js` | כריכות ב־`my_web/covers/`, Vimeo (URLs בקוד), תמונות נוספות לפי עמוד |
 
 ### Vimeo
 
@@ -87,5 +85,3 @@ git push -u origin main
 ## הערות אופציונליות לפני פרודקשן
 
 1. **גודל ריפו:** קבצי וידאו גדולים ב־`my_web/` — בדקו מגבלות GitHub; אם צריך, אחסון חיצוני (Vimeo/Cloudinary) + עדכון נתיבים.
-2. **בלוק דיבוג ב־`index.html`:** קריאת `fetch` ל־`127.0.0.1` — נכשלת בשקט בפרודקשן; אפשר להסיר את בלוק `#region agent log` אם לא צריך.
-3. **`.cursor/` ולוגים** — לא חובה לפריסה; אפשר להוסיף ל־`.gitignore` (ראו קובץ `.gitignore` בשורש).
