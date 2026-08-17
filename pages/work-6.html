@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Sen:wght@400;700&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="../media/work-page.css?v=12" />
+    <link rel="stylesheet" href="../media/work-page.css?v=21" />
   <link rel="stylesheet" href="../media/icons/home-icon.css" />
 </head>
 <body class="work-page work-4">
@@ -81,48 +81,42 @@
             <path d="M379.327 136.986V0L0 136.986V2192H1920V39.2693L1669.93 136.986V0L1297.57 136.986V0L872.004 136.986V0L379.327 136.986Z" fill="url(#work4PinkGradient)"/>
             <defs>
               <linearGradient id="work4PinkGradient" x1="960" y1="-84.9313" x2="960" y2="3842" gradientUnits="userSpaceOnUse">
-                <stop offset="1" stop-color="#FFB8B8"/>
+                <stop offset="1" stop-color="#edd4c8"/>
               </linearGradient>
             </defs>
           </svg>
           <div class="work-4-frame-overlay">
             <div class="work-4-overlay-stack">
-              <div class="work-4-zigzag-grid">
-                <div class="work-4-frame-slot work-4-frame-slot--video work-4-slot-1">
-                  <iframe
-                    src="https://www.youtube.com/embed/M6aqOlxmvM4?si=lJzvhcqk2BsIl3HE&playsinline=1&modestbranding=1&rel=0&loop=1&playlist=M6aqOlxmvM4"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen"
-                    referrerpolicy="strict-origin-when-cross-origin"
-                    title="YouTube video player"
-                    allowfullscreen
-                  ></iframe>
-                </div>
-                <div class="work-4-frame-slot work-4-frame-slot--video work-4-slot-2">
-                  <iframe
-                    src="https://www.youtube.com/embed/1z2m4RcfzV8?si=p7g1ErwC_nUJRJK0&playsinline=1&modestbranding=1&rel=0&loop=1&playlist=1z2m4RcfzV8"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen"
-                    referrerpolicy="strict-origin-when-cross-origin"
-                    title="YouTube video player"
-                    allowfullscreen
-                  ></iframe>
-                </div>
-                <div class="work-4-frame-slot work-4-frame-slot--video work-4-slot-3">
-                  <iframe
-                    src="https://www.youtube.com/embed/fs168023kFU?si=T9mSX6jOn82egGha&playsinline=1&modestbranding=1&rel=0&loop=1&playlist=fs168023kFU"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen"
-                    referrerpolicy="strict-origin-when-cross-origin"
-                    title="YouTube video player"
-                    allowfullscreen
-                  ></iframe>
-                </div>
-                <div class="work-4-frame-slot work-4-frame-slot--video work-4-slot-4">
-                  <iframe
-                    src="https://www.youtube.com/embed/XBFa9eegMF0?si=K2QaFZxFI_u5RZlF&playsinline=1&modestbranding=1&rel=0&loop=1&playlist=XBFa9eegMF0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen"
-                    referrerpolicy="strict-origin-when-cross-origin"
-                    title="YouTube video player"
-                    allowfullscreen
-                  ></iframe>
+              <div class="work-4-carousel" id="work4Carousel">
+                <div class="work-4-carousel-track">
+                  <div class="work-4-frame-slot work-4-frame-slot--video work-4-slot-1" data-video-id="M6aqOlxmvM4">
+                    <button type="button" class="work-4-video-facade" style="background-image:url('https://img.youtube.com/vi/M6aqOlxmvM4/maxresdefault.jpg')" aria-label="Play video">
+                      <span class="work-4-play-icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z" fill="currentColor"/></svg>
+                      </span>
+                    </button>
+                  </div>
+                  <div class="work-4-frame-slot work-4-frame-slot--video work-4-slot-2" data-video-id="1z2m4RcfzV8">
+                    <button type="button" class="work-4-video-facade" style="background-image:url('https://img.youtube.com/vi/1z2m4RcfzV8/maxresdefault.jpg')" aria-label="Play video">
+                      <span class="work-4-play-icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z" fill="currentColor"/></svg>
+                      </span>
+                    </button>
+                  </div>
+                  <div class="work-4-frame-slot work-4-frame-slot--video work-4-slot-3" data-video-id="fs168023kFU">
+                    <button type="button" class="work-4-video-facade" style="background-image:url('https://img.youtube.com/vi/fs168023kFU/maxresdefault.jpg')" aria-label="Play video">
+                      <span class="work-4-play-icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z" fill="currentColor"/></svg>
+                      </span>
+                    </button>
+                  </div>
+                  <div class="work-4-frame-slot work-4-frame-slot--video work-4-slot-4" data-video-id="XBFa9eegMF0">
+                    <button type="button" class="work-4-video-facade" style="background-image:url('https://img.youtube.com/vi/XBFa9eegMF0/maxresdefault.jpg')" aria-label="Play video">
+                      <span class="work-4-play-icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z" fill="currentColor"/></svg>
+                      </span>
+                    </button>
+                  </div>
                 </div>
               </div>
               <div class="work-4-connect-wrap">
@@ -204,5 +198,64 @@
 
   <script src="https://player.vimeo.com/api/player.js"></script>
   <script src="../media/work-page.js"></script>
+  <script>
+    (function () {
+      var carousel = document.getElementById('work4Carousel');
+      if (!carousel) return;
+      var slots = Array.prototype.slice.call(carousel.querySelectorAll('.work-4-frame-slot'));
+      var current = -1;
+
+      function stopVideo(slot) {
+        var iframe = slot.querySelector('iframe');
+        if (iframe) iframe.remove();
+        var facade = slot.querySelector('.work-4-video-facade');
+        if (facade) facade.style.display = '';
+      }
+
+      function playVideo(slot) {
+        var facade = slot.querySelector('.work-4-video-facade');
+        if (!facade || slot.querySelector('iframe')) return;
+        var id = slot.getAttribute('data-video-id');
+        var iframe = document.createElement('iframe');
+        iframe.src = 'https://www.youtube.com/embed/' + id + '?autoplay=1&rel=0&modestbranding=1&playsinline=1';
+        iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen';
+        iframe.referrerPolicy = 'strict-origin-when-cross-origin';
+        iframe.title = 'YouTube video player';
+        iframe.allowFullscreen = true;
+        facade.style.display = 'none';
+        slot.appendChild(iframe);
+      }
+
+      function showSlide(index) {
+        var next = (index + slots.length) % slots.length;
+        if (next === current) return;
+        if (current >= 0) stopVideo(slots[current]);
+        current = next;
+        slots.forEach(function (slot, i) {
+          slot.classList.remove('is-center', 'is-left-peek', 'is-right-peek');
+          if (i === current) {
+            slot.classList.add('is-center');
+          } else if (i === (current - 1 + slots.length) % slots.length) {
+            slot.classList.add('is-left-peek');
+          } else if (i === (current + 1) % slots.length) {
+            slot.classList.add('is-right-peek');
+          }
+        });
+      }
+
+      slots.forEach(function (slot, i) {
+        var facade = slot.querySelector('.work-4-video-facade');
+        facade.addEventListener('click', function () {
+          if (i === current) {
+            playVideo(slot);
+          } else {
+            showSlide(i);
+          }
+        });
+      });
+
+      showSlide(0);
+    })();
+  </script>
 </body>
 </html>

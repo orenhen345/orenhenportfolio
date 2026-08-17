@@ -1397,13 +1397,22 @@ body.work-page.work-3 {
   max-width: 100%;
 }
 
-.work-page.work-4 .work-4-zigzag-grid {
+.work-page.work-4 .work-4-carousel {
+  position: relative;
+  width: 100vw;
+  max-width: none;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
   display: flex;
-  flex-direction: column;
-  align-items: stretch;
-  gap: clamp(1.25rem, 3.5vw, 2.25rem);
-  width: min(100%, 960px);
+  align-items: center;
+  justify-content: center;
   pointer-events: auto;
+}
+
+.work-page.work-4 .work-4-carousel-track {
+  position: relative;
+  width: min(100%, 960px);
+  aspect-ratio: 16 / 9;
 }
 
 .work-page.work-4 .work-4-connect-wrap {
@@ -1413,20 +1422,43 @@ body.work-page.work-3 {
   overflow: visible;
 }
 
+/* Three layers: the active video centered on top, and its neighbors peeking
+   out from behind its left/right edges — click a peek to bring it forward. */
 .work-page.work-4 .work-4-frame-slot {
-  width: min(100%, 480px);
-  aspect-ratio: 16 / 9;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 100%;
+  height: 100%;
   border-radius: 14px;
-  border: 2px solid rgba(255, 255, 255, 0.5);
-  background: rgba(255, 255, 255, 0.72);
   overflow: hidden;
-  flex-shrink: 0;
+  background: #0a0a0a;
+  display: none;
+  transform: translateX(-50%);
+  transition: transform 0.35s ease, opacity 0.35s ease;
 }
 
-.work-page.work-4 .work-4-frame-slot--video {
-  position: relative;
-  padding: 0;
-  background: #0a0a0a;
+.work-page.work-4 .work-4-frame-slot.is-center {
+  display: block;
+  z-index: 3;
+  opacity: 1;
+  transform: translateX(-50%);
+}
+
+.work-page.work-4 .work-4-frame-slot.is-left-peek,
+.work-page.work-4 .work-4-frame-slot.is-right-peek {
+  display: block;
+  z-index: 1;
+  opacity: 0.45;
+  cursor: pointer;
+}
+
+.work-page.work-4 .work-4-frame-slot.is-left-peek {
+  transform: translateX(-88%) scale(0.7);
+}
+
+.work-page.work-4 .work-4-frame-slot.is-right-peek {
+  transform: translateX(-12%) scale(0.7);
 }
 
 .work-page.work-4 .work-4-frame-slot--video iframe {
@@ -1437,12 +1469,36 @@ body.work-page.work-3 {
   border: 0;
 }
 
-.work-page.work-4 .work-4-frame-slot:nth-child(odd) {
-  align-self: flex-start;
+.work-page.work-4 .work-4-video-facade {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.work-page.work-4 .work-4-frame-slot:nth-child(even) {
-  align-self: flex-end;
+.work-page.work-4 .work-4-play-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: clamp(48px, 6vw, 76px);
+  height: clamp(48px, 6vw, 76px);
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.55);
+  color: #fff;
+}
+
+.work-page.work-4 .work-4-play-icon svg {
+  width: 42%;
+  height: 42%;
+  margin-left: 3px;
 }
 
 /* work-2: .work-2-purple-frame-svg — aspect-ratio 1920/2192 בבלוק work-2-yellow-frame-crop */
@@ -3184,10 +3240,42 @@ body.work-page.work-9 {
    actual description/controls/credits/screenshots are reproduced here directly. */
 .cs-story {
   max-width: 620px;
-  margin: 0 auto 2rem;
+  margin: 0;
   padding: 0 0 0 1.1rem;
   border-left: 3px solid rgba(255, 255, 255, 0.2);
   text-align: left;
+}
+
+/* Jump character stands beside the quote, scaled + cropped using the same
+   alpha-channel measurement as before (visible character = 26.66%-76.86%
+   of the source PNG's height), but at half the line's height instead of
+   the full span, vertically centered — full-height came out oversized and
+   spilled onto the text. */
+.cs-story-row {
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  gap: 1.5rem;
+  max-width: 720px;
+  margin: 0 auto 2rem;
+}
+
+.cs-jump-figure {
+  position: relative;
+  flex-shrink: 0;
+  width: clamp(40px, 5vw, 60px);
+  overflow: visible;
+  transform: translateX(-50px);
+}
+
+.cs-jump-figure img {
+  position: absolute;
+  left: 50%;
+  top: -1.55%;
+  height: 99.61%;
+  width: auto;
+  max-width: none;
+  transform: translateX(-50%);
 }
 
 .cs-story p {
@@ -3230,67 +3318,55 @@ body.work-page.work-9 {
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
 }
 
-.cs-flank-layout {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 1.5rem;
-  max-width: 1300px;
-  margin: 0 auto;
-}
-
 .cs-text-content {
-  flex: 0 1 620px;
-  min-width: 0;
-}
-
-.cs-text-content .cs-story {
-  margin-bottom: 2rem;
+  margin: 0 auto;
 }
 
 .cs-text-content .cs-desc {
   margin-bottom: 0;
 }
 
-.cs-anim-col {
+.cs-anim-row {
   display: flex;
-  flex-direction: column;
   align-items: center;
-  gap: 1rem;
-  flex: 0 0 auto;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  max-width: 1300px;
+  margin: 0 auto 2.5rem;
+}
+
+.cs-anim-row-bottom {
+  align-items: flex-end;
+}
+
+/* Each character's own PNG has different amounts of transparent padding
+   below its feet — bottom-aligning the boxes alone still leaves feet on
+   different lines, so nudge each one down by exactly how much transparent
+   space sits below it. */
+#csAnimWalk {
+  transform: translateY(4px);
+}
+
+#csAnimIdle {
+  transform: translateY(3px);
 }
 
 .cs-anim-frame {
-  width: 110px;
+  width: 165px;
   aspect-ratio: 1 / 1;
   object-fit: contain;
   display: block;
 }
 
-.cs-anim-frame--jump {
-  width: 135px;
-}
-
 .cs-anim-frame--idle {
-  width: 88px;
+  width: 134px;
 }
 
-@media (max-width: 900px) {
-  .cs-flank-layout {
-    flex-direction: column;
-  }
-
-  .cs-text-content {
-    order: 1;
-    flex-basis: auto;
-  }
-
-  .cs-anim-col {
-    order: 2;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
+/* Sized so its apparent (visible-pixel) height matches the other two —
+   the run pose's own artwork fills much less of its square canvas. */
+.cs-anim-frame--run {
+  width: 190px;
 }
 
 .cs-itch-cta {
