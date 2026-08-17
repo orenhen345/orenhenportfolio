@@ -4,6 +4,11 @@
   var videoFrame = document.getElementById('workVideoFrame');
   if (!muteBtn || !muteFrameImg || !videoFrame) return;
 
+  // Same reference element the home page uses (media/home.js): the first SVG
+  // inside the scrolling content, whose top edge marks where the hero video
+  // starts getting covered as you scroll.
+  var workContentSvg = document.querySelector('.work-content-svg');
+
   // Same icon system as the home page (media/home.js): a 22-frame bounce plays
   // once on load to draw the eye, a matching black-icon animation continues
   // seamlessly if clicked mid-bounce, and after that it's just two static
@@ -78,6 +83,31 @@
   // already in its src), no reload. iframe needs enablejsapi=1 in its src for this to work. ---
   var ytPlayer = null;
   var isMuted = true;
+  var playerReady = false;
+
+  // Scroll-linked volume: same linear 0-100% fade as the home page (media/home.js),
+  // driven by YouTube's own setVolume(0-100) — no native <video>/iOS quirks to work
+  // around here since the player API handles that internally.
+  var scrollVolRaf = null;
+
+  function applyScrollVolume() {
+    if (!workContentSvg || !playerReady || isMuted) return;
+    var rect = workContentSvg.getBoundingClientRect();
+    var vh = window.innerHeight || 1;
+    var factor = Math.max(0, Math.min(1, rect.top / vh));
+    try { ytPlayer.setVolume(Math.round(factor * 100)); } catch (_) {}
+  }
+
+  function scheduleScrollVolume() {
+    if (scrollVolRaf != null) return;
+    scrollVolRaf = window.requestAnimationFrame(function() {
+      scrollVolRaf = null;
+      applyScrollVolume();
+    });
+  }
+
+  window.addEventListener('scroll', scheduleScrollVolume, { passive: true });
+  window.addEventListener('resize', scheduleScrollVolume, { passive: true });
 
   function loadYouTubeApiAndAttach() {
     function attach() {
@@ -85,6 +115,8 @@
         events: {
           onReady: function() {
             if (isMuted) { ytPlayer.mute(); } else { ytPlayer.unMute(); }
+            playerReady = true;
+            applyScrollVolume();
           }
         }
       });
@@ -113,6 +145,7 @@
     if (ytPlayer) {
       if (isMuted) { ytPlayer.mute(); } else { ytPlayer.unMute(); }
     }
+    applyScrollVolume();
 
     if (!isMuted && hollowLoopActive) {
       finishIntoBlackTail();
