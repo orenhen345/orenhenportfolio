@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Sen:wght@400;700&family=Saira:wght@400;700&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="../media/work-page.css" />
+    <link rel="stylesheet" href="../media/work-page.css?v=12" />
   <link rel="stylesheet" href="../media/icons/home-icon.css" />
   <script src="../media/work-page.js" defer></script>
   <script src="../media/work-mute.js" defer></script>
@@ -81,47 +81,42 @@
             <div class="cs-title-anim" role="img" aria-label="Chasing Stars — animated title logo">
               <img id="csTitleFrame" src="../my_web/pages/chasing-stars/opening/CS BACK_00000.png" alt="Chasing Stars — animated title logo" />
             </div>
-            <p class="words-about">A project created with my classmates during the Game Lab course.<br><br>This is an exciting, funny, and highly emotional two-player game! You can learn more and download the game on Itch.io.</p>
+            <p class="words-about">Developed collaboratively during the Game Lab course, this project is an engaging, humorous, and emotional two-player experience.<br><br>My role centered on the entire animation pipeline—authoring all keyframe animations, setting up the rigs, and handling the in-engine animation state machines and implementation to ensure responsive gameplay.<br><br>Learn more and play the game on Itch.io.</p>
           </div>
         </section>
         <div class="work-content-fill" aria-hidden="true"></div>
 
         <div class="cs-body">
-          <blockquote class="cs-story">
-            <p>The sun is setting, the lights are flashing, and the best paparazzi agency in town is almost out of money&hellip;</p>
-            <p>With only one camera left and two photographers still on payroll, your boss has come up with a perfectly reasonable solution.</p>
-            <p><strong>Fight over it.</strong></p>
-            <p>Luckily, the city's biggest celebrity, <strong>HER</strong>, is out in public, and one good scandal might be enough to save your ass.</p>
-          </blockquote>
+          <div class="cs-flank-layout">
+            <div class="cs-anim-col cs-anim-col-left">
+              <img class="cs-anim-frame cs-anim-frame--jump" id="csAnimJump" src="../my_web/pages/chasing-stars/animation/big/קפיצה/קפיצה_00000.png" alt="Jump animation" />
+              <img class="cs-anim-frame" id="csAnimWalk" src="../my_web/pages/chasing-stars/animation/skiny/הולך/צלם רזה הולך_00000.png" alt="Walk animation" />
+              <img class="cs-anim-frame cs-anim-frame--idle" id="csAnimIdle" src="../my_web/pages/chasing-stars/animation/skiny/עומד/צלם רזה עומד _00000.png" alt="Idle animation" />
+              <img class="cs-anim-frame" id="csAnimRun" src="../my_web/pages/chasing-stars/animation/skiny/רץ/צלם רזה רץ_00000.png" alt="Run animation" />
+            </div>
 
-          <p class="cs-desc"><strong>Chasing Stars</strong> is a competitive multiplayer platform fighter in which two photographers battle for control of a single camera while chasing <strong>HER</strong> across the chaotic streets of HOLLYHER.<br><br>Be the first photographer to capture five pictures of <strong>HER</strong> to save your job. And beware, she's not as nice and delicate as she seems to be.</p>
+            <div class="cs-text-content">
+              <blockquote class="cs-story">
+                <p>The sun is setting, the lights are flashing, and the best paparazzi agency in town is almost out of money&hellip;</p>
+                <p>With only one camera left and two photographers still on payroll, your boss has come up with a perfectly reasonable solution.</p>
+                <p><strong>Fight over it.</strong></p>
+                <p>Luckily, the city's biggest celebrity, <strong>HER</strong>, is out in public, and one good scandal might be enough to save your ass.</p>
+              </blockquote>
+
+              <p class="cs-desc"><strong>Chasing Stars</strong> is a competitive multiplayer platform fighter in which two photographers battle for control of a single camera while chasing <strong>HER</strong> across the chaotic streets of HOLLYHER.<br><br>Be the first photographer to capture five pictures of <strong>HER</strong> to save your job. And beware, she's not as nice and delicate as she seems to be.</p>
+            </div>
+
+            <div class="cs-anim-col cs-anim-col-right">
+              <img class="cs-anim-frame" id="csAnimCelebrate" src="../my_web/pages/chasing-stars/animation/celeb/גברת_00006.png" alt="Celebration animation" />
+              <img class="cs-anim-frame" id="csAnimSnap" src="../my_web/pages/chasing-stars/animation/celeb/נקישה באצבעות/גברת_00005_00000.png" alt="Finger snap animation" />
+              <img class="cs-anim-frame" id="csAnimDraw" src="../my_web/pages/chasing-stars/animation/celeb/נקישה באצבעות/שליפה/גברת_00000.png" alt="Draw animation" />
+            </div>
+          </div>
 
           <div class="cs-screens">
             <img src="../my_web/pages/chasing-stars/screenshot-1.png" alt="Chasing Stars gameplay screenshot 1" />
             <img src="../my_web/pages/chasing-stars/screenshot-2.png" alt="Chasing Stars gameplay screenshot 2" />
             <img src="../my_web/pages/chasing-stars/screenshot-3.png" alt="Chasing Stars gameplay screenshot 3" />
-          </div>
-
-          <div class="cs-controls">
-            <h3 class="cs-subhead">Controls</h3>
-            <p class="cs-controls-note">(Playing with a controller is recommended)</p>
-            <div class="cs-controls-cols">
-              <div class="cs-controls-col">
-                <h4>Scum (P1)</h4>
-                <p>WASD — Move<br>E — Pick Up / Drop Item<br>Q — Attack / Use Item</p>
-              </div>
-              <div class="cs-controls-col">
-                <h4>Slizball (P2)</h4>
-                <p>Arrow Keys — Move<br>Right Shift — Pick Up / Drop Item<br>? — Attack / Use Item</p>
-              </div>
-            </div>
-          </div>
-
-          <div class="cs-credits">
-            <h3 class="cs-subhead">Credits</h3>
-            <p>Art &amp; Design by Ori Perez<br>Animation &amp; Motion design by Oren Hen<br>Programming by Alon Ofek and Yedidya Mayor<br>Original soundtrack by Mari Bordeaux</p>
-            <p>Created at "Game Lab" Course, a collaborative effort between the Bezalel Academy of Arts and the Hebrew University Computer Science Department, 2026.</p>
-            <p>Special thanks to our instructors Gideon Rimmer, Danielle Elias, Omer Zadok, and course assistant Omry Mor for guiding the development process.</p>
           </div>
 
           <a class="cs-itch-cta" href="https://oriperez.itch.io/chasing-stars" target="_blank" rel="noopener noreferrer">Play &amp; download on itch.io ↗</a>
@@ -150,7 +145,7 @@
           <section class="home-contact-frame" aria-label="About and contact">
             <svg class="home-contact-bg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 3395 2093" fill="none" preserveAspectRatio="none" aria-hidden="true">
               <rect x="0" y="0" width="3395" height="2093" fill="#F7F0C6" />
-              <path d="M453.685 402C441.991 117.945 767.112 0 767.112 0H2775.61C2775.61 0 2879.11 65 2827.18 203.5C2751.5 405.352 2602.18 527.5 2602.18 527.5C2602.18 527.5 3003.21 589.795 3032.68 827C3063.81 1077.55 2458.68 1124.5 2458.68 1124.5C2458.68 1124.5 3495.53 1177.65 3386.68 1563.5C3300.86 1867.76 2493.68 1958 2493.68 1958C2493.68 1958 3122.61 1985 3143.61 2093.5H342.112C440.858 1859.39 857.185 1726.5 857.185 1726.5C857.185 1726.5 81.9585 1712.41 7.18458 1358.5C-82.414 934.427 695.612 891.5 695.612 891.5C695.612 891.5 465.853 697.604 453.685 402Z" fill="#FF3232" />
+              <path d="M453.685 402C441.991 117.945 767.112 0 767.112 0H2775.61C2775.61 0 2879.11 65 2827.18 203.5C2751.5 405.352 2602.18 527.5 2602.18 527.5C2602.18 527.5 3003.21 589.795 3032.68 827C3063.81 1077.55 2458.68 1124.5 2458.68 1124.5C2458.68 1124.5 3495.53 1177.65 3386.68 1563.5C3300.86 1867.76 2493.68 1958 2493.68 1958C2493.68 1958 3122.61 1985 3143.61 2093.5H342.112C440.858 1859.39 857.185 1726.5 857.185 1726.5C857.185 1726.5 81.9585 1712.41 7.18458 1358.5C-82.414 934.427 695.612 891.5 695.612 891.5C695.612 891.5 465.853 697.604 453.685 402Z" fill="#ff806f" />
             </svg>
 
             <div class="home-contact-inner">
@@ -206,6 +201,37 @@
         i = (i + 1) % frames.length;
         img.src = frames[i];
       }, 1000 / FPS);
+    })();
+  </script>
+
+  <script>
+    (function () {
+      var BASE = '../my_web/pages/chasing-stars/animation/';
+      var FPS = 15;
+
+      function startFrameLoop(imgId, folder, prefix, count, startIndex) {
+        var img = document.getElementById(imgId);
+        if (!img) return;
+        var frames = [];
+        for (var i = 0; i < count; i++) {
+          var n = String(startIndex + i).padStart(5, '0');
+          frames.push(BASE + folder + prefix + n + '.png');
+        }
+        frames.forEach(function (src) { var pre = new Image(); pre.src = src; });
+        var idx = 0;
+        setInterval(function () {
+          idx = (idx + 1) % frames.length;
+          img.src = frames[idx];
+        }, 1000 / FPS);
+      }
+
+      startFrameLoop('csAnimJump', 'big/קפיצה/', 'קפיצה_', 12, 0);
+      startFrameLoop('csAnimWalk', 'skiny/הולך/', 'צלם רזה הולך_', 8, 0);
+      startFrameLoop('csAnimIdle', 'skiny/עומד/', 'צלם רזה עומד _', 12, 0);
+      startFrameLoop('csAnimRun', 'skiny/רץ/', 'צלם רזה רץ_', 7, 0);
+      startFrameLoop('csAnimCelebrate', 'celeb/', 'גברת_', 37, 6);
+      startFrameLoop('csAnimSnap', 'celeb/נקישה באצבעות/', 'גברת_00005_', 24, 0);
+      startFrameLoop('csAnimDraw', 'celeb/נקישה באצבעות/שליפה/', 'גברת_', 54, 0);
     })();
   </script>
 </body>

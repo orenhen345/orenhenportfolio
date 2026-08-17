@@ -78,8 +78,6 @@ git push -u origin main
 
 אחר כך: **Settings → Pages → Branch `main` / root** — האתר: `https://USER.github.io/REPO/`
 
-מדריכים נוספים (ישן/פרויקט אחר): `DEPLOY.md`, `PUSH-TO-GITHUB.md`.
-
 ---
 
 ## הערות אופציונליות לפני פרודקשן

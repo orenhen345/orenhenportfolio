@@ -43,16 +43,6 @@
 }
 
 @font-face {
-  font-family: "DandInter";
-  src: url("../my_web/pages/dand/Inter-VariableFont_opsz,wght.ttf") format("truetype");
-}
-
-@font-face {
-  font-family: "DandInstrumentSerif";
-  src: url("../my_web/pages/dand/InstrumentSerif-Regular.ttf") format("truetype");
-}
-
-@font-face {
   font-family: "SHOWG";
   src: url("../my_web/FONTS/welcome/SHOWG.TTF") format("truetype");
 }
@@ -83,11 +73,13 @@
 
 html {
   scroll-behavior: smooth;
+  overflow-x: clip;
 }
 
 body.work-page {
   margin: 0;
   min-height: 100vh;
+  overflow-x: clip;
   background: var(--work-bg);
   color: var(--work-text);
   font-family: "Sen", sans-serif;
@@ -322,10 +314,6 @@ body.work-page.work-3 {
   background: radial-gradient(circle at top, rgba(255, 255, 255, 0.06), transparent 55%);
 }
 
-.work-video-fixed.video-error .work-video-fallback {
-  display: flex;
-}
-
 .work-video-fallback-link {
   color: var(--work-accent);
   text-decoration: none;
@@ -385,6 +373,9 @@ body.work-page.work-3 {
   position: fixed;
   left: 50%;
   bottom: calc(clamp(3.25rem, 8vh, 7rem) + 110px);
+  /* Deliberately lower than .work-scroll-content's z-index: 2 — scrolled-up
+     content is meant to cover this arrow, same as .hero-scroll-hint on the
+     home page (see media/styles.css line ~150: "הפריים השחור יסתיר אותו בגלילה"). */
   z-index: 1;
   color: #fff;
   text-decoration: none;
@@ -462,20 +453,6 @@ body.work-page.work-3 {
   gap: 1rem;
 }
 
-.work-kicker {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.55rem;
-  padding: 0.45rem 0.8rem;
-  border-radius: 999px;
-  border: 1px solid var(--work-line);
-  background: rgba(255, 255, 255, 0.04);
-  font-size: 0.8rem;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-}
-
 .project-name {
   margin: 0;
   font-size: clamp(2.1rem, 5vw, 3.8rem);
@@ -492,45 +469,6 @@ body.work-page.work-3 {
   color: var(--work-muted);
 }
 
-.work-actions {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 0.9rem;
-}
-
-.work-button {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-width: 156px;
-  padding: 0.9rem 1.15rem;
-  border-radius: 999px;
-  border: 1px solid var(--work-line);
-  background: rgba(255, 255, 255, 0.05);
-  color: #fff;
-  text-decoration: none;
-  font-weight: 700;
-}
-
-.work-button:hover {
-  background: rgba(255, 255, 255, 0.1);
-}
-
-.work-thumb {
-  width: min(100%, 520px);
-  border-radius: 18px;
-  overflow: hidden;
-  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.36);
-}
-
-.work-thumb img {
-  display: block;
-  width: 100%;
-  height: auto;
-}
-
-.work-page.work-7 .work-thumb img,
 .work-page.work-7 .work-hero-poster {
   object-position: top center;
   background-position: top center;
@@ -975,7 +913,9 @@ body.work-page.work-3 {
 .work-page.work-4 .work-4-connect-wrap .work-connect-frame .hero-footer-bar,
 .work-page.work-5 .work-5-connect-wrap .work-connect-frame .hero-footer-bar,
 .work-page.work-6 .work-6-connect-wrap .work-connect-frame .hero-footer-bar,
-.work-page.work-7 .work-7-connect-wrap .work-connect-frame .hero-footer-bar {
+.work-page.work-7 .work-7-connect-wrap .work-connect-frame .hero-footer-bar,
+.work-page.work-8 .work-connect-frame .hero-footer-bar,
+.work-page.work-9 .work-connect-frame .hero-footer-bar {
   width: 100%;
   height: auto;
   min-height: clamp(88px, 14vw, 220px);
@@ -1008,7 +948,9 @@ body.work-page.work-3 {
 .work-page.work-4 .work-4-connect-wrap .work-connect-frame .home-contact-frame,
 .work-page.work-5 .work-5-connect-wrap .work-connect-frame .home-contact-frame,
 .work-page.work-6 .work-6-connect-wrap .work-connect-frame .home-contact-frame,
-.work-page.work-7 .work-7-connect-wrap .work-connect-frame .home-contact-frame {
+.work-page.work-7 .work-7-connect-wrap .work-connect-frame .home-contact-frame,
+.work-page.work-8 .work-connect-frame .home-contact-frame,
+.work-page.work-9 .work-connect-frame .home-contact-frame {
   width: 100%;
   flex: 0 0 auto;
   aspect-ratio: unset;
@@ -1025,7 +967,9 @@ body.work-page.work-3 {
 .work-page.work-4 .work-4-connect-wrap .work-connect-frame .home-contact-bg,
 .work-page.work-5 .work-5-connect-wrap .work-connect-frame .home-contact-bg,
 .work-page.work-6 .work-6-connect-wrap .work-connect-frame .home-contact-bg,
-.work-page.work-7 .work-7-connect-wrap .work-connect-frame .home-contact-bg {
+.work-page.work-7 .work-7-connect-wrap .work-connect-frame .home-contact-bg,
+.work-page.work-8 .work-connect-frame .home-contact-bg,
+.work-page.work-9 .work-connect-frame .home-contact-bg {
   position: absolute;
   inset: 0;
   width: 100%;
@@ -1040,7 +984,9 @@ body.work-page.work-3 {
 .work-page.work-4 .work-4-connect-wrap .work-connect-frame .home-contact-inner,
 .work-page.work-5 .work-5-connect-wrap .work-connect-frame .home-contact-inner,
 .work-page.work-6 .work-6-connect-wrap .work-connect-frame .home-contact-inner,
-.work-page.work-7 .work-7-connect-wrap .work-connect-frame .home-contact-inner {
+.work-page.work-7 .work-7-connect-wrap .work-connect-frame .home-contact-inner,
+.work-page.work-8 .work-connect-frame .home-contact-inner,
+.work-page.work-9 .work-connect-frame .home-contact-inner {
   position: relative;
   inset: auto;
   z-index: 2;
@@ -1064,7 +1010,11 @@ body.work-page.work-3 {
 .work-page.work-6 .work-6-connect-wrap .work-connect-frame .home-contact-about,
 .work-page.work-6 .work-6-connect-wrap .work-connect-frame .home-contact-talk,
 .work-page.work-7 .work-7-connect-wrap .work-connect-frame .home-contact-about,
-.work-page.work-7 .work-7-connect-wrap .work-connect-frame .home-contact-talk {
+.work-page.work-7 .work-7-connect-wrap .work-connect-frame .home-contact-talk,
+.work-page.work-8 .work-connect-frame .home-contact-about,
+.work-page.work-8 .work-connect-frame .home-contact-talk,
+.work-page.work-9 .work-connect-frame .home-contact-about,
+.work-page.work-9 .work-connect-frame .home-contact-talk {
   transform: none;
 }
 
@@ -1073,7 +1023,9 @@ body.work-page.work-3 {
 .work-page.work-4 .work-4-connect-wrap .work-connect-frame .home-contact-title,
 .work-page.work-5 .work-5-connect-wrap .work-connect-frame .home-contact-title,
 .work-page.work-6 .work-6-connect-wrap .work-connect-frame .home-contact-title,
-.work-page.work-7 .work-7-connect-wrap .work-connect-frame .home-contact-title {
+.work-page.work-7 .work-7-connect-wrap .work-connect-frame .home-contact-title,
+.work-page.work-8 .work-connect-frame .home-contact-title,
+.work-page.work-9 .work-connect-frame .home-contact-title {
   font-size: clamp(1.5rem, 5.5vw, 4.75rem);
   line-height: 1.05;
 }
@@ -1089,7 +1041,11 @@ body.work-page.work-3 {
 .work-page.work-6 .work-6-connect-wrap .work-connect-frame .home-contact-text,
 .work-page.work-6 .work-6-connect-wrap .work-connect-frame .home-contact-list,
 .work-page.work-7 .work-7-connect-wrap .work-connect-frame .home-contact-text,
-.work-page.work-7 .work-7-connect-wrap .work-connect-frame .home-contact-list {
+.work-page.work-7 .work-7-connect-wrap .work-connect-frame .home-contact-list,
+.work-page.work-8 .work-connect-frame .home-contact-text,
+.work-page.work-8 .work-connect-frame .home-contact-list,
+.work-page.work-9 .work-connect-frame .home-contact-text,
+.work-page.work-9 .work-connect-frame .home-contact-list {
   font-size: clamp(0.9rem, 2.6vw, 1.08rem);
   line-height: 1.55;
   max-width: none;
@@ -1102,7 +1058,9 @@ body.work-page.work-3 {
 .work-page.work-4 .work-4-connect-wrap .work-connect-frame .marquee-item,
 .work-page.work-5 .work-5-connect-wrap .work-connect-frame .marquee-item,
 .work-page.work-6 .work-6-connect-wrap .work-connect-frame .marquee-item,
-.work-page.work-7 .work-7-connect-wrap .work-connect-frame .marquee-item {
+.work-page.work-7 .work-7-connect-wrap .work-connect-frame .marquee-item,
+.work-page.work-8 .work-connect-frame .marquee-item,
+.work-page.work-9 .work-connect-frame .marquee-item {
   font-size: clamp(1.25rem, 5vw, 3.25rem);
 }
 
@@ -1237,7 +1195,11 @@ body.work-page.work-3 {
   המרווח 50px נמצא ב-padding-bottom של .work-6-mint-frame (רקע רציף), לא ב-padding על העטיפה הצרה — כך בזום/סקייל אין “חור” כהה מחוץ ל־840px.
 */
 .work-page.work-6 .work-6-connect-wrap {
-  margin-top: 0;
+  /* .work-content-inner is a flex column with gap:16px — that 16px between this
+     and .work-6-mint-frame is empty (nothing paints it), exposing the dark
+     .work-content-fill behind everything. Cancel it here; the real 50px gap
+     is .work-6-mint-frame's own padding-bottom, which IS covered (see above). */
+  margin-top: -16px;
   flex-shrink: 0;
   width: 100vw;
   max-width: none;
@@ -1940,85 +1902,6 @@ body.work-page.work-3 {
   }
 }
 
-.work-page.work-2 .moofa-purple-frame {
-  width: 100%;
-  height: auto;
-  margin-left: 0;
-  transform: scaleX(1.1);
-  transform-origin: center top;
-}
-
-.work-page.work-2 .moofa-purple-content {
-  position: absolute;
-  top: 200px;
-  left: 50%;
-  z-index: 3;
-  width: min(100%, 980px);
-  transform: translateX(-50%);
-  pointer-events: auto;
-}
-
-.work-page.work-2 .moofa-purple-copy {
-  color: #18191f;
-  text-align: center;
-}
-
-.work-page.work-2 .moofa-purple-title {
-  margin: 0;
-  font-family: Georgia, "Times New Roman", serif;
-  font-size: clamp(2rem, 3.2vw, 3.6rem);
-  font-weight: 400;
-  line-height: 1.05;
-}
-
-.work-page.work-2 .moofa-purple-text {
-  width: min(100%, 420px);
-  margin: 28px auto 0;
-  font-family: "AnimixInter", sans-serif;
-  font-size: clamp(1rem, 1.2vw, 1.25rem);
-  line-height: 1.35;
-}
-
-.work-page.work-2 .moofa-purple-panels {
-  position: relative;
-  width: 100%;
-  min-height: 980px;
-  margin-top: 72px;
-}
-
-.work-page.work-2 .moofa-panel {
-  position: absolute;
-  aspect-ratio: 16 / 9;
-  overflow: hidden;
-  background: #000;
-}
-
-.work-page.work-2 .moofa-panel iframe {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  border: 0;
-}
-
-.work-page.work-2 .moofa-panel-top {
-  top: 0;
-  right: 6%;
-  width: min(44vw, 400px);
-}
-
-.work-page.work-2 .moofa-panel-left {
-  top: 260px;
-  left: 4%;
-  width: min(44vw, 400px);
-}
-
-.work-page.work-2 .moofa-panel-bottom {
-  top: 560px;
-  right: 6%;
-  width: min(44vw, 400px);
-}
-
 /* work-3,4,7: section נמתח עם ה-wrapper. work-6 — min-height:auto (לקסיקון כמו work-5; לא 100% — זנב גלילה). work-2 — clamp */
 .work-page.work-3 .work-content-section,
 .work-page.work-4 .work-content-section,
@@ -2241,7 +2124,7 @@ body.work-page.work-3 {
   position: relative;
   width: 100vw;
   max-width: none;
-  margin-top: clamp(1.5rem, 4vw, 2.5rem);
+  margin-top: calc(clamp(1.5rem, 4vw, 2.5rem) + 180px);
   margin-left: calc(50% - 50vw);
   margin-right: calc(50% - 50vw);
   align-self: stretch;
@@ -2302,7 +2185,11 @@ body.work-page.work-3 {
 
 /* work-7: פריים קונקט — רצף צבע מה-blob */
 .work-page.work-7 .work-7-connect-wrap {
-  margin-top: -1px;
+  /* .work-content-inner is a flex column with gap:16px — that gap before this
+     wrap is empty (nothing paints it), exposing the dark .work-content-fill
+     behind everything. Cancel it here; the wrap's own background-color
+     covers the real visual spacing (padding-top below). */
+  margin-top: -16px;
   padding-top: 100px;
   width: 100vw;
   max-width: none;
@@ -2329,6 +2216,17 @@ body.work-page.work-3 {
   padding-bottom: 0;
   /* בידוד stacking מול .work-content-fill / .work-content-svg — מפחית “הצצות” כהות מאחורי פריים הקונקט בזום */
   isolation: isolate;
+  /* This box's lift (-574px) pulls it up far enough that its empty top space
+     overlaps .work-scroll-hint's fixed screen slot and eats its clicks, even
+     at scroll:0 — unlike other pages, whose .work-content-inner starts lower.
+     pointer-events:none here lets clicks fall through to what's behind; the
+     two children with real interactive content opt back in below. */
+  pointer-events: none;
+}
+
+.work-page.work-6 .work-6-mint-frame,
+.work-page.work-6 .work-6-connect-wrap {
+  pointer-events: auto;
 }
 
 /* כותרת פרויקט + פסקה בלבד — 800px למטה (לא פריים מנטה / קונקט) */
@@ -2439,12 +2337,6 @@ body.work-page.work-3 {
 
 
 @media (max-width: 900px) {
-  .work-pill-all {
-    right: auto;
-    left: 50%;
-    transform: translateX(-50%);
-  }
-
   .work-content-inner {
     transform: translateY(-110px);
   }
@@ -2807,181 +2699,6 @@ body.work-page.work-3 {
 
 }
 
-.work-page.work-2 .dand-frame-22 {
-  position: relative;
-  width: 100vw;
-  min-height: inherit;
-  margin-left: calc(50% - 50vw);
-  overflow: hidden;
-  background: #12161b;
-}
-
-.work-page.work-2 .dand-hero-panel {
-  position: relative;
-  width: 100%;
-  height: clamp(1120px, 88vw, 1450px);
-  z-index: 2;
-  overflow: hidden;
-}
-
-.work-page.work-2 .dand-hero-shape {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  display: block;
-}
-
-.work-page.work-2 .dand-hero-copy {
-  position: absolute;
-  top: 52%;
-  left: 50%;
-  width: min(100%, 1180px);
-  padding: 0 2rem;
-  color: #a79fd9;
-  text-align: center;
-  transform: translate(-50%, -50%);
-}
-
-.work-page.work-2 .dand-hero-title {
-  margin: 0;
-  font-family: "DandInter", sans-serif;
-  font-size: clamp(4.25rem, 8.8vw, 10.625rem);
-  font-weight: 400;
-  line-height: 0.95;
-}
-
-.work-page.work-2 .dand-hero-text {
-  width: min(100%, 860px);
-  margin: clamp(1.5rem, 2.4vw, 2.25rem) auto 0;
-  font-family: "DandInter", sans-serif;
-  font-size: clamp(1.1rem, 2.1vw, 2.5rem);
-  font-weight: 400;
-  line-height: 1.15;
-}
-
-.work-page.work-2 .dand-purple-panel {
-  position: relative;
-  width: 100%;
-  min-height: clamp(1680px, 125vw, 1986px);
-  margin-top: clamp(-430px, -28vw, -320px);
-  z-index: 1;
-  overflow: hidden;
-}
-
-.work-page.work-2 .dand-purple-shape {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  display: block;
-}
-
-.work-page.work-2 .dand-purple-content {
-  position: absolute;
-  top: clamp(260px, 18vw, 308px);
-  left: 50%;
-  z-index: 3;
-  width: min(100%, 1400px);
-  padding: 0 2rem;
-  transform: translateX(-50%);
-}
-
-.work-page.work-2 .dand-purple-copy {
-  color: #12161b;
-  text-align: center;
-}
-
-.work-page.work-2 .dand-purple-title {
-  margin: 0;
-  font-family: "DandInstrumentSerif", serif;
-  font-size: clamp(2.6rem, 5vw, 6rem);
-  font-weight: 400;
-  line-height: 1.05;
-}
-
-.work-page.work-2 .dand-purple-text {
-  width: min(100%, 650px);
-  margin: clamp(1rem, 2vw, 1.9rem) auto 0;
-  font-family: "DandInstrumentSerif", serif;
-  font-size: clamp(1.2rem, 2.5vw, 3rem);
-  font-weight: 400;
-  line-height: 1.16;
-}
-
-.work-page.work-2 .dand-video-grid {
-  position: relative;
-  width: min(100%, 1380px);
-  height: clamp(980px, 80vw, 1286px);
-  margin: clamp(88px, 7vw, 140px) auto 0;
-}
-
-.work-page.work-2 .dand-video-card {
-  position: absolute;
-  width: clamp(220px, 34.6vw, 664px);
-  aspect-ratio: 16 / 9;
-  overflow: hidden;
-  border-radius: 20px;
-  background: #000;
-  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.18);
-}
-
-.work-page.work-2 .dand-video-card iframe {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  border: 0;
-}
-
-.work-page.work-2 .dand-video-card-top {
-  top: 0;
-  right: 0;
-}
-
-.work-page.work-2 .dand-video-card-left {
-  top: clamp(320px, 26vw, 451px);
-  left: 0;
-}
-
-.work-page.work-2 .dand-video-card-bottom {
-  top: clamp(640px, 52vw, 897px);
-  right: 0;
-}
-
-@media (max-width: 900px) {
-  .work-page.work-2 .dand-hero-panel {
-    height: 980px;
-  }
-
-  .work-page.work-2 .dand-purple-panel {
-    min-height: 1480px;
-    margin-top: -320px;
-  }
-
-  .work-page.work-2 .dand-purple-content {
-    top: 220px;
-  }
-
-  .work-page.work-2 .dand-video-grid {
-    width: min(100%, 720px);
-    height: 920px;
-  }
-
-  .work-page.work-2 .dand-video-card {
-    width: min(44vw, 320px);
-    border-radius: 14px;
-  }
-
-  .work-page.work-2 .dand-video-card-left {
-    top: 260px;
-  }
-
-  .work-page.work-2 .dand-video-card-bottom {
-    top: 520px;
-  }
-}
-
 @media (max-width: 900px) {
   .work-video-fixed {
     position: relative;
@@ -3075,7 +2792,7 @@ body.work-page.work-8 {
 
 .work-page.work-8 .project-name,
 .work-page.work-8 .words-about {
-  color: #ff9472;
+  color: #ffffff;
   text-align: center;
   font-family: "Inter", sans-serif;
 }
@@ -3169,12 +2886,6 @@ body.work-page.work-8 {
   width: 100%;
 }
 
-.sunset-confetti-bottom {
-  bottom: 0;
-  left: 0;
-  width: 100%;
-}
-
 .sunset-confetti svg {
   display: block;
   width: 100%;
@@ -3184,6 +2895,13 @@ body.work-page.work-8 {
 /* Container ratio must match the Figma rectangle (1695.6 x 1150.1), NOT the raw
    texture asset's own natural size (1920x1080) — otherwise the text-position
    percentages below (read from Figma) land in the wrong spot. */
+.sunset-illustrations-group {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  margin-top: -140px;
+}
+
 .sunset-process-blob {
   position: relative;
   width: 100%;
@@ -3276,32 +2994,7 @@ body.work-page.work-8 {
   object-fit: contain;
 }
 
-.sunset-placeholder-label {
-  font-family: "Sen", sans-serif;
-  font-size: 0.6rem;
-  color: rgba(18, 22, 27, 0.55);
-  word-break: break-word;
-  padding: 0 0.3rem;
-  text-align: center;
-}
-
 /* Rectangle 20 in Figma — sits at the top of the "Process & Concept Art" mosaic. */
-.sunset-video-block {
-  width: 100%;
-  max-width: 400px;
-  aspect-ratio: 652 / 367;
-  margin: 0 auto;
-  border-radius: 10px;
-  overflow: hidden;
-}
-
-.sunset-video-block iframe {
-  display: block;
-  width: 100%;
-  height: 100%;
-  border: 0;
-}
-
 /* Mountain scene — full composition (mountain + 7 cloud puffs + 2 house photos +
    "location" label) as ONE absolutely-positioned group, at the exact percentages
    from Figma's Frame 36 (107:308). Each element sets both width AND height inline
@@ -3360,20 +3053,6 @@ body.work-page.work-8 {
   color: #f7d9a6;
 }
 
-.sunset-outro-edge {
-  position: relative;
-  display: block;
-  width: 100%;
-  height: auto;
-  aspect-ratio: 1920 / 727;
-}
-
-.sunset-outro-edge svg {
-  display: block;
-  width: 100%;
-  height: 100%;
-}
-
 .sunset-content > .work-connect-frame {
   align-self: stretch;
   /* Cancels .sunset-content's 30px flex gap right before this element — that gap
@@ -3426,6 +3105,14 @@ body.work-page.work-9 {
   position: relative;
   min-height: auto;
   margin-bottom: 0;
+}
+
+/* .work-connect-frame's generic rule (line ~1633) gives every page a
+   margin-top: 50px — space with nothing painting it, which reveals the black
+   .work-content-fill layer behind it. cs-body already has its own
+   padding-bottom: 60px for breathing room, so it's covered by real content. */
+.work-page.work-9 .work-connect-frame {
+  margin-top: 0;
 }
 
 .work-page.work-9 .work-content-svg {
@@ -3543,65 +3230,67 @@ body.work-page.work-9 {
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
 }
 
-.cs-subhead {
-  margin: 0 0 0.5rem;
-  font-family: "Rubik Mono One", sans-serif;
-  font-size: 1.1rem;
-  color: #ff9fc0;
-}
-
-.cs-controls {
-  max-width: 500px;
-  margin: 0 auto 2.75rem;
-}
-
-.cs-controls-note {
-  margin: 0 0 1.25rem;
-  font-family: "Saira", sans-serif;
-  font-size: 0.85rem;
-  font-style: italic;
-  color: rgba(255, 255, 255, 0.55);
-}
-
-.cs-controls-cols {
+.cs-flank-layout {
   display: flex;
+  align-items: center;
   justify-content: center;
-  gap: 2.5rem;
-  flex-wrap: wrap;
-  text-align: left;
+  gap: 1.5rem;
+  max-width: 1300px;
+  margin: 0 auto;
 }
 
-.cs-controls-col h4 {
-  margin: 0 0 0.5rem;
-  font-family: "Saira", sans-serif;
-  font-weight: 700;
-  color: #fff;
-  font-size: 0.95rem;
+.cs-text-content {
+  flex: 0 1 620px;
+  min-width: 0;
 }
 
-.cs-controls-col p {
-  margin: 0;
-  font-family: "Saira", sans-serif;
-  color: rgba(255, 255, 255, 0.75);
-  font-size: 0.88rem;
-  line-height: 1.7;
+.cs-text-content .cs-story {
+  margin-bottom: 2rem;
 }
 
-.cs-credits {
-  max-width: 500px;
-  margin: 0 auto 2.75rem;
-}
-
-.cs-credits p {
-  margin: 0 0 1rem;
-  font-family: "Saira", sans-serif;
-  color: rgba(255, 255, 255, 0.75);
-  font-size: 0.88rem;
-  line-height: 1.7;
-}
-
-.cs-credits p:last-child {
+.cs-text-content .cs-desc {
   margin-bottom: 0;
+}
+
+.cs-anim-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  flex: 0 0 auto;
+}
+
+.cs-anim-frame {
+  width: 110px;
+  aspect-ratio: 1 / 1;
+  object-fit: contain;
+  display: block;
+}
+
+.cs-anim-frame--jump {
+  width: 135px;
+}
+
+.cs-anim-frame--idle {
+  width: 88px;
+}
+
+@media (max-width: 900px) {
+  .cs-flank-layout {
+    flex-direction: column;
+  }
+
+  .cs-text-content {
+    order: 1;
+    flex-basis: auto;
+  }
+
+  .cs-anim-col {
+    order: 2;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
 }
 
 .cs-itch-cta {
