@@ -26,6 +26,16 @@
     return 'media/icons/black icon animation/Speaker-2--Streamline-Plump_' + String(i).padStart(5, '0') + '.png';
   }
 
+  // Swapping img.src every ~41ms (24fps) is fine on localhost but over a real
+  // network each swap aborts the previous frame's still-in-flight request —
+  // the animation looks broken/stuck even though it lands on the right icon
+  // at the end. Preloading every frame once means later src swaps just hit
+  // the browser cache instead of the network.
+  for (var _pf = 0; _pf < MUTE_FRAME_COUNT; _pf++) {
+    new Image().src = hollowFramePath(_pf);
+    new Image().src = blackFramePath(_pf);
+  }
+
   function startMuteFrameLoop() {
     if (muteFrameTimer || !muteFrameImg) return;
     hollowLoopActive = true;
