@@ -474,15 +474,7 @@ body.work-page.work-3 {
   background-position: top center;
 }
 
-.work-page.work-1 .work-content-wrapper,
-.work-page.work-2 .work-content-wrapper,
-.work-page.work-3 .work-content-wrapper,
-.work-page.work-4 .work-content-wrapper,
-.work-page.work-5 .work-content-wrapper,
-.work-page.work-6 .work-content-wrapper,
-.work-page.work-7 .work-content-wrapper,
-.work-page.work-8 .work-content-wrapper,
-.work-page.work-9 .work-content-wrapper {
+.work-page .work-content-wrapper {
   margin-top: calc(-33vh + 280px);
 }
 
@@ -498,27 +490,11 @@ body.work-page.work-3 {
   padding-bottom: 3.25rem;
 }
 
-.work-page.work-1 .work-top-arrows,
-.work-page.work-2 .work-top-arrows,
-.work-page.work-3 .work-top-arrows,
-.work-page.work-4 .work-top-arrows,
-.work-page.work-5 .work-top-arrows,
-.work-page.work-6 .work-top-arrows,
-.work-page.work-7 .work-top-arrows,
-.work-page.work-8 .work-top-arrows,
-.work-page.work-9 .work-top-arrows {
+.work-page .work-top-arrows {
   gap: 0.7rem;
 }
 
-.work-page.work-1 .work-arrow-link,
-.work-page.work-2 .work-arrow-link,
-.work-page.work-3 .work-arrow-link,
-.work-page.work-4 .work-arrow-link,
-.work-page.work-5 .work-arrow-link,
-.work-page.work-6 .work-arrow-link,
-.work-page.work-7 .work-arrow-link,
-.work-page.work-8 .work-arrow-link,
-.work-page.work-9 .work-arrow-link {
+.work-page .work-arrow-link {
   width: auto;
   height: auto;
   background: transparent;
@@ -528,15 +504,7 @@ body.work-page.work-3 {
   backdrop-filter: none;
 }
 
-.work-page.work-1 .work-arrow-link:hover,
-.work-page.work-2 .work-arrow-link:hover,
-.work-page.work-3 .work-arrow-link:hover,
-.work-page.work-4 .work-arrow-link:hover,
-.work-page.work-5 .work-arrow-link:hover,
-.work-page.work-6 .work-arrow-link:hover,
-.work-page.work-7 .work-arrow-link:hover,
-.work-page.work-8 .work-arrow-link:hover,
-.work-page.work-9 .work-arrow-link:hover {
+.work-page .work-arrow-link:hover {
   background: transparent;
   opacity: 0.8;
 }
@@ -876,7 +844,8 @@ body.work-page.work-3 {
   z-index: 3;
 }
 
-/* פריים קונקט — work-2,3,4,5,6,7 (full-bleed, גובה לפי תוכן) */
+/* פריים קונקט — work-1,2,3,4,5,6,7 (full-bleed, גובה לפי תוכן); margin-top שונה לכל אחד, ראה כללים ספציפיים למטה */
+.work-page.work-1 .animix-yellow-content > .work-connect-frame,
 .work-page.work-2 .work-2-connect-wrap .work-connect-frame,
 .work-page.work-3 .cyan-project-content > .work-connect-frame,
 .work-page.work-4 .work-4-connect-wrap .work-connect-frame,
@@ -904,164 +873,12 @@ body.work-page.work-3 {
   z-index: 1;
 }
 
+.work-page.work-1 .animix-yellow-content > .work-connect-frame {
+  margin-top: 22px;
+}
+
 .work-page.work-3 .cyan-project-content > .work-connect-frame {
   margin-top: 50px;
-}
-
-.work-page.work-2 .work-2-connect-wrap .work-connect-frame .hero-footer-bar,
-.work-page.work-3 .cyan-project-content > .work-connect-frame .hero-footer-bar,
-.work-page.work-4 .work-4-connect-wrap .work-connect-frame .hero-footer-bar,
-.work-page.work-5 .work-5-connect-wrap .work-connect-frame .hero-footer-bar,
-.work-page.work-6 .work-6-connect-wrap .work-connect-frame .hero-footer-bar,
-.work-page.work-7 .work-7-connect-wrap .work-connect-frame .hero-footer-bar,
-.work-page.work-8 .work-connect-frame .hero-footer-bar,
-.work-page.work-9 .work-connect-frame .hero-footer-bar {
-  width: 100%;
-  height: auto;
-  min-height: clamp(88px, 14vw, 220px);
-  max-height: none;
-  flex-shrink: 0;
-  overflow: hidden;
-}
-
-.work-page.work-2 .work-2-connect-wrap .work-connect-frame .hero-footer-bar-marquee,
-.work-page.work-3 .cyan-project-content > .work-connect-frame .hero-footer-bar-marquee,
-.work-page.work-4 .work-4-connect-wrap .work-connect-frame .hero-footer-bar-marquee,
-.work-page.work-5 .work-5-connect-wrap .work-connect-frame .hero-footer-bar-marquee,
-.work-page.work-6 .work-6-connect-wrap .work-connect-frame .hero-footer-bar-marquee,
-.work-page.work-7 .work-7-connect-wrap .work-connect-frame .hero-footer-bar-marquee {
-  overflow: hidden;
-  padding-inline: clamp(0.5rem, 2vw, 1.25rem);
-}
-
-.work-page.work-2 .work-2-connect-wrap .work-connect-frame .hero-footer-bar-marquee-inner,
-.work-page.work-3 .cyan-project-content > .work-connect-frame .hero-footer-bar-marquee-inner,
-.work-page.work-4 .work-4-connect-wrap .work-connect-frame .hero-footer-bar-marquee-inner,
-.work-page.work-5 .work-5-connect-wrap .work-connect-frame .hero-footer-bar-marquee-inner,
-.work-page.work-6 .work-6-connect-wrap .work-connect-frame .hero-footer-bar-marquee-inner,
-.work-page.work-7 .work-7-connect-wrap .work-connect-frame .hero-footer-bar-marquee-inner {
-  align-items: center;
-}
-
-.work-page.work-2 .work-2-connect-wrap .work-connect-frame .home-contact-frame,
-.work-page.work-3 .cyan-project-content > .work-connect-frame .home-contact-frame,
-.work-page.work-4 .work-4-connect-wrap .work-connect-frame .home-contact-frame,
-.work-page.work-5 .work-5-connect-wrap .work-connect-frame .home-contact-frame,
-.work-page.work-6 .work-6-connect-wrap .work-connect-frame .home-contact-frame,
-.work-page.work-7 .work-7-connect-wrap .work-connect-frame .home-contact-frame,
-.work-page.work-8 .work-connect-frame .home-contact-frame,
-.work-page.work-9 .work-connect-frame .home-contact-frame {
-  width: 100%;
-  flex: 0 0 auto;
-  aspect-ratio: unset;
-  height: auto;
-  min-height: 0;
-  overflow: hidden;
-  position: relative;
-  z-index: 1;
-  isolation: isolate;
-}
-
-.work-page.work-2 .work-2-connect-wrap .work-connect-frame .home-contact-bg,
-.work-page.work-3 .cyan-project-content > .work-connect-frame .home-contact-bg,
-.work-page.work-4 .work-4-connect-wrap .work-connect-frame .home-contact-bg,
-.work-page.work-5 .work-5-connect-wrap .work-connect-frame .home-contact-bg,
-.work-page.work-6 .work-6-connect-wrap .work-connect-frame .home-contact-bg,
-.work-page.work-7 .work-7-connect-wrap .work-connect-frame .home-contact-bg,
-.work-page.work-8 .work-connect-frame .home-contact-bg,
-.work-page.work-9 .work-connect-frame .home-contact-bg {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  min-height: 100%;
-  display: block;
-  pointer-events: none;
-}
-
-.work-page.work-2 .work-2-connect-wrap .work-connect-frame .home-contact-inner,
-.work-page.work-3 .cyan-project-content > .work-connect-frame .home-contact-inner,
-.work-page.work-4 .work-4-connect-wrap .work-connect-frame .home-contact-inner,
-.work-page.work-5 .work-5-connect-wrap .work-connect-frame .home-contact-inner,
-.work-page.work-6 .work-6-connect-wrap .work-connect-frame .home-contact-inner,
-.work-page.work-7 .work-7-connect-wrap .work-connect-frame .home-contact-inner,
-.work-page.work-8 .work-connect-frame .home-contact-inner,
-.work-page.work-9 .work-connect-frame .home-contact-inner {
-  position: relative;
-  inset: auto;
-  z-index: 2;
-  max-width: min(1200px, 100%);
-  width: 100%;
-  max-height: none;
-  min-height: 0;
-  margin: 0 auto;
-  overflow: visible;
-  box-sizing: border-box;
-}
-
-.work-page.work-2 .work-2-connect-wrap .work-connect-frame .home-contact-about,
-.work-page.work-2 .work-2-connect-wrap .work-connect-frame .home-contact-talk,
-.work-page.work-3 .cyan-project-content > .work-connect-frame .home-contact-about,
-.work-page.work-3 .cyan-project-content > .work-connect-frame .home-contact-talk,
-.work-page.work-4 .work-4-connect-wrap .work-connect-frame .home-contact-about,
-.work-page.work-4 .work-4-connect-wrap .work-connect-frame .home-contact-talk,
-.work-page.work-5 .work-5-connect-wrap .work-connect-frame .home-contact-about,
-.work-page.work-5 .work-5-connect-wrap .work-connect-frame .home-contact-talk,
-.work-page.work-6 .work-6-connect-wrap .work-connect-frame .home-contact-about,
-.work-page.work-6 .work-6-connect-wrap .work-connect-frame .home-contact-talk,
-.work-page.work-7 .work-7-connect-wrap .work-connect-frame .home-contact-about,
-.work-page.work-7 .work-7-connect-wrap .work-connect-frame .home-contact-talk,
-.work-page.work-8 .work-connect-frame .home-contact-about,
-.work-page.work-8 .work-connect-frame .home-contact-talk,
-.work-page.work-9 .work-connect-frame .home-contact-about,
-.work-page.work-9 .work-connect-frame .home-contact-talk {
-  transform: none;
-}
-
-.work-page.work-2 .work-2-connect-wrap .work-connect-frame .home-contact-title,
-.work-page.work-3 .cyan-project-content > .work-connect-frame .home-contact-title,
-.work-page.work-4 .work-4-connect-wrap .work-connect-frame .home-contact-title,
-.work-page.work-5 .work-5-connect-wrap .work-connect-frame .home-contact-title,
-.work-page.work-6 .work-6-connect-wrap .work-connect-frame .home-contact-title,
-.work-page.work-7 .work-7-connect-wrap .work-connect-frame .home-contact-title,
-.work-page.work-8 .work-connect-frame .home-contact-title,
-.work-page.work-9 .work-connect-frame .home-contact-title {
-  font-size: clamp(1.5rem, 5.5vw, 4.75rem);
-  line-height: 1.05;
-}
-
-.work-page.work-2 .work-2-connect-wrap .work-connect-frame .home-contact-text,
-.work-page.work-2 .work-2-connect-wrap .work-connect-frame .home-contact-list,
-.work-page.work-3 .cyan-project-content > .work-connect-frame .home-contact-text,
-.work-page.work-3 .cyan-project-content > .work-connect-frame .home-contact-list,
-.work-page.work-4 .work-4-connect-wrap .work-connect-frame .home-contact-text,
-.work-page.work-4 .work-4-connect-wrap .work-connect-frame .home-contact-list,
-.work-page.work-5 .work-5-connect-wrap .work-connect-frame .home-contact-text,
-.work-page.work-5 .work-5-connect-wrap .work-connect-frame .home-contact-list,
-.work-page.work-6 .work-6-connect-wrap .work-connect-frame .home-contact-text,
-.work-page.work-6 .work-6-connect-wrap .work-connect-frame .home-contact-list,
-.work-page.work-7 .work-7-connect-wrap .work-connect-frame .home-contact-text,
-.work-page.work-7 .work-7-connect-wrap .work-connect-frame .home-contact-list,
-.work-page.work-8 .work-connect-frame .home-contact-text,
-.work-page.work-8 .work-connect-frame .home-contact-list,
-.work-page.work-9 .work-connect-frame .home-contact-text,
-.work-page.work-9 .work-connect-frame .home-contact-list {
-  font-size: clamp(0.9rem, 2.6vw, 1.08rem);
-  line-height: 1.55;
-  max-width: none;
-  overflow-wrap: anywhere;
-  word-wrap: break-word;
-}
-
-.work-page.work-2 .work-2-connect-wrap .work-connect-frame .marquee-item,
-.work-page.work-3 .cyan-project-content > .work-connect-frame .marquee-item,
-.work-page.work-4 .work-4-connect-wrap .work-connect-frame .marquee-item,
-.work-page.work-5 .work-5-connect-wrap .work-connect-frame .marquee-item,
-.work-page.work-6 .work-6-connect-wrap .work-connect-frame .marquee-item,
-.work-page.work-7 .work-7-connect-wrap .work-connect-frame .marquee-item,
-.work-page.work-8 .work-connect-frame .marquee-item,
-.work-page.work-9 .work-connect-frame .marquee-item {
-  font-size: clamp(1.25rem, 5vw, 3.25rem);
 }
 
 /* work-3: same lexicon as work-5 — cyan blob clipped to content; scroll ends at connect bottom */
@@ -1461,6 +1278,25 @@ body.work-page.work-3 {
   transform: translateX(-12%) scale(0.7);
 }
 
+/* Desktop offsets are percentages of the slot's own width (960px), sized to
+   land within a wide viewport's leftover space. On mobile the track is the
+   same width as the screen, so those percentages push the peeks almost
+   entirely off-screen — narrow the track to leave visible gutters, and use
+   smaller offsets sized for that gutter instead. */
+@media (max-width: 900px) {
+  .work-page.work-4 .work-4-carousel-track {
+    width: 74vw;
+  }
+
+  .work-page.work-4 .work-4-frame-slot.is-left-peek {
+    transform: translateX(-75%) scale(0.7);
+  }
+
+  .work-page.work-4 .work-4-frame-slot.is-right-peek {
+    transform: translateX(-25%) scale(0.7);
+  }
+}
+
 .work-page.work-4 .work-4-frame-slot--video iframe {
   position: absolute;
   inset: 0;
@@ -1702,104 +1538,14 @@ body.work-page.work-3 {
   transform: none;
 }
 
-/*
-  work-1: פריים קונקט — Fill container (רוחב מלא לקצוות).
-  align-self: stretch — בלי זה flex (align-items:center) מצמצם רוחב וה-breakout לא עובד.
-  בלוק בהיר: גובה לפי תוכן (בלי aspect-ratio נוקשה), בלי גלילה פנימית.
-*/
-.work-page.work-1 .animix-yellow-content > .work-connect-frame {
-  align-self: stretch;
-  margin-top: 22px;
-  max-height: none;
-  height: auto;
-  overflow: visible;
-  width: 100vw;
-  max-width: none;
-  margin-left: calc(50% - 50vw);
-  margin-right: calc(50% - 50vw);
-  box-sizing: border-box;
-  background-color: #ffffcf;
-  display: flex;
-  flex-direction: column;
-  align-items: stretch;
-}
-
-.work-page.work-1 .work-connect-frame .hero-footer-bar {
+.work-page .work-connect-frame .hero-footer-bar {
+  position: relative;
+  z-index: 1;
   width: 100%;
   height: auto;
   min-height: clamp(88px, 14vw, 220px);
   max-height: none;
   flex-shrink: 0;
-  overflow: hidden; /* marquee — רק אופקי; גובה לא חותך טקסט */
-}
-
-.work-page.work-1 .work-connect-frame .hero-footer-bar-marquee {
-  overflow: hidden;
-  padding-inline: clamp(0.5rem, 2vw, 1.25rem);
-}
-
-.work-page.work-1 .work-connect-frame .hero-footer-bar-marquee-inner {
-  align-items: center;
-}
-
-.work-page.work-1 .work-connect-frame .home-contact-frame {
-  width: 100%;
-  flex: 0 0 auto;
-  aspect-ratio: unset;
-  height: auto;
-  min-height: 0;
-}
-
-.work-page.work-1 .work-connect-frame .home-contact-bg {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  min-height: 100%;
-}
-
-.work-page.work-1 .work-connect-frame .home-contact-inner {
-  position: relative;
-  inset: auto;
-  z-index: 2;
-  max-width: min(1200px, 100%);
-  width: 100%;
-  max-height: none;
-  min-height: 0;
-  margin: 0 auto;
-  overflow: visible;
-  box-sizing: border-box;
-}
-
-.work-page.work-1 .work-connect-frame .home-contact-about,
-.work-page.work-1 .work-connect-frame .home-contact-talk {
-  transform: none; /* בלי translateX — לא חותך מול overflow */
-}
-
-.work-page.work-1 .work-connect-frame .home-contact-title {
-  font-size: clamp(1.5rem, 5.5vw, 4.75rem);
-  line-height: 1.05;
-}
-
-.work-page.work-1 .work-connect-frame .home-contact-text,
-.work-page.work-1 .work-connect-frame .home-contact-list {
-  font-size: clamp(0.9rem, 2.6vw, 1.08rem);
-  line-height: 1.55;
-  max-width: none;
-  overflow-wrap: anywhere;
-  word-wrap: break-word;
-}
-
-.work-page.work-1 .work-connect-frame .marquee-item {
-  font-size: clamp(1.25rem, 5vw, 3.25rem);
-}
-
-.work-page .work-connect-frame .hero-footer-bar {
-  position: relative;
-  z-index: 1;
-  width: 100%;
-  height: 200px;
-  max-height: 22vh;
   margin: 0;
   display: flex;
   align-items: center;
@@ -1811,7 +1557,7 @@ body.work-page.work-3 {
 .work-page .work-connect-frame .hero-footer-bar-marquee {
   width: 100%;
   overflow: hidden;
-  padding: 10px 0;
+  padding: 10px clamp(0.5rem, 2vw, 1.25rem);
 }
 
 .work-page .work-connect-frame .hero-footer-bar-marquee-inner {
@@ -1947,6 +1693,77 @@ body.work-page.work-3 {
 .work-page .work-connect-frame .home-contact-link:hover {
   border-color: #000;
   transform: scale(1.2);
+}
+
+/* Real project pages don't use the cream-card design above (fixed
+   aspect-ratio, grid layout, ±100px slide-in) — every one of them wants
+   the same content-driven sizing instead. This used to be written out
+   twice (once for work-1, once for work-2..9 combined) with identical
+   values; unified into one rule since none of them actually differ.
+   (work-1/Animix is the one page that never picked up overflow:hidden +
+   isolation:isolate — kept that distinction as-is rather than changing it.) */
+.work-page .work-connect-frame .home-contact-frame {
+  width: 100%;
+  flex: 0 0 auto;
+  aspect-ratio: unset;
+  height: auto;
+  min-height: 0;
+}
+
+.work-page.work-2 .work-connect-frame .home-contact-frame,
+.work-page.work-3 .work-connect-frame .home-contact-frame,
+.work-page.work-4 .work-connect-frame .home-contact-frame,
+.work-page.work-5 .work-connect-frame .home-contact-frame,
+.work-page.work-6 .work-connect-frame .home-contact-frame,
+.work-page.work-7 .work-connect-frame .home-contact-frame,
+.work-page.work-8 .work-connect-frame .home-contact-frame,
+.work-page.work-9 .work-connect-frame .home-contact-frame {
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.work-page .work-connect-frame .home-contact-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  min-height: 100%;
+}
+
+.work-page .work-connect-frame .home-contact-inner {
+  position: relative;
+  inset: auto;
+  z-index: 2;
+  max-width: min(1200px, 100%);
+  width: 100%;
+  max-height: none;
+  min-height: 0;
+  margin: 0 auto;
+  overflow: visible;
+  box-sizing: border-box;
+}
+
+.work-page .work-connect-frame .home-contact-about,
+.work-page .work-connect-frame .home-contact-talk {
+  transform: none;
+}
+
+.work-page .work-connect-frame .home-contact-title {
+  font-size: clamp(1.5rem, 5.5vw, 4.75rem);
+  line-height: 1.05;
+}
+
+.work-page .work-connect-frame .home-contact-text,
+.work-page .work-connect-frame .home-contact-list {
+  font-size: clamp(0.9rem, 2.6vw, 1.08rem);
+  line-height: 1.55;
+  max-width: none;
+  overflow-wrap: anywhere;
+  word-wrap: break-word;
+}
+
+.work-page .work-connect-frame .marquee-item {
+  font-size: clamp(1.25rem, 5vw, 3.25rem);
 }
 
 @keyframes marquee-left {
@@ -2552,20 +2369,8 @@ body.work-page.work-3 {
     box-sizing: border-box;
   }
 
-  .work-page.work-1 .animix-yellow-content > .work-connect-frame {
-    width: 100vw;
-    max-width: none;
-    margin-left: calc(50% - 50vw);
-    margin-right: calc(50% - 50vw);
-  }
-
-  .work-page.work-2 .work-2-connect-wrap .work-connect-frame {
-    width: 100vw;
-    max-width: none;
-    margin-left: calc(50% - 50vw);
-    margin-right: calc(50% - 50vw);
-  }
-
+  .work-page.work-1 .animix-yellow-content > .work-connect-frame,
+  .work-page.work-2 .work-2-connect-wrap .work-connect-frame,
   .work-page.work-3 .cyan-project-content > .work-connect-frame,
   .work-page.work-4 .work-4-connect-wrap .work-connect-frame,
   .work-page.work-5 .work-5-connect-wrap .work-connect-frame,
@@ -2581,11 +2386,6 @@ body.work-page.work-3 {
     grid-template-columns: 1fr;
     gap: 2.25rem;
     justify-items: stretch;
-  }
-
-  .work-page .work-connect-frame .home-contact-about,
-  .work-page .work-connect-frame .home-contact-talk {
-    transform: none;
   }
 
   .work-page .work-connect-frame .hero-footer-bar-marquee-inner {
@@ -3266,6 +3066,25 @@ body.work-page.work-9 {
   width: clamp(40px, 5vw, 60px);
   overflow: visible;
   transform: translateX(-50px);
+}
+
+/* Desktop sizes the figure as a % of .cs-story's rendered height (via
+   align-items: stretch), which works at that width but blows up on mobile —
+   the paragraph text wraps to many more lines there, so the tied-together
+   height balloons and the character overlaps the text. Stack the figure
+   above the quote instead, with a fixed height, so it stays a fixed size. */
+@media (max-width: 900px) {
+  .cs-story-row {
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .cs-jump-figure {
+    width: 90px;
+    height: 90px;
+    transform: none;
+  }
 }
 
 .cs-jump-figure img {
