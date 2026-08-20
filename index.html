@@ -13,7 +13,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Wallpoet&family=ZCOOL+KuaiLe&display=swap" rel="stylesheet" />
   <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600&family=Inter:wght@500;600&family=Barlow:wght@500;600&family=Oswald:wght@500;600&family=JetBrains+Mono:wght@500&family=Cormorant+Garamond:wght@500;600&display=swap" rel="stylesheet" />
   <link href="https://fonts.googleapis.com/css2?family=Sen:wght@400;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="media/styles.css?v=3" />
+  <link rel="stylesheet" href="media/styles.css?v=8" />
 </head>
 <body>
   <!-- Fixed video layer: stays in place when you scroll (upper screen = video) -->
@@ -34,6 +34,7 @@
         </svg>
       </div>
     </a>
+    <button type="button" class="hero-video-expand-trigger" aria-label="Expand video"></button>
   </div>
 
   <!-- Spacer: same height as viewport so content starts below the video -->
@@ -42,9 +43,10 @@
   <!-- Scrolling content: this block moves UP over the video and hides it -->
   <main class="hero-scroll-content" id="heroScrollContent">
     <!-- פריים מדויק מהפיגמה — וקטור עם גרדיאנט וחודים בזיגזג -->
-    <svg class="hero-frame-svg" viewBox="0 0 1920 3842" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-      <path d="M379.327 136.986V0L0 136.986V3842H1920V39.2693L1669.93 136.986V0L1297.57 136.986V0L872.004 136.986V0L379.327 136.986Z" fill="#1e1c21"/>
+    <svg class="hero-frame-svg" viewBox="0 0 1920 137" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <path d="M379.327 136.986V0L0 136.986L1920 136.986V39.2693L1669.93 136.986V0L1297.57 136.986V0L872.004 136.986V0L379.327 136.986Z" fill="#1e1c21"/>
     </svg>
+    <div class="hero-frame-fill" aria-hidden="true"></div>
     <section class="hero-welcome">
       <h1 class="hero-welcome-title" aria-label="WELCOME">
         <span class="welcome-letter">W</span><span class="welcome-letter">E</span><span class="welcome-letter">L</span><span class="welcome-letter">C</span><span class="welcome-letter">O</span><span class="welcome-letter">M</span><span class="welcome-letter">E</span>
@@ -198,6 +200,6 @@
 
   </main>
 
-  <script src="media/home.js?v=2" defer></script>
+  <script src="media/home.js?v=3" defer></script>
 </body>
 </html>

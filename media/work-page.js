@@ -25,6 +25,60 @@
 
 })();
 
+// --- Tap the hero video to expand it to fullscreen (mobile only — desktop's
+// .work-video-fixed already covers the full viewport by default); swipe down
+// or tap again to shrink it back to its place at the top of the page.
+(function () {
+  var container = document.querySelector(".work-video-fixed");
+  var trigger = document.querySelector(".work-video-expand-trigger");
+  if (!container || !trigger) return;
+
+  var EXPANDED = "is-expanded";
+  function isMobile() {
+    return window.matchMedia("(max-width: 900px)").matches;
+  }
+
+  function collapse() {
+    container.classList.remove(EXPANDED);
+  }
+
+  trigger.addEventListener("click", function () {
+    if (!isMobile()) return;
+    container.classList.toggle(EXPANDED);
+  });
+
+  var touchStartY = null;
+  container.addEventListener(
+    "touchstart",
+    function (e) {
+      if (!container.classList.contains(EXPANDED)) return;
+      touchStartY = e.touches[0].clientY;
+    },
+    { passive: true }
+  );
+
+  container.addEventListener(
+    "touchmove",
+    function (e) {
+      if (touchStartY === null) return;
+      var dy = e.touches[0].clientY - touchStartY;
+      if (dy > 70) {
+        collapse();
+        touchStartY = null;
+      }
+    },
+    { passive: true }
+  );
+
+  container.addEventListener("touchend", function () {
+    touchStartY = null;
+  });
+
+  window.addEventListener("resize", function () {
+    if (!isMobile()) collapse();
+  });
+})();
+
 // --- Marquee icons: deterministic (not random)
 // Runs on pages that have the blue marquee strip.
 (function () {

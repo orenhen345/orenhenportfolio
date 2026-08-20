@@ -2607,6 +2607,7 @@ body.work-page.work-3 {
     inset: unset;
     width: 100%;
     height: 56.25vw;
+    transition: height 0.35s ease;
   }
 
   .work-video-frame {
@@ -2618,7 +2619,30 @@ body.work-page.work-3 {
     min-width: unset;
     min-height: unset;
     transform: none;
-    pointer-events: auto;
+    pointer-events: none;
+  }
+
+  /* Tap the video to expand it to fullscreen; swipe down (or tap again) to
+     shrink it back. Desktop doesn't need this — .work-video-fixed is
+     already position:fixed;inset:0 there (full viewport by default). */
+  .work-video-expand-trigger {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    border: 0;
+    padding: 0;
+    cursor: pointer;
+  }
+
+  .work-video-fixed.is-expanded {
+    position: fixed;
+    inset: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 9998;
   }
 
   .work-content-wrapper,
