@@ -2645,6 +2645,14 @@ body.work-page.work-3 {
     pointer-events: none;
   }
 
+  /* Same treatment as the home page's .hero-scroll-content: rise slightly
+     onto the video so the empty gaps between the scallop/zigzag notches sit
+     over the video instead of leaving a hairline seam. Kept under the mute
+     button's 24px offset (bottom: 1.5rem) so it stays fully clickable. */
+  .work-scroll-content {
+    margin-top: -20px;
+  }
+
   /* Tap the video to expand it to fullscreen; swipe down (or tap again) to
      shrink it back. Desktop doesn't need this — .work-video-fixed is
      already position:fixed;inset:0 there (full viewport by default). */
@@ -3046,8 +3054,15 @@ body.work-page.work-8 {
    from Oren — Figma still shows the old Animix template text there.
    =================================================================== */
 
+/* Was #12161b — identical to both the scallop SVG's own fill and
+   .work-content-fill below it, so on mobile (where the video is in normal
+   flow, not fixed, and can't show through the notches like on desktop) the
+   scalloped edge had zero contrast and looked completely flat. Using the
+   page's own accent blue (see .cs-body's gradient) makes the notches
+   visible again, matching the other 8 pages' pattern of a body color
+   distinct from the transition shape's fill. */
 body.work-page.work-9 {
-  background-color: #12161b;
+  background-color: #2d1b92;
 }
 
 .work-page.work-9 .work-content-wrapper {
