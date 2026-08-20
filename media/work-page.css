@@ -764,7 +764,7 @@ body.work-page.work-3 {
     to bottom,
     transparent 0,
     transparent clamp(100px, 16vw, 260px),
-    #A79FD9 clamp(100px, 16vw, 260px)
+    #c0c9ed clamp(100px, 16vw, 260px)
   );
   overflow: hidden;
   transform: translateX(-50%);
@@ -807,6 +807,15 @@ body.work-page.work-3 {
   margin: 0 auto;
   pointer-events: auto;
   background-color: transparent;
+}
+
+/* The 340px padding-top above was tuned for desktop, where the purple frame's
+   SVG (aspect-ratio-locked to its width) renders much taller — on a narrow
+   phone the same fixed padding leaves a huge empty gap above the carousel. */
+@media (max-width: 900px) {
+  .work-page.work-2 .work-2-frame-overlay {
+    padding-top: calc(19.5vw + clamp(1rem, 3vw, 1.5rem));
+  }
 }
 
 /* Carousel — same mechanism as work-6/3D Animation and work-5/My Exercises:
@@ -1255,6 +1264,11 @@ body.work-page.work-3 {
 
 .work-page.work-4 .work-4-pink-frame-crop {
   position: relative;
+  /* The zigzag SVG is only a thin decorative band at the very top of its
+     tall viewBox (preserveAspectRatio="xMidYMin meet", not "none") — without
+     a matching fill behind it, everything below that band shows the black
+     .work-content-fill instead of a continuous peach backdrop. */
+  background-color: #edd4c8;
 }
 
 /* Pink blob out of flow — crop height = in-flow overlay; overflow:hidden clips SVG past connect (lexicon, same as work-5). */
@@ -1313,6 +1327,15 @@ body.work-page.work-3 {
   position: relative;
   width: min(100%, 960px);
   aspect-ratio: 16 / 9;
+}
+
+/* The 300px padding-top above was tuned for desktop, where the SVG (aspect-
+   ratio-locked to its width) renders much taller — on a narrow phone the
+   same fixed padding leaves a big empty gap above the carousel. */
+@media (max-width: 900px) {
+  .work-page.work-4 .work-4-frame-overlay {
+    padding-top: calc(19.5vw + clamp(1rem, 3vw, 1.5rem));
+  }
 }
 
 .work-page.work-4 .work-4-connect-wrap {
@@ -3256,6 +3279,35 @@ body.work-page.work-9 {
    the run pose's own artwork fills much less of its square canvas. */
 .cs-anim-frame--run {
   width: 190px;
+}
+
+/* Both animation rows overflow their own row at mobile widths (165–190px
+   frames vs. a ~340px content column), so flex-wrap stacks them into a
+   lopsided pyramid instead of a line. Force one row and shrink the frames
+   to fit — proportions between idle/walk/run stay the same (~20% smaller
+   than their desktop pixel widths at this breakpoint's upper edge, then
+   scaling down further with vw so they never overflow on narrower phones). */
+@media (max-width: 900px) {
+  .cs-anim-row {
+    flex-wrap: nowrap;
+    gap: 0.6rem;
+  }
+
+  .cs-anim-row-top .cs-anim-frame {
+    width: clamp(64px, 24vw, 132px);
+  }
+
+  .cs-anim-frame--idle {
+    width: clamp(50px, 19.5vw, 107px);
+  }
+
+  .cs-anim-row-bottom .cs-anim-frame:not(.cs-anim-frame--idle):not(.cs-anim-frame--run) {
+    width: clamp(60px, 24vw, 132px);
+  }
+
+  .cs-anim-frame--run {
+    width: clamp(70px, 27.6vw, 152px);
+  }
 }
 
 .cs-itch-cta {

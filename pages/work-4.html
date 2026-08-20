@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Sen:wght@400;700&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="../media/work-page.css?v=31" />
+    <link rel="stylesheet" href="../media/work-page.css?v=32" />
   <link rel="stylesheet" href="../media/icons/home-icon.css" />
 </head>
 <body class="work-page work-2">
@@ -255,6 +255,23 @@
       });
 
       showSlide(0);
+
+      // Swipe left/right to move to the neighboring video.
+      var touchStartX = null;
+      var touchStartY = null;
+      carousel.addEventListener('touchstart', function (e) {
+        touchStartX = e.touches[0].clientX;
+        touchStartY = e.touches[0].clientY;
+      }, { passive: true });
+      carousel.addEventListener('touchend', function (e) {
+        if (touchStartX === null) return;
+        var dx = e.changedTouches[0].clientX - touchStartX;
+        var dy = e.changedTouches[0].clientY - touchStartY;
+        touchStartX = null;
+        touchStartY = null;
+        if (Math.abs(dx) < 40 || Math.abs(dx) < Math.abs(dy)) return;
+        showSlide(dx > 0 ? current + 1 : current - 1);
+      });
     })();
   </script>
 </body>

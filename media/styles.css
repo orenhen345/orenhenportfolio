@@ -367,7 +367,7 @@ body {
   .projects-mosaic {
     width: 70%;
     --mosaic-aspect-pad: 238%;
-    --last-card-bottom: 1.07;
+    --last-card-bottom: 1.2;
     padding-bottom: var(--mosaic-aspect-pad);
     transform: scale(var(--mosaic-scale));
   }
@@ -379,8 +379,8 @@ body {
   .mosaic-5 { left: 2%; top: 54%; width: 96%; height: 12%; }
   .mosaic-6 { left: 2%; top: 67%; width: 96%; height: 14%; }
   .mosaic-7 { left: 2%; top: 82%; width: 96%; height: 12%; }
-  .mosaic-8 { left: 2%; top: 95%; width: 48%; height: 12%; }
-  .mosaic-9 { left: 52%; top: 95%; width: 46%; height: 12%; }
+  .mosaic-8 { left: 2%; top: 95%; width: 96%; height: 12%; }
+  .mosaic-9 { left: 2%; top: 108%; width: 96%; height: 12%; }
 }
 
 /* Welcome block (WELCOME + MY NAME IS OREN HEN) */
