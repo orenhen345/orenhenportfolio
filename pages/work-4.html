@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Sen:wght@400;700&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="../media/work-page.css?v=26" />
+    <link rel="stylesheet" href="../media/work-page.css?v=30" />
   <link rel="stylesheet" href="../media/icons/home-icon.css" />
 </head>
 <body class="work-page work-2">
@@ -71,8 +71,8 @@
     <main class="work-scroll-content">
       <div class="work-content-wrapper">
         <section class="work-content-section option-1" id="workContent">
-          <svg class="work-content-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 4309" fill="none" preserveAspectRatio="xMidYMin slice" aria-hidden="true">
-            <path d="M1924 4308.76C1924 4308.76 2171.31 83.6089 1924 51.7575C1827.38 39.313 1683.56 118.257 1683.56 118.257C1683.56 118.257 1547.15 3.67048 1444 6.75751C1318.88 10.5021 1180.5 189.257 1180.5 189.257C1180.5 189.257 1053.83 100.744 960 89.7575C832.424 74.8192 646.5 189.257 646.5 189.257C646.5 189.257 653.712 100.995 631.5 51.7575C561.583 -103.23 205 139.257 205 139.257C205 139.257 87.2617 56.0049 0.500107 51.7575C-248.551 39.5651 0.500107 4308.76 0.500107 4308.76H1924Z" fill="#12161B"/>
+          <svg class="work-content-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 716" fill="none" preserveAspectRatio="none" aria-hidden="true">
+            <path d="M1923.5 715.583V186.083C1923.5 186.083 1616.5 1.58274 1561.5 1.58275C1506.5 1.58276 1463 186.083 1463 186.083C1463 186.083 1192.4 10.8202 1077 1.58278C1017 -3.22008 976 186.083 976 186.083C976 186.083 687.618 39.2231 558.5 1.58278C484.5 -19.9896 458 186.083 458 186.083C458 186.083 163 -10.4171 120 1.58278C36.9176 24.7683 0 186.083 0 186.083V715.583H1923.5Z" fill="#12161B"/>
           </svg>
           <div class="work-content-inner">
             <h1 class="project-name">Dan David</h1>
@@ -86,42 +86,35 @@
             <path d="M375.612 136.986V0L-13 136.986V2192H1954V39.2693L1697.81 136.986V0L1316.33 136.986V0L880.35 136.986V0L375.612 136.986Z" fill="url(#paint0_linear_49_239)"/>
             <defs>
               <linearGradient id="paint0_linear_49_239" x1="970.5" y1="-84.9313" x2="970.5" y2="3842" gradientUnits="userSpaceOnUse">
-                <stop offset="1" stop-color="#A79FD9"/>
+                <stop offset="1" stop-color="#c0c9ed"/>
               </linearGradient>
             </defs>
           </svg>
           <div class="work-2-frame-overlay">
             <div class="work-2-frame-inner">
-              <div class="work-2-videos-block">
-                <div class="animix-yellow-video">
-                  <iframe
-                    src="https://www.youtube.com/embed/M-SyhOW3rsQ?si=hJcz0QInyQWKkxiD&playsinline=1&modestbranding=1&rel=0&loop=1&playlist=M-SyhOW3rsQ"
-                    title="YouTube video player"
-                    frameborder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                    referrerpolicy="strict-origin-when-cross-origin"
-                    allowfullscreen
-                  ></iframe>
-                </div>
-                <div class="animix-yellow-video">
-                  <iframe
-                    src="https://www.youtube.com/embed/iBQXny8Pxto?si=ZY4_GpHlf9u33ISe&playsinline=1&modestbranding=1&rel=0&loop=1&playlist=iBQXny8Pxto"
-                    title="YouTube video player"
-                    frameborder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                    referrerpolicy="strict-origin-when-cross-origin"
-                    allowfullscreen
-                  ></iframe>
-                </div>
-                <div class="animix-yellow-video">
-                  <iframe
-                    src="https://www.youtube.com/embed/0WYPpfK24cU?si=M1b1QtQkgnYbIhSM&playsinline=1&modestbranding=1&rel=0&loop=1&playlist=0WYPpfK24cU"
-                    title="YouTube video player"
-                    frameborder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                    referrerpolicy="strict-origin-when-cross-origin"
-                    allowfullscreen
-                  ></iframe>
+              <div class="work-2-carousel" id="work2Carousel">
+                <div class="work-2-carousel-track">
+                  <div class="work-2-frame-slot" data-video-id="M-SyhOW3rsQ">
+                    <button type="button" class="work-2-video-facade" style="background-image:url('https://img.youtube.com/vi/M-SyhOW3rsQ/maxresdefault.jpg')" aria-label="Play video">
+                      <span class="work-2-play-icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z" fill="currentColor"/></svg>
+                      </span>
+                    </button>
+                  </div>
+                  <div class="work-2-frame-slot" data-video-id="iBQXny8Pxto">
+                    <button type="button" class="work-2-video-facade" style="background-image:url('https://img.youtube.com/vi/iBQXny8Pxto/maxresdefault.jpg')" aria-label="Play video">
+                      <span class="work-2-play-icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z" fill="currentColor"/></svg>
+                      </span>
+                    </button>
+                  </div>
+                  <div class="work-2-frame-slot" data-video-id="0WYPpfK24cU">
+                    <button type="button" class="work-2-video-facade" style="background-image:url('https://img.youtube.com/vi/0WYPpfK24cU/maxresdefault.jpg')" aria-label="Play video">
+                      <span class="work-2-play-icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z" fill="currentColor"/></svg>
+                      </span>
+                    </button>
+                  </div>
                 </div>
               </div>
               <div class="work-2-connect-wrap">
@@ -204,5 +197,64 @@
   <script src="https://player.vimeo.com/api/player.js"></script>
   <script src="../media/work-page.js"></script>
   <script src="../media/work-mute.js?v=3"></script>
+  <script>
+    (function () {
+      var carousel = document.getElementById('work2Carousel');
+      if (!carousel) return;
+      var slots = Array.prototype.slice.call(carousel.querySelectorAll('.work-2-frame-slot'));
+      var current = -1;
+
+      function stopVideo(slot) {
+        var iframe = slot.querySelector('iframe');
+        if (iframe) iframe.remove();
+        var facade = slot.querySelector('.work-2-video-facade');
+        if (facade) facade.style.display = '';
+      }
+
+      function playVideo(slot) {
+        var facade = slot.querySelector('.work-2-video-facade');
+        if (!facade || slot.querySelector('iframe')) return;
+        var id = slot.getAttribute('data-video-id');
+        var iframe = document.createElement('iframe');
+        iframe.src = 'https://www.youtube.com/embed/' + id + '?autoplay=1&rel=0&modestbranding=1&playsinline=1';
+        iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen';
+        iframe.referrerPolicy = 'strict-origin-when-cross-origin';
+        iframe.title = 'YouTube video player';
+        iframe.allowFullscreen = true;
+        facade.style.display = 'none';
+        slot.appendChild(iframe);
+      }
+
+      function showSlide(index) {
+        var next = (index + slots.length) % slots.length;
+        if (next === current) return;
+        if (current >= 0) stopVideo(slots[current]);
+        current = next;
+        slots.forEach(function (slot, i) {
+          slot.classList.remove('is-center', 'is-left-peek', 'is-right-peek');
+          if (i === current) {
+            slot.classList.add('is-center');
+          } else if (i === (current - 1 + slots.length) % slots.length) {
+            slot.classList.add('is-left-peek');
+          } else if (i === (current + 1) % slots.length) {
+            slot.classList.add('is-right-peek');
+          }
+        });
+      }
+
+      slots.forEach(function (slot, i) {
+        var facade = slot.querySelector('.work-2-video-facade');
+        facade.addEventListener('click', function () {
+          if (i === current) {
+            playVideo(slot);
+          } else {
+            showSlide(i);
+          }
+        });
+      });
+
+      showSlide(0);
+    })();
+  </script>
 </body>
 </html>

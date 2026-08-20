@@ -15,6 +15,17 @@
   --work-connect-stack-z: 4; /* z-index לעטיפה כשצריך מעל מסגרת צבעונית (work-6 מנטה) */
   /* work-6 בלבד: מרווח בין תחתית מלבן הווידאו האחרון (מסגרת מנטה) לפריים קונקט */
   --work-6-gap-mint-to-connect: 50px;
+  /* גובה מעבר ה"זיגזג" מהווידאו לתוכן (SVG + fill + min-height) — זהה בכל העמודים.
+     42vw שומר על יחס-רוחב-גובה נכון של הצורה; ה-520px היה תקרה תחתונה טובה לדסקטופ
+     אבל במסך צר (למשל 390px) 42vw=~164px, אז הרצפה של 520px כפתה עיוות/מתיחה
+     אנכית קיצונית של הזיגזג — ראה override במובייל למטה. */
+  --work-hero-transition-h: clamp(520px, 42vw, 620px);
+}
+
+@media (max-width: 900px) {
+  :root {
+    --work-hero-transition-h: clamp(120px, 42vw, 300px);
+  }
 }
 
 @font-face {
@@ -703,12 +714,12 @@ body.work-page.work-3 {
   z-index: 0;
   top: 0;
   inset: auto 0 auto 0;
-  height: clamp(520px, 42vw, 620px);
+  height: var(--work-hero-transition-h);
 }
 
 .work-page.work-1 .work-content-fill {
   position: absolute;
-  top: calc(clamp(520px, 42vw, 620px) - 2px);
+  top: calc(var(--work-hero-transition-h) - 2px);
   right: 0;
   bottom: 0;
   left: 0;
@@ -798,41 +809,116 @@ body.work-page.work-3 {
   background-color: transparent;
 }
 
-/*
-  work-2 לעומת work-1: כאן שלושה iframes Vimeo בגלילה (לא רק אחד), וה-crop משתמש ב-transform.
-  בזום (במיוחד מובייל) שכבת ה-compositing של iframe יכולה “לצוץ” מעל חיתוך — נראה כפס מסגרת מוזאיקה
-  מעל פס האייקונים. work-1: פחות חשיפה + מבנה שונה.
-*/
-.work-page.work-2 .work-2-videos-block {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 28px;
-  isolation: isolate;
-}
-
-.work-page.work-2 .work-2-frame-inner .animix-yellow-video {
+/* Carousel — same mechanism as work-6/3D Animation and work-5/My Exercises:
+   active video centered, neighbors peeking out from behind its edges. */
+.work-page.work-2 .work-2-carousel {
   position: relative;
-  width: min(100%, 620px);
-  aspect-ratio: 16 / 9;
-  background: #000;
-  overflow: hidden;
-  border-radius: 18px;
-  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.18);
-  /* מרכז את שכבת ה-iframe בתוך המיכל — מפחית בריחה מחוץ ל-border-radius בזום */
+  width: 100vw;
+  max-width: none;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: auto;
   isolation: isolate;
-  transform: translateZ(0);
 }
 
-.work-page.work-2 .work-2-frame-inner .animix-yellow-video iframe {
+.work-page.work-2 .work-2-carousel-track {
+  position: relative;
+  width: min(100%, 960px);
+  aspect-ratio: 16 / 9;
+}
+
+.work-page.work-2 .work-2-frame-slot {
   position: absolute;
   top: 0;
-  left: 0;
+  left: 50%;
+  width: 100%;
+  height: 100%;
+  border-radius: 14px;
+  overflow: hidden;
+  background: #0a0a0a;
+  display: none;
+  transform: translateX(-50%);
+  transition: transform 0.35s ease, opacity 0.35s ease;
+}
+
+.work-page.work-2 .work-2-frame-slot.is-center {
+  display: block;
+  z-index: 3;
+  opacity: 1;
+  transform: translateX(-50%);
+}
+
+.work-page.work-2 .work-2-frame-slot.is-left-peek,
+.work-page.work-2 .work-2-frame-slot.is-right-peek {
+  display: block;
+  z-index: 1;
+  opacity: 0.45;
+  cursor: pointer;
+}
+
+.work-page.work-2 .work-2-frame-slot.is-left-peek {
+  transform: translateX(-88%) scale(0.7);
+}
+
+.work-page.work-2 .work-2-frame-slot.is-right-peek {
+  transform: translateX(-12%) scale(0.7);
+}
+
+@media (max-width: 900px) {
+  .work-page.work-2 .work-2-carousel-track {
+    width: 74vw;
+  }
+
+  .work-page.work-2 .work-2-frame-slot.is-left-peek {
+    transform: translateX(-75%) scale(0.7);
+  }
+
+  .work-page.work-2 .work-2-frame-slot.is-right-peek {
+    transform: translateX(-25%) scale(0.7);
+  }
+}
+
+.work-page.work-2 .work-2-frame-slot iframe {
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
   border: 0;
-  /* לא לפרום שכבה מעל chrome של הדפדפן */
-  transform: translate3d(0, 0, 0);
+}
+
+.work-page.work-2 .work-2-video-facade {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.work-page.work-2 .work-2-play-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: clamp(48px, 6vw, 76px);
+  height: clamp(48px, 6vw, 76px);
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.55);
+  color: #fff;
+}
+
+.work-page.work-2 .work-2-play-icon svg {
+  width: 42%;
+  height: 42%;
+  margin-left: 3px;
 }
 
 /* work-2: עטיפת קונקט בלבד — שאר הכללים בבלוק work-2…7 למטה */
@@ -994,8 +1080,131 @@ body.work-page.work-3 {
   background-color: #ffffcf;
 }
 
-.work-page.work-5 .work-5-exercises-block {
+.work-page.work-5 .work-5-carousel {
+  position: relative;
+  width: 100vw;
+  max-width: none;
   margin-top: var(--work-connect-gap-above);
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: auto;
+}
+
+.work-page.work-5 .work-5-carousel-track {
+  position: relative;
+  width: min(100%, 960px);
+  aspect-ratio: 16 / 9;
+}
+
+/* Three layers: the active video centered on top, and its neighbors peeking
+   out from behind its left/right edges — click a peek to bring it forward.
+   Same mechanism as work-6/3D Animation's carousel. */
+.work-page.work-5 .work-5-frame-slot {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 100%;
+  height: 100%;
+  border-radius: 14px;
+  overflow: hidden;
+  background: #0a0a0a;
+  display: none;
+  transform: translateX(-50%);
+  transition: transform 0.35s ease, opacity 0.35s ease;
+}
+
+.work-page.work-5 .work-5-frame-slot.is-center {
+  display: block;
+  z-index: 3;
+  opacity: 1;
+  transform: translateX(-50%);
+}
+
+.work-page.work-5 .work-5-frame-slot.is-left-peek,
+.work-page.work-5 .work-5-frame-slot.is-right-peek {
+  display: block;
+  z-index: 1;
+  opacity: 0.45;
+  cursor: pointer;
+}
+
+.work-page.work-5 .work-5-frame-slot.is-left-peek {
+  transform: translateX(-88%) scale(0.7);
+}
+
+.work-page.work-5 .work-5-frame-slot.is-right-peek {
+  transform: translateX(-12%) scale(0.7);
+}
+
+@media (max-width: 900px) {
+  .work-page.work-5 .work-5-carousel-track {
+    width: 74vw;
+  }
+
+  .work-page.work-5 .work-5-frame-slot.is-left-peek {
+    transform: translateX(-75%) scale(0.7);
+  }
+
+  .work-page.work-5 .work-5-frame-slot.is-right-peek {
+    transform: translateX(-25%) scale(0.7);
+  }
+}
+
+.work-page.work-5 .work-5-frame-slot iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+.work-page.work-5 .work-5-video-facade {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.work-page.work-5 .work-5-play-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: clamp(48px, 6vw, 76px);
+  height: clamp(48px, 6vw, 76px);
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.55);
+  color: #fff;
+}
+
+.work-page.work-5 .work-5-play-icon svg {
+  width: 42%;
+  height: 42%;
+  margin-left: 3px;
+}
+
+/* Description of the active video — crossfades (via JS toggling opacity)
+   when the carousel switches slides. */
+.work-page.work-5 .work-5-carousel-desc {
+  max-width: min(100%, 620px);
+  margin: clamp(1rem, 2.5vw, 1.5rem) auto 0;
+  font-family: "Inter", system-ui, -apple-system, sans-serif;
+  font-size: clamp(0.95rem, 1.35vw, 1.08rem);
+  font-weight: 400;
+  line-height: 1.55;
+  color: #12161b;
+  text-align: center;
+  transition: opacity 0.25s ease;
 }
 
 /* Connect block: same markup as other work pages; טוקן --work-connect-gap-above מתחת למבנה למעלה */
@@ -1043,132 +1252,6 @@ body.work-page.work-3 {
   color: #12161b;
 }
 
-.work-page.work-5 .work-5-text-box {
-  margin: 0;
-  font-family: "Inter", system-ui, -apple-system, sans-serif;
-  font-size: clamp(0.95rem, 1.35vw, 1.08rem);
-  font-weight: 400;
-  line-height: 1.55;
-  color: #12161b;
-}
-
-.work-page.work-5 .work-5-row {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
-  gap: clamp(1.25rem, 3.5vw, 2.75rem);
-  margin-bottom: clamp(1.75rem, 4vw, 2.85rem);
-}
-
-.work-page.work-5 .work-5-row:last-child {
-  margin-bottom: 0;
-}
-
-.work-page.work-5 .work-5-row--video-left {
-  flex-direction: row;
-}
-
-.work-page.work-5 .work-5-row--text-left {
-  flex-direction: row;
-}
-
-.work-page.work-5 .work-5-row--stack {
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  gap: clamp(1rem, 2.5vw, 1.35rem);
-}
-
-.work-page.work-5 .work-5-text-col {
-  flex: 1 1 280px;
-  max-width: min(100%, 520px);
-  margin: 0;
-  text-align: start;
-}
-
-.work-page.work-5 .work-5-row--stack .work-5-text-box {
-  text-align: center;
-}
-
-.work-page.work-5 .work-5-video-slot {
-  position: relative;
-  overflow: hidden;
-  flex: 0 1 min(100%, 440px);
-  width: min(100%, 440px);
-  max-width: 100%;
-  aspect-ratio: 16 / 9;
-  background: #d8d8d8;
-  border-radius: 14px;
-  border: 1px solid rgba(0, 0, 0, 0.1);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
-}
-
-.work-page.work-5 .work-5-video-slot--embed {
-  background: #0a0a0a;
-}
-
-.work-page.work-5 .work-5-video-slot iframe {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  border: 0;
-}
-
-.work-page.work-5 .work-5-video-slot--square {
-  flex: 0 1 min(420px, 63vw);
-  width: min(420px, 63vw);
-  max-width: min(100%, 420px);
-  aspect-ratio: 1 / 1;
-}
-
-.work-page.work-5 .work-5-row--has-large-square {
-  gap: clamp(1.75rem, 4.5vw, 3rem);
-  align-items: center;
-  justify-content: center;
-}
-
-.work-page.work-5 .work-5-row--has-large-square .work-5-text-col {
-  flex: 1 1 min(280px, 46%);
-  max-width: min(100%, 560px);
-  min-width: 0;
-}
-
-.work-page.work-5 .work-5-video-slot--loops {
-  width: min(100%, 520px);
-  flex-basis: min(100%, 520px);
-  aspect-ratio: 16 / 9;
-}
-
-@media (max-width: 720px) {
-  .work-page.work-5 .work-5-row--video-left,
-  .work-page.work-5 .work-5-row--text-left {
-    flex-direction: column;
-  }
-
-  .work-page.work-5 .work-5-text-col {
-    text-align: center;
-    max-width: 100%;
-  }
-
-  .work-page.work-5 .work-5-video-slot {
-    width: 100%;
-    max-width: 420px;
-    flex: 1 1 auto;
-  }
-
-  .work-page.work-5 .work-5-video-slot--square {
-    width: 100%;
-    max-width: min(100%, 420px);
-    flex: 1 1 auto;
-  }
-
-  .work-page.work-5 .work-5-row--has-large-square .work-5-text-col {
-    max-width: 100%;
-  }
-}
 
 .work-page.work-4 .work-4-pink-frame-crop {
   position: relative;
@@ -1792,14 +1875,13 @@ body.work-page.work-3 {
 
 .work-page.work-2 .work-content-section {
   overflow: visible;
-  min-height: clamp(520px, 42vw, 620px);
-  background-color: #12161b;
+  min-height: var(--work-hero-transition-h);
 }
 
 /* work-5: hero = רק פס הכותרת — לא min-height:100% על ה-wrapper (נפח גובה + .work-content-fill עד #12161B מתחת לקונקט) */
 .work-page.work-5 .work-content-section {
   overflow: visible;
-  min-height: clamp(520px, 42vw, 620px);
+  min-height: var(--work-hero-transition-h);
 }
 
 .work-page.work-2 .work-content-inner,
@@ -1870,7 +1952,7 @@ body.work-page.work-3 {
   z-index: 0;
   top: 0;
   inset: auto 0 auto 0;
-  height: clamp(520px, 42vw, 620px);
+  height: var(--work-hero-transition-h);
 }
 
 .work-page.work-2 .work-content-fill,
@@ -1880,7 +1962,7 @@ body.work-page.work-3 {
 .work-page.work-6 .work-content-fill,
 .work-page.work-7 .work-content-fill {
   position: absolute;
-  top: calc(clamp(520px, 42vw, 620px) - 2px);
+  top: calc(var(--work-hero-transition-h) - 2px);
   right: 0;
   bottom: 0;
   left: 0;
@@ -2275,11 +2357,6 @@ body.work-page.work-3 {
     width: min(100%, 400px);
   }
 
-  /* work-2 mobile: lift the three video rectangles */
-  .work-page.work-2 .work-2-videos-block {
-    margin-top: -200px;
-  }
-
   /* work-4 mobile: lift the four video rectangles */
   .work-page.work-4 .work-4-zigzag-grid {
     margin-top: -150px;
@@ -2470,44 +2547,13 @@ body.work-page.work-3 {
     scroll-snap-align: start;
   }
 
-  /* work-5 mobile flow (live): text above each video */
-  .work-page.work-5 .work-5-exercises-block {
+  .work-page.work-5 .work-5-carousel {
     margin-top: 0;
   }
 
   .work-page.work-5 .work-5-studies-title {
     margin-top: -65px;
     margin-bottom: 2em;
-  }
-
-  .work-page.work-5 .work-5-exercises-block > .work-5-row:nth-child(-n+3) {
-    flex-direction: column !important;
-    align-items: stretch;
-    justify-content: flex-start;
-    gap: 1em;
-    margin-bottom: 30px;
-  }
-
-  .work-page.work-5 .work-5-exercises-block > .work-5-row:nth-child(3) {
-    margin-bottom: 44px;
-  }
-
-  .work-page.work-5 .work-5-exercises-block > .work-5-row:nth-child(-n+3) .work-5-text-col,
-  .work-page.work-5 .work-5-exercises-block > .work-5-row:nth-child(-n+3) .work-5-text-box {
-    order: 1;
-    flex: 0 0 auto;
-    width: 100%;
-    max-width: 100%;
-    text-align: center;
-    margin: 0;
-  }
-
-  .work-page.work-5 .work-5-exercises-block > .work-5-row:nth-child(-n+3) .work-5-video-slot {
-    order: 2;
-    flex: 0 0 auto;
-    width: 100%;
-    max-width: 420px;
-    margin: 0 auto;
   }
 }
 
@@ -2618,12 +2664,12 @@ body.work-page.work-8 {
   z-index: 0;
   top: 0;
   inset: auto 0 auto 0;
-  height: clamp(520px, 42vw, 620px);
+  height: var(--work-hero-transition-h);
 }
 
 .work-page.work-8 .work-content-fill {
   position: absolute;
-  top: calc(clamp(520px, 42vw, 620px) - 2px);
+  top: calc(var(--work-hero-transition-h) - 2px);
   right: 0;
   bottom: 0;
   left: 0;
@@ -2639,7 +2685,7 @@ body.work-page.work-8 {
 
 .work-page.work-8 .work-content-section {
   overflow: visible;
-  min-height: clamp(520px, 42vw, 620px);
+  min-height: var(--work-hero-transition-h);
 }
 
 .work-page.work-8 .work-content-inner {
@@ -2975,12 +3021,12 @@ body.work-page.work-9 {
   z-index: 0;
   top: 0;
   inset: auto 0 auto 0;
-  height: clamp(520px, 42vw, 620px);
+  height: var(--work-hero-transition-h);
 }
 
 .work-page.work-9 .work-content-fill {
   position: absolute;
-  top: calc(clamp(520px, 42vw, 620px) - 2px);
+  top: calc(var(--work-hero-transition-h) - 2px);
   right: 0;
   bottom: 0;
   left: 0;
@@ -2996,7 +3042,7 @@ body.work-page.work-9 {
 
 .work-page.work-9 .work-content-section {
   overflow: visible;
-  min-height: clamp(520px, 42vw, 620px);
+  min-height: var(--work-hero-transition-h);
 }
 
 .work-page.work-9 .work-content-inner {
